@@ -7,3 +7,22 @@
 .form-container {
     display: block;
 }
+
+.left-container {
+    background-color: #ff1f1f;
+}
+
+.center-container {
+    background-color: #2545d1;
+}
+
+.right-container {
+    background-color: #28b639;
+}
+
+.right-container,
+.left-container,
+.center-container {
+    height: 100px;
+    width: 100px;
+}
