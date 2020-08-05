@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-const Navbar = (props) => {
+const Details = () => {
     return (
         <div className="right-container">
-            Hello, World!
+
         </div>
     )
 };
 
-export default Navbar;
+export default Details;
