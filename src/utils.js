@@ -25,7 +25,8 @@ const uploadImage = multer({
   })
 }).single('image')
 
-
+const backendUrl = "http://localhost:5000/api"
+export default backendUrl
 // usage
 // const singleUpload = upload.single('image')
 // singleUpload(req, res, function(err) {
