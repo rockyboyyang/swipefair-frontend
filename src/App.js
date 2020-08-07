@@ -10,18 +10,18 @@ import EditProfile from "./Components/Pages/EditProfile";
 
 const App = props => {
   const [tokenState, setToken] = useState("");
-  const [jobseekerState, setJobseeker] = useState(""); 
+  const [jobseekerState, setJobseeker] = useState("");
   const [companyState, setCompany] = useState("");
-  return (    
+  return (
     <BrowserRouter>
       <Switch>
-        <Route path="/login" render={(props)=> <Login {...props} setToken={setToken} setJobseeker={setJobseeker} companyState={companyState}/>} /> 
+        <Route path="/login" render={(props)=> <Login {...props} setToken={setToken} setJobseeker={setJobseeker} companyState={companyState}/>} />
         {/* <Route path="/login" component={Login} setToken={setToken} setJobseeker={setJobseeker} companyState={companyState} /> */}
         <Route path="/signup" component={SignUp} />
         <Route path="/home" component={Home} />
         <Route path="/chats" component={ChatsView} />
         <Route path="/messages" component={MessagesView} />
-        {/* <Route path="/editprofile" component={EditProfile} /> */}
+        <Route path="/editprofile" component={EditProfile} />
       </Switch>
     </BrowserRouter>
   );

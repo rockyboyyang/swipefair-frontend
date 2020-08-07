@@ -1,0 +1,29 @@
+.edit-profile-container {
+  /* max-width: 600px;
+  min-width: 30%; */
+  width: fit-content;
+  border: solid tomato 1px;
+  margin: auto;
+  padding: 0 1em 1em 1em;
+  margin-top: 10%;
+  font-family: 'Lato', sans-serif;
+}
+
+.edit-profile-container h2 {
+  font-family: 'Archivo', sans-serif;
+
+}
+
+.edit-profile-container p {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+}
+
+.education-container {
+  margin:auto;
+  padding: 0 1em 1em 1em;
+  margin-top: 1em;
+  width: fit-content;
+  background-color: whitesmoke;
+  border: solid tomato 1px;
+}

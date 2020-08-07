@@ -9,7 +9,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 const ChatsView = () => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <MatchesContainer />
       <ChatsContainer />
       <AboutUsContainer />
