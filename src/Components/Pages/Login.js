@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 // import backendUrl from "../../utils";
 // yeha modules are wack
 const backendUrl = "http://localhost:5000/api";
-const Login = ({setToken, setJobseeker, setCompany}) => {
+const Login = ({ setToken, setJobseeker, setCompany }) => {
   // how do we get the methods?
   const [emailState, setEmail] = useState("");
   const [passwordState, setPassword] = useState("");
@@ -27,7 +27,7 @@ const Login = ({setToken, setJobseeker, setCompany}) => {
       jobseeker ? setJobseeker({ jobseeker }) : setCompany({ company }); //check
     }
   };
-  
+
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
