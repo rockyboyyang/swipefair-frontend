@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 // import backendUrl from "../../utils";
 // yeha modules are wack
 const backendUrl = "http://localhost:5000/api";
-const Login = ({ setToken, setJobseeker, setCompany }) => {
-  // how do we get the methods?
+const Login = ({ setToken, setJobseeker, setCompany,tokenState }) => {
+  let history = useHistory()
   const [emailState, setEmail] = useState("");
   const [passwordState, setPassword] = useState("");
 
@@ -17,7 +17,7 @@ const Login = ({ setToken, setJobseeker, setCompany }) => {
 
     const res = await fetch(backendUrl + "/" + e.target.id + "/", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json"},
       body: JSON.stringify(body),
     });
     if (res.ok) {
@@ -26,8 +26,8 @@ const Login = ({ setToken, setJobseeker, setCompany }) => {
       window.localStorage.access_token = access_token; //i swear i wrote this
       window.localStorage.jobseeker = JSON.stringify(jobseeker); //i swear i wrote this
       window.localStorage.company = JSON.stringify(company); //i swear i wrote this
-
       jobseeker ? setJobseeker({ jobseeker }) : setCompany({ company }); //check
+      history.push('/home')
     }
   };
 
@@ -39,6 +39,8 @@ const Login = ({ setToken, setJobseeker, setCompany }) => {
     setPassword(event.target.value);
   };
 
+
+  if tokenState history.push('/login')
   return (
     <div className="form-container">
       <form>
