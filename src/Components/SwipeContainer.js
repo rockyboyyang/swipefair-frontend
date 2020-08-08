@@ -103,10 +103,9 @@ const SwipeContainer = (props) => {
     const response = await fetch(herokuUrl); // + '/'
     debugger;
     const { opening } = await response.json();
-    setOpeningsState(opening);  
+    // setOpeningsState(opening);  
   };
-
-  const [openingsState, setOpeningsState] = useState([
+  const defaultData = [
     {
       image: "logo",
       company_name: "Amazon",
@@ -129,12 +128,15 @@ const SwipeContainer = (props) => {
       opening_id: 2,
       description: "Come change the world!",
     },
-  ]);
+  ]
+  const [openingsState, setOpeningsState] = useState(defaultData)
 
+  const [unchangingState, setUnchangingState] = useState([])
+  // data()
   useEffect(() => {
      data();
-  }, [])
-  ;
+  });
+
   return (
     <div>
       <div className="center-container">
@@ -159,5 +161,5 @@ const SwipeContainer = (props) => {
       </div>
     </div>
   );
-};
+}
 export default SwipeContainer;
