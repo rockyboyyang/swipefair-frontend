@@ -9,7 +9,7 @@ const Login = ({ setToken, setJobseeker, setCompany }) => {
   const [passwordState, setPassword] = useState("");
 
   const onclick = async (e) => {
-    e.preventDefault(); //??? i think we said it would make no difference
+    e.preventDefault();
     const body = {
       email: emailState,
       password: passwordState,
@@ -24,6 +24,9 @@ const Login = ({ setToken, setJobseeker, setCompany }) => {
       const { access_token, jobseeker, company } = await res.json();
       setToken({ access_token });
       window.localStorage.access_token = access_token; //i swear i wrote this
+      window.localStorage.jobseeker = JSON.stringify(jobseeker); //i swear i wrote this
+      window.localStorage.company = JSON.stringify(company); //i swear i wrote this
+
       jobseeker ? setJobseeker({ jobseeker }) : setCompany({ company }); //check
     }
   };
