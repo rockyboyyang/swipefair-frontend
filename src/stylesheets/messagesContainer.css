@@ -15,6 +15,7 @@
     background-color: rgb(218, 200, 176);
     margin: 10px 10px;
     width: auto;
+    max-height: 25px;
     max-width: 255px;
     height: auto;
     display: flex;
@@ -29,6 +30,7 @@
     overflow-y: scroll;
     width: 100%;
     display: grid;
+    grid-template-columns: 1fr;
     height: 100%;
 }
 

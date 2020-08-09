@@ -7,18 +7,17 @@ import CompanyList from './CompanyList'
 
 
 const MatchesContainer = ({matchesState}) => { 
-  // const jobseekerId = JSON.parse(localStorage.jobseeker).id
-    return ( matchesState.length ? 
-        <div className="center-container">
-          div
-          <div>Matched with the Following Companies</div>
-            {matchesState.map((match) => 
+//   // const jobseekerId = JSON.parse(localStorage.jobseeker).id
+//     return ( matchesState.length ? 
+//         <div className="center-container">
+//           div
+//           <div>Matched with the Following Companies</div>
+//             {matchesState.map((match) => 
               
-            <CompanyList match={match} /*setMatchesState={setMatchesState}*//>)}
-        </div> : <div>No matches yet</div>
-    )
+//             <CompanyList match={match} /*setMatchesState={setMatchesState}*//>)}
+//         </div> : <div>No matches yet</div>
+//     )
   
-
 };
 
 

@@ -37,7 +37,7 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState ,}) => {
       window.localStorage.jobseeker = JSON.stringify(jobseeker); //i swear i wrote this
       window.localStorage.company = JSON.stringify(company); //i swear i wrote this
       jobseeker ? setJobseeker({ jobseeker }) : setCompany({ company }); //check
-      history.push("/home");
+      history.push("/");
     }
   };
 

@@ -26,13 +26,12 @@ const Home = () => {
 
         await fetchMatches();
       })();
-      debugger
     }, [])
 
   return (
     <div>
       <Navbar />
-      <MatchesContainer matchesState={matchesState}/>
+      {/* <MatchesContainer matchesState={matchesState}/> */}
       <SwipeContainer fetchMatches={fetchMatches}  setMatchesState={setMatchesState}/>
       <AboutUsContainer />
     </div>
