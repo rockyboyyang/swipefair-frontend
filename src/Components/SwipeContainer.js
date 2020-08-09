@@ -2,47 +2,64 @@ import React, { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "../stylesheets/swipecontainer.css";
 import "../stylesheets/tindercard.css";
-const SwipeContainer = (props) => {
-  //   const backendUrl = "http://localhost:5000/api/openings";
-  const herokuUrl = "https://boiling-sands-04799.herokuapp.com/api/openings";
-
+const SwipeContainer = (props, jobseekerState) => {
+  // const backendUrl = "http://localhost:5000/api/openings";
+  // /notswiped/<int:jobseekerId>
+  // const herokuUrl = "https://boiling-sands-04799.herokuapp.com/api/openings";
+  const jobseekerId = JSON.parse(localStorage.jobseeker).id;
+  const backendUrl = `http://localhost:5000/api/openings/notswiped/${jobseekerId}`;
+  // const jobseekerId = jobseekerState.id;
+  let openingsId;
   const data = async () => {
-    const response = await fetch(herokuUrl); // + '/'
+    
+    const response = await fetch(backendUrl); // + '/'
     const { opening } = await response.json();
     setOpeningsState(opening);
+    // debugger
+    // openingsId = opening.map(o => o.id)
+    // setOpeningsIdsState(opening.map(o => o.id));
     return opening;
   };
-  // const defaultData = [
-  //   {
-  //     image: "logo",
-  //     company_name: "Amazon",
-  //     email: "jeff@amazon.com",
-  //     size: "large",
-  //     location: "Seattle, WA",
-  //     bio: "Sells goods and services online",
-  //     title: "Software Engineer",
-  //     opening_id: 1,
-  //     description: "Looking for super coder!",
-  //   },
-  //   {
-  //     image: "logo",
-  //     company_name: "Google",
-  //     email: "sergey@google.com",
-  //     size: "large",
-  //     location: "Mountain View, CA",
-  //     bio: "Specializes in Internet-related services and products,",
-  //     title: " Junior Software Engineer",
-  //     opening_id: 2,
-  //     description: "Come change the world!",
-  //   },
-  // ];
   const [openingsState, setOpeningsState] = useState([]);
+  // const [openingsIdsState, setOpeningsIdsState] = useState([]);
 
-  useEffect(async () => {
-    const payload = await data();
-    console.log(payload);
+  useEffect(() => {
+    (async () => {
+      const payload = await data();
+    })();
+
     // setOpeningsState(payload);
   }, []);
+
+  const fetchPost = async (url, body) => {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    return await res.json();
+  };
+  //'/jobseekers/<string:jobseekerEmail>/openings/<int:openingId>' post
+  const onSwipe = async (dir) => {
+    return await swiped(dir);
+
+    console.log("You swiped: " + dir);
+  };
+
+  const swiped = async (dir) => {
+    console.log('the states', openingsState)
+    console.log('jobseekerId', jobseekerId)
+    const swiped_right = dir === "right" ? true : false;
+    
+    openingsId = openingsState.pop().id
+    setOpeningsState(openingsState)
+    // openingsId = openingsState[openingsState.length-1].id
+    // setOpeningsIdsState(openingsIdsState.slice(1))
+    const url = `http://localhost:5000/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
+    debugger
+    const body = { swiped_right: swiped_right };
+    return await fetchPost(url, body);
+  };
 
   return (
     <div>
@@ -50,11 +67,18 @@ const SwipeContainer = (props) => {
         {openingsState.map((op) => (
           <TinderCard
             className="card"
-            key={op.opening_id}
+            key={op.id}
+            // onCardLeftScreen={() => {
+            //   onCardisSwiped("foobar");
+            // }}
+            // onCardLeftScreen={() => onCardLeftScreen("fooBar")}
+            onSwipe={onSwipe}
             preventSwipe={["up", "down"]}
           >
             <div className="swipe">
-              <div>{op.image}</div>
+              <div>
+                <img src={op.image} alt='company' />
+                </div>
               <div>{op.company_name}</div>
               <div>{op.email}</div>
               <div>{op.size}</div>
