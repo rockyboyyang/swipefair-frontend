@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import Navbar from "../Navbar";
 import MatchesContainer from "../MatchesContainer";
 import SwipeContainer from "../SwipeContainer";
 import AboutUsContainer from "../AboutUsContainer";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import '../../stylesheets/homeview.css'
 // import {ourGet} from '../utils'
 
 
@@ -30,9 +30,9 @@ const Home = () => {
     }, [])
 
   return (
-    <div>
+    <div className='home-view'>
       <Navbar />
-      <MatchesContainer matchesState={matchesState}/>
+      {/* <MatchesContainer matchesState={matchesState}/> */}
       <SwipeContainer fetchMatches={fetchMatches}  setMatchesState={setMatchesState}/>
       <AboutUsContainer />
     </div>

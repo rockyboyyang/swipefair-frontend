@@ -1,0 +1,9 @@
+.left-container {
+    border: 2px solid blue;
+    width: 300px;
+    height: 80%;
+    margin-left: 30px;
+    margin-top: 30px;
+    display: flex; 
+    background-color: burlywood;
+  }
