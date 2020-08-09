@@ -70,7 +70,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId}) => {
   return (
     <>
       <Navbar />
-      <MatchesContainer />
+      {/* <MatchesContainer /> */}
       <MessagesContainer companyState={companyState}
       jobseekerState={jobseekerState} 
       chatId={chatId} 

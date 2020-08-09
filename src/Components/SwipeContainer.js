@@ -11,7 +11,6 @@ const SwipeContainer = ({fetchMatches}) => {
   // const jobseekerId = jobseekerState.id;
   let openingsId;
   const data = async () => {
-    debugger
     const response = await fetch(backendUrl); // + '/'
     const { opening } = await response.json();
     setOpeningsState(opening);
