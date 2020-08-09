@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "../stylesheets/swipecontainer.css";
 import "../stylesheets/tindercard.css";
-const SwipeContainer = (props, jobseekerState) => {
+const SwipeContainer = ({fetchMatches}) => {
   // const backendUrl = "http://localhost:5000/api/openings";
   // /notswiped/<int:jobseekerId>
   // const herokuUrl = "https://boiling-sands-04799.herokuapp.com/api/openings";
@@ -11,6 +11,7 @@ const SwipeContainer = (props, jobseekerState) => {
   // const jobseekerId = jobseekerState.id;
   let openingsId;
   const data = async () => {
+    debugger
     const response = await fetch(backendUrl); // + '/'
     const { opening } = await response.json();
     setOpeningsState(opening);
@@ -55,9 +56,11 @@ const SwipeContainer = (props, jobseekerState) => {
     // openingsId = openingsState[openingsState.length-1].id
     // setOpeningsIdsState(openingsIdsState.slice(1))
     const url = `http://localhost:5000/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
-    // debugger
     const body = { swiped_right: swiped_right };
-    return await fetchPost(url, body);
+  const posts = await fetchPost(url, body);
+  // await fetchMatches()
+  return posts
+
   };
 
   return (
