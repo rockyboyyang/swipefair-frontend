@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Redirect, useHistory } from "react-router-dom";
-import "../../stylesheets/login.css"
+import "../../stylesheets/login.css";
 // import backendUrl from "../../utils";
 // yeha modules are wack
 const backendUrl = "http://localhost:5000/api";
-const Login = ({ setToken, setJobseeker, setCompany, tokenState ,}) => {
+const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
   let history = useHistory();
   const [emailState, setEmail] = useState("");
   const [passwordState, setPassword] = useState("");
@@ -29,7 +29,7 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState ,}) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    console.log(res.ok)
+    console.log(res.ok);
     if (res.ok) {
       const { access_token, jobseeker, company } = await res.json();
       setToken({ access_token });
@@ -48,7 +48,7 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState ,}) => {
   const signUp = (e) => {
     e.preventDefault();
     history.push("/signup");
-  }
+  };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -75,7 +75,7 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState ,}) => {
               placeholder="Enter Email"
               value={emailState}
               onChange={handleEmailChange}
-             />
+            />
           </div>
           <div>
             <input

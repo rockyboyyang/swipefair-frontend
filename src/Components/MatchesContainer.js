@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "../stylesheets/matches.css";
-import SwipeContainer from "./SwipeContainer";
 import CompanyList from './CompanyList'
 
 
@@ -20,7 +18,4 @@ const MatchesContainer = ({matchesState}) => {
   
 };
 
-
-
 export default MatchesContainer;
-
