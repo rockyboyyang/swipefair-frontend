@@ -11,7 +11,6 @@ const SwipeContainer = (props, jobseekerState) => {
   // const jobseekerId = jobseekerState.id;
   let openingsId;
   const data = async () => {
-    
     const response = await fetch(backendUrl); // + '/'
     const { opening } = await response.json();
     setOpeningsState(opening);
@@ -47,16 +46,16 @@ const SwipeContainer = (props, jobseekerState) => {
   };
 
   const swiped = async (dir) => {
-    console.log('the states', openingsState)
-    console.log('jobseekerId', jobseekerId)
+    console.log("the states", openingsState);
+    console.log("jobseekerId", jobseekerId);
     const swiped_right = dir === "right" ? true : false;
-    
-    openingsId = openingsState.pop().id
-    setOpeningsState(openingsState)
+
+    openingsId = openingsState.pop().id;
+    setOpeningsState(openingsState);
     // openingsId = openingsState[openingsState.length-1].id
     // setOpeningsIdsState(openingsIdsState.slice(1))
     const url = `http://localhost:5000/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
-    debugger
+    // debugger
     const body = { swiped_right: swiped_right };
     return await fetchPost(url, body);
   };
@@ -77,8 +76,8 @@ const SwipeContainer = (props, jobseekerState) => {
           >
             <div className="swipe">
               <div>
-                <img src={op.image} alt='company' />
-                </div>
+                <img src={op.image} alt="company" />
+              </div>
               <div>{op.company_name}</div>
               <div>{op.email}</div>
               <div>{op.size}</div>
