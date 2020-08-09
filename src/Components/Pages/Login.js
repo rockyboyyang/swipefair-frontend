@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Redirect, useHistory } from "react-router-dom";
+import "../../stylesheets/login.css"
 // import backendUrl from "../../utils";
 // yeha modules are wack
 const backendUrl = "http://localhost:5000/api";
@@ -44,6 +45,11 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState ,}) => {
     setEmail(event.target.value);
   };
 
+  const signUp = (e) => {
+    e.preventDefault();
+    history.push("/signup");
+  }
+
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
@@ -56,34 +62,46 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState ,}) => {
 
   // if tokenState history.push('/login')
   return (
-    <div className="form-container">
-      <form>
-        <input
-          type="text"
-          placeholder="Enter Email"
-          value={emailState}
-          onChange={handleEmailChange}
-        ></input>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          value={passwordState}
-          onChange={handlePasswordChange}
-        ></input>
-        <button id="session_jobseeker" onClick={onclick}>
-          Log In as Jobseeker
-        </button>
-        <button id="session_company" onClick={onclick}>
-          Log In as Company
-        </button>
-      </form>
-      <div>
-        <p>Don't have an account? </p>
-        <div>Sign Up</div>
+    <div className="login">
+      <div className="welcome-text">
+        <img id="logo" src="/assets/swipefair-logo-white.png" />
+        <h1>Where connections are made</h1>
       </div>
-      <button id="session_jobseeker" onClick={loginDemoUser}>
-        Demo
-      </button>
+      <div className="login-form-container">
+        <form>
+          <div>
+            <input
+              type="text"
+              placeholder="Enter Email"
+              value={emailState}
+              onChange={handleEmailChange}
+             />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Enter Password"
+              value={passwordState}
+              onChange={handlePasswordChange}
+            />
+          </div>
+          <button id="session_jobseeker" onClick={onclick}>
+            Log In as Jobseeker
+          </button>
+          <button id="session_company" onClick={onclick}>
+            Log In as Company
+          </button>
+        </form>
+        <div className="sign-up-ref">
+          <p>Don't have an account? </p>
+          <button onClick={signUp}>Sign Up</button>
+        </div>
+        <div>
+          <button id="session_jobseeker" onClick={loginDemoUser}>
+            Demo
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
