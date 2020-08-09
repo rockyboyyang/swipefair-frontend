@@ -8,26 +8,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 
 
-const Home = () => {
-  const jobseekerId = JSON.parse(localStorage.jobseeker).id
-
-  const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
-
-  const [openingsState, setOpeningsState] = useState([]);
-  const [matchesState, setMatchesState] = useState([]);
-  const fetchMatches = async () => {
-    const res = await fetch(jobseekerMatchesUrl); // + '/'
-    const { matches } = await res.json();
-    setMatchesState(matches);
-  };
-
-      useEffect(() => {
-      (async() => {
-
-        await fetchMatches();
-      })();
-      debugger
-    }, [])
+const Home = ({matchesState, fetchMatches,setMatchesState}) => {
+    // const jobseekerId = JSON.parse(localStorage.jobseeker).id
+    // const jobseekerId = JSON.parse(localStorage.jobseeker).id
+    
+  
+    console.log(`${matchesState} from the Home Component`)
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./Components/Pages/Login";
 import SignUp from "./Components/Pages/SignUp";
@@ -13,6 +13,8 @@ const App = props => {
   const [companyState, setCompany] = useState(localStorage.company);
   const [chatId, setChatId] = useState('')
 
+  
+
 
   return (
     <BrowserRouter>
@@ -20,7 +22,7 @@ const App = props => {
         <Route path="/login" render={(props)=> <Login {...props} setToken={setToken} setJobseeker={setJobseeker} setCompany={setCompany} companyState={companyState}/>} />
         {/* <Route path="/login" component={Login} setToken={setToken} setJobseeker={setJobseeker} companyState={companyState} /> */}
         <Route path="/signup" component={SignUp} />
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" render={Home} />
         <Route path="/chats" render={(props) => <ChatsView {...props} companyState={companyState} jobseekerState={jobseekerState} setChatId={setChatId}/>} />
         <Route path="/messages/:chatId" render={(props) => <MessagesView {...props} chatId={props.match.params.chatId} companyState={companyState} jobseekerState={jobseekerState}/>} />
         <Route path="/editprofile" component={EditProfile} />
