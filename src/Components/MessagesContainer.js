@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import "../stylesheets/messagesContainer.css";
-
-const MessagesContainer = ({ chattingWithName, messageState, sendMessage, goBack, newMessageState, handleNewMessageState }) => {
+import SingleMessageBox from './SingleMessageBox'
+const MessagesContainer = ({ role, chattingWithName, messageState, sendMessage, goBack, newMessageState, handleNewMessageState, jobseekerState, companyState }) => {
 
     return (
-        <div className="center-container">
+        <div className="center-container messages-container">
             <nav>
                 <div onClick={goBack}>
                     BACK
@@ -14,14 +14,12 @@ const MessagesContainer = ({ chattingWithName, messageState, sendMessage, goBack
                     <h1>{chattingWithName}</h1>
                 </div>
             </nav>
-            <div>
+            <div className="messages_display">
                 {messageState.map((message) => 
-                <div className={`${message['role']} message-box`}>
-                    <p>{message['message']}</p>
-                </div>)}
+                <SingleMessageBox message={message} jobseekerState={jobseekerState} companyState={companyState} role={role}/>)}
             </div>
             <form>
-                <input 
+                <input className="text-box"
                 type="text" 
                 placeholder="Enter Message" 
                 value={newMessageState}
