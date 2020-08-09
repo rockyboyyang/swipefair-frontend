@@ -11,7 +11,6 @@ const SwipeContainer = ({fetchMatches}) => {
   // const jobseekerId = jobseekerState.id;
   let openingsId;
   const data = async () => {
-    debugger
     const response = await fetch(backendUrl); // + '/'
     const { opening } = await response.json();
     setOpeningsState(opening);
@@ -22,15 +21,12 @@ const SwipeContainer = ({fetchMatches}) => {
   };
   const [openingsState, setOpeningsState] = useState([]);
   // const [openingsIdsState, setOpeningsIdsState] = useState([]);
-
   useEffect(() => {
     (async () => {
       const payload = await data();
     })();
-
     // setOpeningsState(payload);
   }, []);
-
   const fetchPost = async (url, body) => {
     const res = await fetch(url, {
       method: "POST",
@@ -42,17 +38,14 @@ const SwipeContainer = ({fetchMatches}) => {
   //'/jobseekers/<string:jobseekerEmail>/openings/<int:openingId>' post
   const onSwipe = async (dir) => {
     return await swiped(dir);
-
-    console.log("You swiped: " + dir);
+    // console.log("You swiped: " + dir);
   };
-
   const swiped = async (dir) => {
-    console.log('the states', openingsState)
-    console.log('jobseekerId', jobseekerId)
+    console.log("the states", openingsState);
+    console.log("jobseekerId", jobseekerId);
     const swiped_right = dir === "right" ? true : false;
-    
-    openingsId = openingsState.pop().id
-    setOpeningsState(openingsState)
+    openingsId = openingsState.pop().id;
+    setOpeningsState(openingsState);
     // openingsId = openingsState[openingsState.length-1].id
     // setOpeningsIdsState(openingsIdsState.slice(1))
     const url = `http://localhost:5000/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
@@ -60,12 +53,10 @@ const SwipeContainer = ({fetchMatches}) => {
   const posts = await fetchPost(url, body);
   // await fetchMatches()
   return posts
-
   };
-
   return (
     <div>
-      <div className="center-container">
+      <div className="swipe-container">
         {openingsState.map((op) => (
           <TinderCard
             className="card"
@@ -78,9 +69,9 @@ const SwipeContainer = ({fetchMatches}) => {
             preventSwipe={["up", "down"]}
           >
             <div className="swipe">
-              <div>
-                <img src={op.image} alt='company' />
-                </div>
+              <div className='company-image'>
+                <img src={op.image} alt="company" />
+              </div>
               <div>{op.company_name}</div>
               <div>{op.email}</div>
               <div>{op.size}</div>

@@ -12,7 +12,7 @@ const MatchesContainer = () => {
   const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
 
   const fetchMatches = async(jobseekerId)=> {
-      const res = await fetch( `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`); // + '/'
+      const res = await fetch(jobseekerMatchesUrl); // + '/'
       return await res.json();
     };
 

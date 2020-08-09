@@ -8,8 +8,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 
 
-const Home = ({matchesState, fetchMatches,setMatchesState}) => {
-    // const jobseekerId = JSON.parse(localStorage.jobseeker).id
+const Home = () => {
     // const jobseekerId = JSON.parse(localStorage.jobseeker).id
     
   
@@ -18,7 +17,7 @@ const Home = ({matchesState, fetchMatches,setMatchesState}) => {
   return (
     <div>
       <Navbar />
-      <MatchesContainer matchesState={matchesState}/>
+      {/* <MatchesContainer matchesState={matchesState}/> */}
       <SwipeContainer fetchMatches={fetchMatches}  setMatchesState={setMatchesState}/>
       <AboutUsContainer />
     </div>
