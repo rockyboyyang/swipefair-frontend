@@ -11,7 +11,7 @@ const SignUp = (props) => {
   const [companyEmailState, setCompanyEmail] = useState(undefined);
   const [companyPasswordState, setCompanyPassword] = useState(undefined);
   const [companyConfirmPasswordState, setCompanyConfirmPassword] = useState(undefined);
-  
+
   const backendUrl = "http://localhost:5000/api";
 
   const jobseekerOnclick = async (e) => {
@@ -93,26 +93,28 @@ const SignUp = (props) => {
   };
 
   return (
-    <div className="sign-up-containers">
-      <div className="form-container jobseeker-form">
-        <form>
-          <h1>Jobseeker Sign Up</h1>
-          <input type="text" placeholder="Enter Name" value={nameState} onChange={handleNameChange}></input>
-          <input type="email" placeholder="Enter Email" value={emailState} onChange={handleEmailChange}></input>
-          <input type="password" placeholder="Enter Password" value={passwordState} onChange={handlePasswordChange}></input>
-          <input type="password" placeholder="Confirm Password" value={confirmPasswordState} onChange={handleConfirmPasswordChange}></input>
-          <button onClick={jobseekerOnclick}>Sign Up</button>
-        </form>
-      </div>
-      <div className="form-container company-form">
-        <form>
-          <h1>Company Sign Up</h1>
-          <input type="text" placeholder="Enter Company Name" value={companyNameState} onChange={handleCompanyNameChange}></input>
-          <input type="email" placeholder="Enter Company Email" value={companyEmailState} onChange={handleCompanyEmailChange}></input>
-          <input type="password" placeholder="Enter Password" value={companyPasswordState} onChange={handleCompanyPasswordChange}></input>
-          <input type="password" placeholder="Confirm Password" value={companyConfirmPasswordState} onChange={handleCompanyConfirmPasswordChange}></input>
-          <button onClick={companyOnclick}>Sign Up</button>
-        </form>
+    <div className="sign-up">
+      <div className="sign-up-containers">
+        <div className="form-container jobseeker-form">
+          <form>
+            <h1>Jobseeker Sign Up</h1>
+            <input type="text" placeholder="Enter Name" value={nameState} onChange={handleNameChange}></input>
+            <input type="email" placeholder="Enter Email" value={emailState} onChange={handleEmailChange}></input>
+            <input type="password" placeholder="Enter Password" value={passwordState} onChange={handlePasswordChange}></input>
+            <input type="password" placeholder="Confirm Password" value={confirmPasswordState} onChange={handleConfirmPasswordChange}></input>
+            <button onClick={jobseekerOnclick}>Sign Up</button>
+          </form>
+        </div>
+        <div className="form-container company-form">
+          <form>
+            <h1>Company Sign Up</h1>
+            <input type="text" placeholder="Enter Company Name" value={companyNameState} onChange={handleCompanyNameChange}></input>
+            <input type="email" placeholder="Enter Company Email" value={companyEmailState} onChange={handleCompanyEmailChange}></input>
+            <input type="password" placeholder="Enter Password" value={companyPasswordState} onChange={handleCompanyPasswordChange}></input>
+            <input type="password" placeholder="Confirm Password" value={companyConfirmPasswordState} onChange={handleCompanyConfirmPasswordChange}></input>
+            <button onClick={companyOnclick}>Sign Up</button>
+          </form>
+        </div>
       </div>
     </div>
   );
