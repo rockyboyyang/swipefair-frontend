@@ -7,31 +7,33 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import {ourGet} from '../utils'
 
 
-const ourGet = async(path) => {
-  const backendUrl = "http://localhost:5000/api/";
-  const response = await fetch(backendUrl + path);
-  return await response.json();
-}
-// const backendUrl = "http://localhost:5000/api";
-// const data = async (str) => {
-//   const response = await fetch(backendUrl + str);
-//   return await response.json();
-// };
 
 const Home = () => {
+  const jobseekerId = JSON.parse(localStorage.jobseeker).id
+
+  const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
+
   const [openingsState, setOpeningsState] = useState([]);
-  const [matchesState, setMatchesState] = useState
-  useEffect(async () => {
-    const payload = await data();
-    console.log(payload);
-    // setOpeningsState(payload);
-  }, []);
-  const matches = fetchMatches()
+  const [matchesState, setMatchesState] = useState([]);
+  const fetchMatches = async () => {
+    const res = await fetch(jobseekerMatchesUrl); // + '/'
+    const { matches } = await res.json();
+    setMatchesState(matches);
+  };
+
+      useEffect(() => {
+      (async() => {
+
+        await fetchMatches();
+      })();
+      debugger
+    }, [])
+
   return (
     <div>
       <Navbar />
-      <MatchesContainer />
-      <SwipeContainer />
+      <MatchesContainer matchesState={matchesState}/>
+      <SwipeContainer fetchMatches={fetchMatches}  setMatchesState={setMatchesState}/>
       <AboutUsContainer />
     </div>
   );
