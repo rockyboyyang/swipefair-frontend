@@ -3,7 +3,6 @@ import Navbar from "../Navbar";
 import "../../stylesheets/edit-profile.css"
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
 const EditProfile = (props) => {
   return (
     <>

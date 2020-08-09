@@ -19,6 +19,14 @@ const ourGet = async(path) => {
 // };
 
 const Home = () => {
+  const [openingsState, setOpeningsState] = useState([]);
+  const [matchesState, setMatchesState] = useState
+  useEffect(async () => {
+    const payload = await data();
+    console.log(payload);
+    // setOpeningsState(payload);
+  }, []);
+  const matches = fetchMatches()
   return (
     <div className='home-view'>
       <Navbar />

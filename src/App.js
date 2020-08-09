@@ -4,6 +4,7 @@ import Login from "./Components/Pages/Login";
 import SignUp from "./Components/Pages/SignUp";
 import Home from "./Components/Pages/Home";
 import ChatsView from "./Components/Pages/ChatsView";
+import MatchesView from "./Components/Pages/MatchesView";
 import MessagesView from "./Components/Pages/MessagesView";
 import EditProfile from "./Components/Pages/EditProfile";
 
@@ -28,5 +29,7 @@ const App = props => {
     </BrowserRouter>
   );
 };
+
+
 
 export default App;
