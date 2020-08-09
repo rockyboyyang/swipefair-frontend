@@ -6,12 +6,13 @@ import Details from "../Details";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-const MessagesView = () => {
+const MessagesView = ({ companyState, jobseekerState, chatId}) => {
+  console.log(chatId)
   return (
     <>
       <Navbar />
       <MatchesContainer />
-      <MessagesContainer />
+      <MessagesContainer companyState={companyState} jobseekerState={jobseekerState} chatId={chatId}/>
       <Details />
     </>
   );

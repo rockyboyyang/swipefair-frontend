@@ -3,23 +3,32 @@ import { Redirect, useHistory } from "react-router-dom";
 // import backendUrl from "../../utils";
 // yeha modules are wack
 const backendUrl = "http://localhost:5000/api";
-const Login = ({ setToken, setJobseeker, setCompany,tokenState }) => {
-  let history = useHistory()
+const Login = ({ setToken, setJobseeker, setCompany, tokenState ,}) => {
+  let history = useHistory();
   const [emailState, setEmail] = useState("");
   const [passwordState, setPassword] = useState("");
 
-  const onclick = async (e) => {
+  const onclick = async (e, demoUser = false) => {
     e.preventDefault();
-    const body = {
-      email: emailState,
-      password: passwordState,
-    };
+    let body;
+    if (demoUser) {
+      body = {
+        email: "demo@gmail.com",
+        password: "password",
+      };
+    } else {
+      body = {
+        email: emailState,
+        password: passwordState,
+      };
+    }
 
     const res = await fetch(backendUrl + "/" + e.target.id + "/", {
       method: "POST",
-      headers: { "Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
+    console.log(res.ok)
     if (res.ok) {
       const { access_token, jobseeker, company } = await res.json();
       setToken({ access_token });
@@ -27,7 +36,7 @@ const Login = ({ setToken, setJobseeker, setCompany,tokenState }) => {
       window.localStorage.jobseeker = JSON.stringify(jobseeker); //i swear i wrote this
       window.localStorage.company = JSON.stringify(company); //i swear i wrote this
       jobseeker ? setJobseeker({ jobseeker }) : setCompany({ company }); //check
-      history.push('/home')
+      history.push("/home");
     }
   };
 
@@ -39,8 +48,13 @@ const Login = ({ setToken, setJobseeker, setCompany,tokenState }) => {
     setPassword(event.target.value);
   };
 
+  const loginDemoUser = (event) => {
+    event.preventDefault();
+    console.log("loging in the demo user");
+    onclick(event, true);
+  };
 
-  if tokenState history.push('/login')
+  // if tokenState history.push('/login')
   return (
     <div className="form-container">
       <form>
@@ -67,7 +81,9 @@ const Login = ({ setToken, setJobseeker, setCompany,tokenState }) => {
         <p>Don't have an account? </p>
         <div>Sign Up</div>
       </div>
-      <button>Demo</button>
+      <button id="session_jobseeker" onClick={loginDemoUser}>
+        Demo
+      </button>
     </div>
   );
 };

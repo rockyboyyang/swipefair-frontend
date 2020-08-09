@@ -6,12 +6,12 @@ import AboutUsContainer from "../AboutUsContainer";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-const ChatsView = () => {
+const ChatsView = ({ companyState, jobseekerState, setChatId }) => {
   return (
     <>
       <Navbar />
       <MatchesContainer />
-      <ChatsContainer />
+      <ChatsContainer companyState={companyState} jobseekerState={jobseekerState} setChatId={setChatId}/>
       <AboutUsContainer />
     </>
   );
