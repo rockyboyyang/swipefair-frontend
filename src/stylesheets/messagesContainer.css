@@ -48,6 +48,7 @@
     justify-self: flex-end;
  }
 
+<<<<<<< HEAD
 .text-box {
     height: 50px;
 }
@@ -58,3 +59,8 @@
     height: 70%;
     border: 1px solid black;
 }
+=======
+/* input {
+    height: 50px;
+} */
+>>>>>>> master
