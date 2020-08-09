@@ -42,7 +42,7 @@ const SwipeContainer = (props, jobseekerState) => {
   const onSwipe = async (dir) => {
     return await swiped(dir);
 
-    console.log("You swiped: " + dir);
+    // console.log("You swiped: " + dir);
   };
 
   const swiped = async (dir) => {
@@ -62,7 +62,7 @@ const SwipeContainer = (props, jobseekerState) => {
 
   return (
     <div>
-      <div className="center-container">
+      <div className="swipe-container">
         {openingsState.map((op) => (
           <TinderCard
             className="card"
@@ -75,7 +75,7 @@ const SwipeContainer = (props, jobseekerState) => {
             preventSwipe={["up", "down"]}
           >
             <div className="swipe">
-              <div>
+              <div className='company-image'>
                 <img src={op.image} alt="company" />
               </div>
               <div>{op.company_name}</div>

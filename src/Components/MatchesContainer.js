@@ -6,7 +6,4 @@ const MatchesContainer = (props) => {
   return <div className="left-container">Hello from Matches Container</div>;
 };
 
-
-export
- default MatchesContainer;
-
+export default MatchesContainer;
