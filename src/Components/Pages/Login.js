@@ -14,12 +14,14 @@ const Login = ({ setToken, setJobseeker, setCompany,tokenState }) => {
       email: emailState,
       password: passwordState,
     };
-
+    console.log(body)
+    console.log(e.target.id)
     const res = await fetch(backendUrl + "/" + e.target.id + "/", {
       method: "POST",
       headers: { "Content-Type": "application/json"},
       body: JSON.stringify(body),
     });
+    console.log(res.ok)
     if (res.ok) {
       const { access_token, jobseeker, company } = await res.json();
       setToken({ access_token });
@@ -40,7 +42,7 @@ const Login = ({ setToken, setJobseeker, setCompany,tokenState }) => {
   };
 
 
-  if tokenState history.push('/login')
+  // if tokenState history.push('/login')
   return (
     <div className="form-container">
       <form>
