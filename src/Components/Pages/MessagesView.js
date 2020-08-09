@@ -34,6 +34,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId}) => {
     setChattingWithName(name)
     setMessageState(messageArr);
     setChattingWithInfoState(chatWithInfo)
+    console.log(chatWithInfo)
   };
 
   const sendMessage = async (e) => {
@@ -51,9 +52,11 @@ const MessagesView = ({ companyState, jobseekerState, chatId}) => {
 
     // TODO:
     // might want to rerender component but this works for now
-    (function () {
-      window.location.reload(true);
-    })();
+    if (res.ok) {
+      (function () {
+        window.location.reload(true);
+      })();
+    }
   }
 
   const handleNewMessageState = event => {
@@ -80,8 +83,9 @@ const MessagesView = ({ companyState, jobseekerState, chatId}) => {
       goBack={goBack} 
       newMessageState={newMessageState}
       setNewMessageState={setNewMessageState}
-      handleNewMessageState={handleNewMessageState}/>
-      <Details chattingWithInfoState={chattingWithInfoState} chattingWithName={chattingWithName}/>
+      handleNewMessageState={handleNewMessageState}
+      role={role}/>
+      <Details chattingWithInfoState={chattingWithInfoState} chattingWithName={chattingWithName} jobseekerState={jobseekerState} companyState={companyState}/>
     </>
   );
 };

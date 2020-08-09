@@ -10,14 +10,31 @@
   margin-top: 5vh;
 }
 
+
 .message-box {
-    background-color: rgb(254, 251, 247);
-    border: 1px solid black;
+    background-color: rgb(218, 200, 176);
     margin: 10px 10px;
-    height: 100px;
+    width: auto;
+    max-width: 255px;
+    height: auto;
     display: flex;
-    justify-content: center;
     align-items: center;
+    padding: 10px;
+    border-radius: 18px;
+}
+
+.messages_display {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    overflow-y: scroll;
+    width: 100%;
+    display: grid;
+    height: 100%;
+}
+
+.center-container > form {
+    display: flex;
+    flex-direction: row;
 }
 
 .jobseeker {
@@ -27,7 +44,17 @@
 .company {
     background-color: aqua;
 }
+ .user {
+    justify-self: flex-end;
+ }
 
-/* input {
+.text-box {
     height: 50px;
-} */
+}
+
+.messages-container > form > button {
+    align-self: center;
+    width: 15%;
+    height: 70%;
+    border: 1px solid black;
+}
