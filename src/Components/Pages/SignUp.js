@@ -32,7 +32,7 @@ const SignUp = (props) => {
     // if (res.ok) {
     //   const { access_token, jobseeker, company } = await res.json();
     //   setToken({ access_token });
-    //   window.localStorage.access_token = access_token; //i swear i wrote this
+      // window.localStorage.access_token = access_token; //i swear i wrote this
     //   jobseeker ? setJobseeker({ jobseeker }) : setCompany({ company }); //check
     // }
   };
