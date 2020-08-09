@@ -38,12 +38,14 @@ const SwipeContainer = ({fetchMatches}) => {
   //'/jobseekers/<string:jobseekerEmail>/openings/<int:openingId>' post
   const onSwipe = async (dir) => {
     return await swiped(dir);
+
     // console.log("You swiped: " + dir);
   };
   const swiped = async (dir) => {
     console.log("the states", openingsState);
     console.log("jobseekerId", jobseekerId);
     const swiped_right = dir === "right" ? true : false;
+
     openingsId = openingsState.pop().id;
     setOpeningsState(openingsState);
     // openingsId = openingsState[openingsState.length-1].id

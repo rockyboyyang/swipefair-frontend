@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "../stylesheets/matches.css";
-import SwipeContainer from "./SwipeContainer";
 import CompanyList from './CompanyList'
 
 
@@ -20,8 +18,8 @@ const MatchesContainer = () => {
       setMatchesState(await fetchMatches())
     }, [])
 
-    return  matchesState ? (
-        <div className="center-container">
+    return  matchesState.length ? (
+        <div className="left-container">
           <div>Matched with the Following Companies</div>
             {matchesState.map((match) => 
             <CompanyList match={match} />)}
@@ -30,7 +28,4 @@ const MatchesContainer = () => {
 
 };
 
-
-
 export default MatchesContainer;
-
