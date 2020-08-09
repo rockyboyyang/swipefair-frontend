@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-import Login from './Components/Pages/Login'
+import React, { useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Login from "./Components/Pages/Login";
 import SignUp from "./Components/Pages/SignUp";
 import Home from "./Components/Pages/Home";
 import ChatsView from "./Components/Pages/ChatsView";
@@ -28,6 +27,6 @@ const App = props => {
       </Switch>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
