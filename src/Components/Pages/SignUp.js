@@ -12,7 +12,7 @@ const SignUp = (props) => {
   const [companyPasswordState, setCompanyPassword] = useState(undefined);
   const [companyConfirmPasswordState, setCompanyConfirmPassword] = useState(undefined);
 
-  const backendUrl = "http://localhost:5000/api";
+  const backendUrl = "https://boiling-sands-04799.herokuapp.com/api";
 
   const jobseekerOnclick = async (e) => {
     e.preventDefault(); //??? i think we said it would make no difference

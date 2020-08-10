@@ -13,7 +13,7 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
     jobseekerState !== 'undefined' ? role = 'jobseekers' : role = 'companies'
 
     // TODO: change to heroku in the future
-    const herokuUrl = `http://localhost:5000/api/${role}/${id}/chats`
+    const herokuUrl = `https://boiling-sands-04799.herokuapp.com/api/${role}/${id}/chats`
     const[chatsState, setChatsState] = useState([])
     const data = async () => {
         const response = await fetch(herokuUrl); // + '/'
@@ -27,7 +27,7 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
 
     return (
         <div className="center-container chats-container">
-            {chatsState.map((chat) => 
+            {chatsState.map((chat) =>
             <SingleChatBox chat={chat} role={role} setChatId={setChatId} />)}
         </div>
     )

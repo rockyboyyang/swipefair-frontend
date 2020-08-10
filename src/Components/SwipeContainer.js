@@ -7,9 +7,9 @@ const SwipeContainer = ({ setMatchesState }) => {
   // /notswiped/<int:jobseekerId>
   // const herokuUrl = "https://boiling-sands-04799.herokuapp.com/api/openings";
   const jobseekerId = JSON.parse(localStorage.jobseeker).id;
-  const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
+  const jobseekerMatchesUrl = `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/matches`;
 
-  const backendUrl = `http://localhost:5000/api/openings/notswiped/jobseeker/${jobseekerId}`;
+  const backendUrl = `https://boiling-sands-04799.herokuapp.com/api/openings/notswiped/jobseeker/${jobseekerId}`;
   let openingsId;
   const data = async () => {
     const response = await fetch(backendUrl); // + '/'
@@ -49,7 +49,7 @@ const SwipeContainer = ({ setMatchesState }) => {
     const swipe = await swiped(dir);
     const data = async () => {
       const response = await fetch(
-        `http://localhost:5000/api/swipes/jobseekers/${jobseekerId}`
+        `https://boiling-sands-04799.herokuapp.com/api/swipes/jobseekers/${jobseekerId}`
       ); // + '/'
       const { swipes } = await response.json();
       let filteredSwipes = swipes.filter(
@@ -62,7 +62,7 @@ const SwipeContainer = ({ setMatchesState }) => {
       if (count === 2) {
         const fetchChat = async () => {
           const getRes = await fetch(
-            `http://localhost:5000/api/jobseekers/${jobseekerId}/${openingsId}/chats`,
+            `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/${openingsId}/chats`,
             {
               method: "GET",
               headers: { "Content-Type": "application/json" },
@@ -71,7 +71,7 @@ const SwipeContainer = ({ setMatchesState }) => {
           let getResponse = await getRes.json();
           if (getResponse.boolean === true) return;
           const res = await fetch(
-            `http://localhost:5000/api/jobseekers/${jobseekerId}/${openingsId}/chats`,
+            `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/${openingsId}/chats`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -93,7 +93,7 @@ const SwipeContainer = ({ setMatchesState }) => {
     openingsId = openingsState.pop().id;
     setOpeningsState(openingsState);
 
-    const url = `http://localhost:5000/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
+    const url = `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
     const body = { swiped_right: swiped_right };
     const posts = await fetchPost(url, body);
     const matches = await fetchMatches();
@@ -102,9 +102,9 @@ const SwipeContainer = ({ setMatchesState }) => {
   };
   // useEffect(() => { set(propName) }, [matchesState]);
   return (
-    <div className="hidden">
+    // <div className="hidden">
       <div className="swipe-container">
-        <div> 
+        <div>
           <img src="https://advocatesrc.org/wp-content/uploads/2020/03/unnamed.png" alt="sorry"></img>
         </div>
         {openingsState.map((op) => (
@@ -149,7 +149,7 @@ const SwipeContainer = ({ setMatchesState }) => {
           </TinderCard>
         ))}
       </div>
-    </div>
+    // </div>
   );
 };
 export default SwipeContainer;
