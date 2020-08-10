@@ -16,13 +16,8 @@ const Home = ({matchesState, setMatchesState}) => {
   return (
     <div className='home-view'>
       <Navbar />
-<<<<<<< HEAD
-      <MatchesContainer matchesState={matchesState}/>
-      <SwipeContainer fetchMatches={fetchMatches}  setMatchesState={setMatchesState}/>
-=======
       <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState}/>
       <SwipeContainer setMatchesState={setMatchesState}/>
->>>>>>> master
       <AboutUsContainer />
     </div>
   );
