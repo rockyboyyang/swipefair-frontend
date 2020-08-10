@@ -3,7 +3,7 @@ import "../stylesheets/matches.css";
 import CompanyList from "./CompanyList";
 import { useHistory, } from "react-router-dom";
 
-export default function MatchesContainer({ setMatchesState, matchesState, jobseekerState, companyState }) {
+export default function MatchesContainer({ setMatchesState, matchesState, jobseekerState, companyState, openingsState  }) {
   const jobseekerId = JSON.parse(window.localStorage.jobseeker).id;
   const jobseekerMatchesUrl = `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/matches`;
   let history = useHistory();
@@ -36,10 +36,14 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
 
   useEffect(() => {
     let setMatches = async () => {
-      setMatchesState(await fetchMatches());
+      const data = await fetchMatches()
+      console.log(data  )
+      setMatchesState(data);
+      console.log(matchesState)
     };
+    console.log('triggered')
     setMatches()
-  }, []);
+  }, [openingsState]);
 
   const combineCompanies = (arrOfObjs) => {
     const ans = {};
@@ -59,7 +63,7 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
 
   if (matchesState.length) {
     const matches = combineCompanies(matchesState);
-    console.log(matches)
+    // console.log(matches)
     return (
       <div className="left-container">
         <div className="match-header">
