@@ -7,10 +7,9 @@ const MessagesContainer = ({ role, chattingWithName, messageState, sendMessage, 
     return (
         <div className="center-container messages-container">
             <nav>
-                <div onClick={goBack}>
-                    BACK
+                <div onClick={goBack} id="back_button">
                 </div>
-                <div>
+                <div id="message_company_name">
                     <h1>{chattingWithName}</h1>
                 </div>
             </nav>
@@ -25,7 +24,7 @@ const MessagesContainer = ({ role, chattingWithName, messageState, sendMessage, 
                 value={newMessageState}
                 onChange={handleNewMessageState}>
                 </input>
-                <button onClick={sendMessage}>Send Message</button>
+                <button onClick={sendMessage}></button>
             </form>
         </div>
     )

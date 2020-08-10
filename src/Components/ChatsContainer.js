@@ -27,7 +27,7 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
     }, [])
 
     return (
-        <div className="center-container">
+        <div className="center-container chats-container">
             {chatsState.map((chat) => 
             <SingleChatBox chat={chat} role={role} setChatId={setChatId} />)}
         </div>

@@ -72,20 +72,25 @@ const MessagesView = ({ companyState, jobseekerState, chatId}) => {
   }, [])
   return (
     <>
-      <Navbar />
-      {/* <MatchesContainer /> */}
-      <MessagesContainer companyState={companyState}
-      jobseekerState={jobseekerState} 
-      chatId={chatId} 
-      chattingWithName={chattingWithName} 
-      messageState={messageState} 
-      sendMessage={sendMessage} 
-      goBack={goBack} 
-      newMessageState={newMessageState}
-      setNewMessageState={setNewMessageState}
-      handleNewMessageState={handleNewMessageState}
-      role={role}/>
-      <Details chattingWithInfoState={chattingWithInfoState} chattingWithName={chattingWithName} jobseekerState={jobseekerState} companyState={companyState}/>
+      <div className='view-grid'>
+        <Navbar />
+        <div className="body-view">
+          {/* <MatchesContainer /> */}
+          <div className="dummy-div" />
+          <MessagesContainer companyState={companyState}
+          jobseekerState={jobseekerState} 
+          chatId={chatId} 
+          chattingWithName={chattingWithName} 
+          messageState={messageState} 
+          sendMessage={sendMessage} 
+          goBack={goBack} 
+          newMessageState={newMessageState}
+          setNewMessageState={setNewMessageState}
+          handleNewMessageState={handleNewMessageState}
+          role={role}/>
+          <Details chattingWithInfoState={chattingWithInfoState} chattingWithName={chattingWithName} jobseekerState={jobseekerState} companyState={companyState}/>
+        </div>
+      </div>
     </>
   );
 };
