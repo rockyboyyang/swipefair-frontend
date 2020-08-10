@@ -8,16 +8,15 @@ import '../../stylesheets/homeview.css'
 
 
 
-const Home = ({matchesState, setMatchesState}) => {
+const Home = ({matchesState, setMatchesState, jobseekerState, companyState }) => {
     // const jobseekerId = JSON.parse(localStorage.jobseeker).id
     // useEffect(()=>{},[swipesState])
-    // console.log(`${matchesState} from the Home Component`)
 
   return (
     <div className='view-grid'>
       <Navbar />
       <div className="body-view">
-        <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState}/>
+        <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState}/>
         <SwipeContainer setMatchesState={setMatchesState}/>
         <AboutUsContainer />
       </div>

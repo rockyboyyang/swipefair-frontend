@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect, useHistory } from "react-router-dom";
+import React from 'react';
+import { useHistory } from "react-router-dom";
 import "../stylesheets/chatsContainer.css";
 
 
@@ -7,7 +7,6 @@ const SingleChatBox = ({chat, role, setChatId }) => {
     let history = useHistory()
 
     const onClick = () => {
-        console.log(chat)
         setChatId(chat.chatId)
         history.push(`./messages/${chat.chatId}`)
     }
