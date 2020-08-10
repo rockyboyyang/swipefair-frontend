@@ -4,9 +4,23 @@
   margin-top: 5vh;
   border: 3px solid yellow;
   position: relative;
-  width: 600px;
+  /* width: 600px; */
   padding: 20px;
-  height: 70vh;
+  height: 80vh;
+  /* text-align: center; */
+  
+}
+
+.swipe-container > div {
+  margin: auto 0;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  
+}
+
+.hidden {
+  border: 2px solid red; 
 }
 
 

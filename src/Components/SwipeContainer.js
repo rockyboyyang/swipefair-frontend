@@ -85,12 +85,13 @@ const SwipeContainer = ({ setMatchesState }) => {
 
     openingsId = openingsState.pop().id;
     setOpeningsState(openingsState);
+    console.log(openingsState);
     // openingsId = openingsState[openingsState.length-1].id
     // setOpeningsIdsState(openingsIdsState.slice(1))
     const url = `http://localhost:5000/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
     const body = { swiped_right: swiped_right };
     const posts = await fetchPost(url, body);
-    const matches = await fetchMatches()
+    const matches = await fetchMatches();
     setMatchesState(matches);
     return posts;
   };
@@ -98,6 +99,7 @@ const SwipeContainer = ({ setMatchesState }) => {
   return (
     <div className="hidden">
       <div className="swipe-container">
+        <div>You currently have no openning</div>
         {openingsState.map((op) => (
           <TinderCard
             className="card"
@@ -110,16 +112,31 @@ const SwipeContainer = ({ setMatchesState }) => {
             preventSwipe={["up", "down"]}
           >
             <div className="swipe">
-              <div className="company-image">
-                <img src={op.image} alt="company" />
+              <div className="company-info">
+                <div className="company-image">
+                  <img src={op.image} alt="company" />
+                </div>
+                <div className="company-name">
+                  <h1>{op.company_name}</h1>
+                  <p>{op.location}</p>
+                </div>
               </div>
-              <div>{op.company_name}</div>
-              <div>{op.email}</div>
+              <div className="title">
+                <h2>{op.title}</h2>
+              </div>
+              <div className='description'>
+                <h4>Job description </h4>
+                <p>{op.description}</p> 
+              </div>
+              <div className="contact-info">
+                <h4>Contact info:</h4>
+                <p>{op.email}</p></div>
               <div>{op.size}</div>
               <div>{op.location}</div>
-              <div>{op.bio}</div>
-              <div>{op.title}</div>
-              <div>{op.description}</div>
+              <div className='about-company'>
+                <h4>About company:</h4>
+                <p>{op.bio}</p> 
+                </div>
             </div>
           </TinderCard>
         ))}
