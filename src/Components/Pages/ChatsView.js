@@ -6,15 +6,14 @@ import AboutUsContainer from "../AboutUsContainer";
 import "../../stylesheets/views.css";
 
 
-const ChatsView = ({ companyState, jobseekerState, setChatId }) => {
+const ChatsView = ({ companyState, jobseekerState, setChatId, matchesState, setMatchesState }) => {
   return (
     <>
       <div className="view-grid">
         <Navbar />
         <div className="body-view">
-          <div className="dummy-div" />
-          {/* <MatchesContainer /> */}
-          <ChatsContainer companyState={companyState} jobseekerState={jobseekerState} setChatId={setChatId}/>
+          <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState} />
+          <ChatsContainer companyState={companyState} jobseekerState={jobseekerState} setChatId={setChatId} />
           <AboutUsContainer />
         </div>
       </div>

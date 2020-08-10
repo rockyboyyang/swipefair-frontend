@@ -8,38 +8,20 @@ import '../../stylesheets/homeview.css'
 
 
 
-const Home = () => {
-  const jobseekerId = JSON.parse(localStorage.jobseeker).id
-
-  const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
-
-  const [openingsState, setOpeningsState] = useState([]);
-  const [matchesState, setMatchesState] = useState([]);
-  const fetchMatches = async () => {
-    const res = await fetch(jobseekerMatchesUrl); // + '/'
-    const { matches } = await res.json();
-    setMatchesState(matches);
-  };
-
-      useEffect(() => {
-      (async() => {
-
-        await fetchMatches();
-      })();
-    }, [])
+const Home = ({matchesState, setMatchesState}) => {
+    // const jobseekerId = JSON.parse(localStorage.jobseeker).id
+  
+    // console.log(`${matchesState} from the Home Component`)
 
   return (
-    <>
-      <div className='view-grid'>
-        <Navbar />
-        <div className="body-view">
-          <div className="dummy-div" />
-          {/* <MatchesContainer matchesState={matchesState}/> */}
-          <SwipeContainer fetchMatches={fetchMatches}  setMatchesState={setMatchesState}/>
-          <AboutUsContainer />
-        </div>
+    <div className='view-grid'>
+      <Navbar />
+      <div className="body-view">
+        <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState}/>
+        <SwipeContainer setMatchesState={setMatchesState}/>
+        <AboutUsContainer />
       </div>
-    </>
+    </div>
   );
 };
 

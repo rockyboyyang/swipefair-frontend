@@ -4,7 +4,7 @@ import { Redirect, Route } from 'react-router-dom';
 export const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route {...rest} render={(props) => (
-      rest.loggedIn === false
+      rest.jobseeker ||  === false
       ? <Redirect to="/session" />
       : <Component {...props} />
     )} />
