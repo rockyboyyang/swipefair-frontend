@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} 
 import "../stylesheets/matches.css";
 import CompanyList from "./CompanyList";
 
@@ -35,6 +36,7 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
   if (matchesState.length) {
     const matches = combineCompanies(matchesState);
     return (
+      <Link
       <div className="left-container">
         <div>Matched with the Following Companies</div>
         {Object.keys(matches).map((company_name) => (
@@ -46,3 +48,7 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
     return <div className="left-container">No matches yet</div>;
   }
 }
+
+import React, { Component } from 'react'
+
+
