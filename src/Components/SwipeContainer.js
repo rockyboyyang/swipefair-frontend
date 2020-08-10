@@ -10,7 +10,6 @@ const SwipeContainer = ({ setMatchesState }) => {
   const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
 
   const backendUrl = `http://localhost:5000/api/openings/notswiped/jobseeker/${jobseekerId}`;
-  // const jobseekerId = jobseekerState.id;
   let openingsId;
   const data = async () => {
     const response = await fetch(backendUrl); // + '/'
@@ -64,6 +63,7 @@ const SwipeContainer = ({ setMatchesState }) => {
     setMatchesState(matches);
     return posts;
   };
+  // useEffect(() => { set(propName) }, [matchesState]);
   return (
     <div className="hidden">
       <div className="swipe-container">
