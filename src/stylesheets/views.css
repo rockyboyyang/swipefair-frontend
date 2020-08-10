@@ -8,6 +8,7 @@
 .body-view {
     display: grid;
     grid-template-columns: 2fr 3fr 2fr;
+    background-color: #F4F4F4;
 }
 /* #root {
     display: grid;

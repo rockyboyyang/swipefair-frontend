@@ -17,7 +17,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.20);
-
+  font-family: "Archivo", sans-serif;
 }
 
 .matched-box > img{
@@ -27,7 +27,25 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.20);
   box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.20);
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 4fr 2fr;
+  font-family: "Archivo", sans-serif;
+  font-size: 1.5em;
+}
+
+.match-header > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 5px;
+  border-left: 1px solid rgba(0, 0, 0, 0.20);
+  font-size: 20px;
+}
+
+.match-header > div:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.3s;
+  background-color: rgb(164, 252, 202);
 }
 
 .openingTitle {

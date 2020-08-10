@@ -23,7 +23,6 @@ export const uploadImage = multer({
       cb(null, { fieldName: file.fieldname });
     },
     key: function (req, file, cb) {
-      console.log(file)
       cb(null, Date.now().toString( + file.originalnameib));
     },
   }),
@@ -47,7 +46,6 @@ export const uploadImage = multer({
 
 const ourGet = async(path) => {
   const {backendUrl} = config 
-  console.log(backendUrl, config)
   const response = await fetch(backendUrl + path);
   return await response.json();
 }

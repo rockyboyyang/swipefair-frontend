@@ -19,7 +19,6 @@ const Details = ({
       email = chattingWithInfo.email;
       image = chattingWithInfo.image;
       openings = chattingWithInfo.openings;
-      console.log(openings[0])
       return (
         <div className="right-container">
           {chattingWithName}
