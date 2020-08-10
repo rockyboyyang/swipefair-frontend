@@ -17,6 +17,10 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
   jobseekerState !== 'undefined' ? role = 'jobseeker' : role = 'company'
   jobseekerState !== 'undefined' ? role_plural = 'jobseekers' : role_plural = 'companies'
 
+  if (!localStorage.access_token) {
+    history.push('/login')
+  }
+
   const herokuUrl = baseUrl + `/${role_plural}/${id}/chats/${chatId}/messages`
 
   const [messageState, setMessageState] = useState([])

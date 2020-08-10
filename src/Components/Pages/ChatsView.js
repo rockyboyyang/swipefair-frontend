@@ -4,9 +4,14 @@ import MatchesContainer from "../MatchesContainer";
 import ChatsContainer from "../ChatsContainer";
 import AboutUsContainer from "../AboutUsContainer";
 import "../../stylesheets/views.css";
+import { useHistory, } from "react-router-dom";
 
 
 const ChatsView = ({ companyState, jobseekerState, setChatId, matchesState, setMatchesState }) => {
+  let history = useHistory()
+  if (!localStorage.access_token) {
+    history.push('/login')
+  }
   return (
     <>
       <div className="view-grid">
