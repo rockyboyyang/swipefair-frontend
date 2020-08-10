@@ -19,7 +19,19 @@ const Details = ({
       email = chattingWithInfo.email;
       image = chattingWithInfo.image;
       openings = chattingWithInfo.openings;
+      console.log(openings[0])
+      return (
+        <div className="right-container">
+          {chattingWithName}
+          <div>{bio}</div>
+          <div>{email}</div>
+          {openings.map((op) => 
+            <div>{op.title}</div>
+          )}
+        </div>
+      );
     }
+
   }
 
   if (companyState !== "undefined") {
@@ -27,17 +39,18 @@ const Details = ({
       bio = chattingWithInfo.bio;
       email = chattingWithInfo.email;
       image = chattingWithInfo.image;
+      return (
+        <div className="right-container">
+          {chattingWithName}
+          <div>{bio}</div>
+          <div>{email}</div>
+        </div>
+      );
     }
   }
-
   return (
-    <div className="right-container">
-      {chattingWithName}
-      <div>{bio}</div>
-      <div>{email}</div>
-      <div>{openings}</div>
-    </div>
-  );
+    <></>
+  )
 };
 
 export default Details;
