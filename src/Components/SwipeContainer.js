@@ -68,7 +68,7 @@ const SwipeContainer = ({ setMatchesState }) => {
   return (
     <div className="hidden">
       <div className="swipe-container">
-        <p>You currently have no opennings</p>
+        <div>You currently have no openning</div>
         {openingsState.map((op) => (
           <TinderCard
             className="card"
