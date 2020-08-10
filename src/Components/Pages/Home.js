@@ -29,12 +29,17 @@ const Home = () => {
     }, [])
 
   return (
-    <div className='home-view'>
-      <Navbar />
-      {/* <MatchesContainer matchesState={matchesState}/> */}
-      <SwipeContainer fetchMatches={fetchMatches}  setMatchesState={setMatchesState}/>
-      <AboutUsContainer />
-    </div>
+    <>
+      <div className='view-grid'>
+        <Navbar />
+        <div className="body-view">
+          <div className="dummy-div" />
+          {/* <MatchesContainer matchesState={matchesState}/> */}
+          <SwipeContainer fetchMatches={fetchMatches}  setMatchesState={setMatchesState}/>
+          <AboutUsContainer />
+        </div>
+      </div>
+    </>
   );
 };
 

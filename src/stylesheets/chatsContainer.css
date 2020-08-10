@@ -1,21 +1,53 @@
 .center-container {
-  background-color: lightpink;
+  background-color: darkslategray;
   margin: 0 auto;
   /* box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2); */
-  height: 75%;
-  width: 35%;
+  height: 85%;
+  width: 600px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 5vh;
 }
 
+.chats-container {
+  background-color: darkslategray;
+}
+
 .chatBox {
     background-color: rgb(254, 251, 247);
-    border: 1px solid black;
     margin: 10px 10px;
     height: 100px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    font-family: "Archivo", sans-serif;
+    font-size: larger;
+    box-shadow: 5px 2px 5px #888888;
+}
+
+.company_info {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  /* flex-direction: ; */
+}
+.chatBox > img{
+  width: 100px;
+  height: 100px;
+  margin: 0;
+  position: relative;
+  /* border-radius: 50%; */
+  /* left: 100px; */
+}
+
+#chat_company {
+  
+}
+
+#chat_location {
+  font-size: medium;
+  font-style: italic;
+  color: #696969;
 }

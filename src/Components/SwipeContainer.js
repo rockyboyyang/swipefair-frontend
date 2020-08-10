@@ -63,7 +63,7 @@ const SwipeContainer = ({fetchMatches}) => {
   };
 
   return (
-    <div>
+    <div className="hidden">
       <div className="swipe-container">
         {openingsState.map((op) => (
           <TinderCard
