@@ -4,9 +4,18 @@
   margin-top: 5vh;
   border: 3px solid yellow;
   position: relative;
-  width: 600px;
+  /* width: 600px; */
   padding: 20px;
-  height: 70vh;
+  height: 80vh;
+  text-align: center;
+}
+
+/* .swipe-container > p {
+  margin: 
+} */
+
+.hidden {
+  border: 2px solid red; 
 }
 
 

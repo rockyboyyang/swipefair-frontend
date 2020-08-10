@@ -5,6 +5,7 @@
   padding: 20px;
   max-width: 70vh;
   height: 70vh;
+  /* background-color: darkblue; */
 }
 
 .card {
@@ -13,6 +14,7 @@
   background-color: snow;
   /* border: 2px solid red; */
   border-radius: 20px;
+  box-shadow: 7px 10px 12px -10px rgba(30, 19, 12, 0.56);
 }
 
 
@@ -21,5 +23,44 @@
   width: 100px;
   /* border: 3px solid green;  */
   border-radius: 10px;
-  
 }
+
+.company-info {
+  display: flex;
+  /* justify-content: space-between; */
+  padding: 15px;
+}
+
+.company-name {
+  margin: auto 0; 
+  width: 90%;
+  display: flex; 
+  justify-content: center;
+}
+.company-name h1 {
+  text-align: center;
+}
+
+.title {
+  padding-right: 15px; 
+  padding-bottom: 10px;
+}
+
+.description {
+  padding-bottom: 10px; 
+  font-size: 17px; 
+  line-height: 1.2;
+}
+.contact-info {
+  padding-bottom: 10px; 
+  font-size: 17px; 
+  line-height: 1.2;
+}
+
+.about-company {
+  padding-bottom: 10px; 
+  font-size: 17px; 
+  line-height: 1.2;
+}
+
+
