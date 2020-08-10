@@ -26,7 +26,9 @@ const Details = ({ chattingWithInfoState, chattingWithName, companyState, jobsee
   }
 
   return (
-  <div className="right-container">{chattingWithName}</div>
+  <div className="right-container">{chattingWithName}
+    
+  </div>
   )
 };
 

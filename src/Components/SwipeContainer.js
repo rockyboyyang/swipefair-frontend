@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "../stylesheets/swipecontainer.css";
 import "../stylesheets/tindercard.css";
-const SwipeContainer = ({fetchMatches}) => {
+const SwipeContainer = ({ fetchMatches }) => {
   // const backendUrl = "http://localhost:5000/api/openings";
   // /notswiped/<int:jobseekerId>
   // const herokuUrl = "https://boiling-sands-04799.herokuapp.com/api/openings";
@@ -56,10 +56,9 @@ const SwipeContainer = ({fetchMatches}) => {
     // setOpeningsIdsState(openingsIdsState.slice(1))
     const url = `http://localhost:5000/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
     const body = { swiped_right: swiped_right };
-  const posts = await fetchPost(url, body);
-  // await fetchMatches()
-  return posts
-
+    const posts = await fetchPost(url, body);
+    // await fetchMatches()
+    return posts;
   };
 
   return (
@@ -77,10 +76,12 @@ const SwipeContainer = ({fetchMatches}) => {
             preventSwipe={["up", "down"]}
           >
             <div className="swipe">
-              <div className='company-image'>
-                <img src={op.image} alt="company" />
+              <div className="company-info">
+                <div className="company-image">
+                  <img src={op.image} alt="company" />
+                </div>
+                <div className='company-name'>{op.company_name}</div>
               </div>
-              <div>{op.company_name}</div>
               <div>{op.email}</div>
               <div>{op.size}</div>
               <div>{op.location}</div>
