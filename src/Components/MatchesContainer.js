@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} 
 import "../stylesheets/matches.css";
 import CompanyList from "./CompanyList";
 import { useHistory, } from "react-router-dom";
@@ -41,6 +42,7 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
     const matches = combineCompanies(matchesState);
     console.log(matches)
     return (
+      <Link
       <div className="left-container">
         <div className="match-header">
           <h2>Matched with the Following Companies</h2>
@@ -55,3 +57,7 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
     return <div className="left-container">No matches yet</div>;
   }
 }
+
+import React, { Component } from 'react'
+
+
