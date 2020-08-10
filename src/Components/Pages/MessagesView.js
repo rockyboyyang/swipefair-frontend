@@ -6,7 +6,7 @@ import Details from "../Details";
 import { BrowserRouter, Route, Switch, useHistory, } from "react-router-dom";
 
 
-const MessagesView = ({ companyState, jobseekerState, chatId}) => {
+const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setMatchesState}) => {
   let baseUrl = "http://localhost:5000/api"
   let role_plural;
   let role;
@@ -75,8 +75,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId}) => {
       <div className='view-grid'>
         <Navbar />
         <div className="body-view">
-          {/* <MatchesContainer /> */}
-          <div className="dummy-div" />
+          <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState}/>
           <MessagesContainer companyState={companyState}
           jobseekerState={jobseekerState} 
           chatId={chatId} 

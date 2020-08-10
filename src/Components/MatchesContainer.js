@@ -14,10 +14,11 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
   };
 
   useEffect(() => {
-    (async () => {
+    let setMatches = async () => {
       setMatchesState(await fetchMatches());
-    })();
-  }, );
+    };
+    setMatches()
+  }, []);
 
   const combineCompanies = (arrOfObjs) => {
     const ans = {};
@@ -34,7 +35,7 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
   const redirectToChats = () => {
     history.push('/chats')
   }
-
+  console.log(matchesState)
   if (matchesState.length) {
     const matches = combineCompanies(matchesState);
     console.log(matches)
