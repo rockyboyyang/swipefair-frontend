@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Switch, useHistory, } from "react-router-dom";
 
 
 const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setMatchesState}) => {
-  let baseUrl = "http://localhost:5000/api"
+  let baseUrl = "https://boiling-sands-04799.herokuapp.com/api"
   let role_plural;
   let role;
   let id;
@@ -75,12 +75,12 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
         <div className="body-view">
           <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState}/>
           <MessagesContainer companyState={companyState}
-          jobseekerState={jobseekerState} 
-          chatId={chatId} 
-          chattingWithName={chattingWithName} 
-          messageState={messageState} 
-          sendMessage={sendMessage} 
-          goBack={goBack} 
+          jobseekerState={jobseekerState}
+          chatId={chatId}
+          chattingWithName={chattingWithName}
+          messageState={messageState}
+          sendMessage={sendMessage}
+          goBack={goBack}
           newMessageState={newMessageState}
           setNewMessageState={setNewMessageState}
           handleNewMessageState={handleNewMessageState}

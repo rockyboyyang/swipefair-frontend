@@ -5,7 +5,7 @@ import { useHistory, } from "react-router-dom";
 
 export default function MatchesContainer({ setMatchesState, matchesState, jobseekerState, companyState }) {
   const jobseekerId = JSON.parse(window.localStorage.jobseeker).id;
-  const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
+  const jobseekerMatchesUrl = `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/matches`;
   let history = useHistory();
 
   let role;
@@ -16,7 +16,7 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
   jobseekerState !== 'undefined' ? role = 'jobseekers' : role = 'companies'
 
   // TODO: change to heroku in the future
-  const herokuUrl = `http://localhost:5000/api/${role}/${id}/chats`
+  const herokuUrl = `https://boiling-sands-04799.herokuapp.com/api/${role}/${id}/chats`
   const [chatsState, setChatsState] = useState([])
   const data = async () => {
     const response = await fetch(herokuUrl); // + '/'
@@ -29,7 +29,7 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
     const response = await res.json();
     return response.matches;
   };
-  
+
   useEffect(() => {
     data();
   }, [])

@@ -1,24 +1,26 @@
 .swipe-container {
   /* background-color: lightpink; */
   /* box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2); */
-  margin-top: 5vh;
+  margin: auto;
   /* border: 3px solid yellow; */
   position: relative;
   /* width: 600px; */
   padding: 20px;
-  height: 80vh;
+  height: 90%;
+  width: 90%;
+  max-width: 600px;
   /* text-align: center; */
-  
+
 }
 
 .swipe-container > div {
   margin: auto 0;
-  /* text-align: center; */
-  vertical-align: middle;
   position: absolute;
-  
+
 }
 
-
+.hidden {
+  margin: auto;
+}
 
 

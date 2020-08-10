@@ -6,14 +6,50 @@
 } */
 
 .right-container {
-  max-width: 80%;
-  height: 90%;
+  width: 80%;
+  max-width: 300px;
+  max-height: 90%;
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-top: 30px;
-  background-color:white;
+  margin: auto;
+  background-color: white;
   display: flex;
   flex-direction: column;
   font-family: 'Archivo', sans-serif;
+}
+
+.details-image {
+  width: 100%;
+}
+
+.details-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.details-bio {
+  font-family: "Roboto", sans-serif;
+  padding: 10px;
+}
+
+.details-contact {
+  font-family: "Roboto", sans-serif;
+  padding: 10px;
+}
+
+.details-opening {
+  font-family: "Roboto", sans-serif;
+  padding: 10px;
+}
+
+.op-details-header {
+  font-family: "Roboto", sans-serif;
+  padding: 10px;
+}
+
+.op-details-container {
+  overflow-y: scroll;
+  /* padding-right: 2rem; */
+  max-height: 300px;
 }

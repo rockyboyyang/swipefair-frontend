@@ -3,7 +3,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import "../../stylesheets/login.css";
 // import backendUrl from "../../utils";
 // yeha modules are wack
-const backendUrl = "http://localhost:5000/api";
+const backendUrl = "https://boiling-sands-04799.herokuapp.com/api";
 const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
   let history = useHistory();
   const [emailState, setEmail] = useState("");

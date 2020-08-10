@@ -23,7 +23,7 @@ const EditProfile = (props) => {
   // const [education_end, setTitles ]= useState('')
   const updateField = e => {
     const fieldName = e.targetName
-    const info = {} 
+    const info = {}
     setJobseekerInfo({
       ...setJobseekerInfo,
       ...{[fieldName]: fieldName}
@@ -34,12 +34,12 @@ const EditProfile = (props) => {
     e.preventDefault();
     debugger
     uploadImage(profileImage)
-    
-    
+
+
 
   }
   return (
-    <>
+    <div className='view-grid'>
       <Navbar />
       <div className="edit-profile-container">
         <h2>Edit Profile</h2>
@@ -71,7 +71,7 @@ const EditProfile = (props) => {
           <input onClick={onclick} type="submit" value="Accept Changes" />
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
