@@ -15,12 +15,21 @@ const SingleChatBox = ({chat, role, setChatId }) => {
     if(role === 'jobseekers') {
         return (
             <div className={`chat-${chat.chatId} chatBox`} onClick={onClick}>
-                {chat.company_name}
+                <img src={chat.image}/>
+                <div className="company_info">
+                    <p id="chat_company">{chat.company_name}</p>
+                    <p id="chat_location">{chat.location}</p>
+                </div>
             </div>
         )
     } else {
         return (
             <div className={`chat-${chat.chatId} chatBox`} onClick={onClick}>
+                <img src={chat.image} />
+                <div className="company_info">
+                    <p id="chat_name">{chat.name}</p>
+                    <p id="chat_location">{chat.location}</p>
+                </div>
                 {chat.name}
             </div>
         )

@@ -1,20 +1,36 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import "../stylesheets/navbar.css"
 
 const Navbar = (props) => {
-    return (
-        <div className="navbar-container">
-            <div className="my-profile-link">
-              <h4>My Profile</h4>
-            </div>
-            <div className="swipefair-logo">
-              <img src="assets/swipefair-logo.png" />
-            </div>
-            <div className="sign-out-link">
-              <h4>Sign Out</h4>
-            </div>
-        </div>
+  let history = useHistory()
+
+  const returnHome = () => {
+    history.push('/')
+  }
+
+  const editProfile = () => {
+    history.push('/editprofile')
+  }
+
+  const signOut = () => {
+    localStorage.clear()
+    history.push('/login')
+  }
+
+
+  return (
+      <div className="navbar-container">
+          <div className="my-profile-link">
+            <h4 onClick={editProfile}>My Profile</h4>
+          </div>
+          <div className="swipefair-logo">
+            <img onClick={returnHome} src="assets/swipefair-logo.png" />
+          </div>
+          <div className="sign-out-link">
+            <h4 onClick={signOut}>Sign Out</h4>
+          </div>
+      </div>
     )
 };
 

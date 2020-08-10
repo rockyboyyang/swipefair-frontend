@@ -1,0 +1,16 @@
+.view-grid {
+  display:grid;
+  grid-template-rows: 30px 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+.body-view {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+}
+/* #root {
+    display: grid;
+    /* grid-template-rows: 30px 1fr; */
+    /* align-items: unset;
+} */ 

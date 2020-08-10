@@ -65,7 +65,7 @@ const SwipeContainer = ({ setMatchesState }) => {
   };
   // useEffect(() => { set(propName) }, [matchesState]);
   return (
-    <div>
+    <div className="hidden">
       <div className="swipe-container">
         {openingsState.map((op) => (
           <TinderCard
