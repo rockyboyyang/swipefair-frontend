@@ -1,12 +1,14 @@
 .left-container {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     width: 300px;
     height: 80%;
     margin-left: 30px;
     margin-top: 30px;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    background-color: burlywood;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+
+    background-color: snow;
 }
 
 .matched-box {

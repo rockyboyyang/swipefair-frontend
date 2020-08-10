@@ -1,6 +1,7 @@
 .home-view {
   background-color: blueviolet;
   display: flex;
+  
   height: 100%;
   width: 100%;
 }

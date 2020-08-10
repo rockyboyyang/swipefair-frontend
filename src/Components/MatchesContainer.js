@@ -17,7 +17,7 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
     (async () => {
       setMatchesState(await fetchMatches());
     })();
-  }, );
+  }, []);
 
   const combineCompanies = (arrOfObjs) => {
     const ans = {};
