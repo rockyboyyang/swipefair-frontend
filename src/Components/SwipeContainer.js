@@ -43,7 +43,38 @@ const SwipeContainer = ({ setMatchesState }) => {
   };
   //'/jobseekers/<string:jobseekerEmail>/openings/<int:openingId>' post
   const onSwipe = async (dir) => {
-    return await swiped(dir);
+    // send a fetch request to the openings table and grab the companyId via the openingsId
+    // send a fetch request to the swipes table by filtering out the jobseekerId and grabbing every swipes that involves jobseekerId
+    // compare and filter out swipes.companies_id === companyId
+    const swipe = await swiped(dir)
+    const data = async () => {
+      const response = await fetch(`http://localhost:5000/api/swipes/jobseekers/${jobseekerId}`); // + '/'
+      const { swipes } = await response.json();
+      let filteredSwipes = swipes.filter((swipe) => swipe.openings_id === openingsId)
+      let count = 0;
+      for(let i = 0; i < filteredSwipes.length; i++){
+        if(filteredSwipes[i].swiped_right === true) count += 1;
+      }
+      if(count === 2) {
+        const fetchChat = async () => {
+          const getRes = await fetch(`http://localhost:5000/api/jobseekers/${jobseekerId}/${openingsId}/chats`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          });
+          let getResponse = await getRes.json();
+          if(getResponse.boolean === true) return;
+          const res = await fetch(`http://localhost:5000/api/jobseekers/${jobseekerId}/${openingsId}/chats`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+          });
+          return await res.json();
+        };
+        fetchChat();
+      }
+    };
+    data()
+
+    return swipe;
 
     // console.log("You swiped: " + dir);
   };
