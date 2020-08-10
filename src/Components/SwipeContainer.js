@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "../stylesheets/swipecontainer.css";
 import "../stylesheets/tindercard.css";
-const SwipeContainer = ({fetchMatches}) => {
+const SwipeContainer = ({ setMatchesState }) => {
   // const backendUrl = "http://localhost:5000/api/openings";
   // /notswiped/<int:jobseekerId>
   // const herokuUrl = "https://boiling-sands-04799.herokuapp.com/api/openings";
   const jobseekerId = JSON.parse(localStorage.jobseeker).id;
-  const backendUrl = `http://localhost:5000/api/openings/notswiped/${jobseekerId}`;
+  const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
+
+  const backendUrl = `http://localhost:5000/api/openings/notswiped/jobseeker/${jobseekerId}`;
   // const jobseekerId = jobseekerState.id;
   let openingsId;
   const data = async () => {
@@ -19,6 +21,11 @@ const SwipeContainer = ({fetchMatches}) => {
     // setOpeningsIdsState(opening.map(o => o.id));
     return opening;
   };
+  const fetchMatches = async () => {
+    const res = await fetch(jobseekerMatchesUrl); // + '/'
+    return await res.json();
+  };
+
   const [openingsState, setOpeningsState] = useState([]);
   // const [openingsIdsState, setOpeningsIdsState] = useState([]);
   useEffect(() => {
@@ -52,9 +59,10 @@ const SwipeContainer = ({fetchMatches}) => {
     // setOpeningsIdsState(openingsIdsState.slice(1))
     const url = `http://localhost:5000/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
     const body = { swiped_right: swiped_right };
-  const posts = await fetchPost(url, body);
-  // await fetchMatches()
-  return posts
+    const posts = await fetchPost(url, body);
+    const matches = await fetchMatches()
+    setMatchesState(matches);
+    return posts;
   };
   return (
     <div>
@@ -71,7 +79,7 @@ const SwipeContainer = ({fetchMatches}) => {
             preventSwipe={["up", "down"]}
           >
             <div className="swipe">
-              <div className='company-image'>
+              <div className="company-image">
                 <img src={op.image} alt="company" />
               </div>
               <div>{op.company_name}</div>

@@ -8,17 +8,16 @@ import '../../stylesheets/homeview.css'
 
 
 
-const Home = () => {
+const Home = ({matchesState, setMatchesState}) => {
     // const jobseekerId = JSON.parse(localStorage.jobseeker).id
-    
   
-    console.log(`${matchesState} from the Home Component`)
+    // console.log(`${matchesState} from the Home Component`)
 
   return (
     <div className='home-view'>
       <Navbar />
-      {/* <MatchesContainer matchesState={matchesState}/> */}
-      <SwipeContainer fetchMatches={fetchMatches}  setMatchesState={setMatchesState}/>
+      <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState}/>
+      <SwipeContainer setMatchesState={setMatchesState}/>
       <AboutUsContainer />
     </div>
   );

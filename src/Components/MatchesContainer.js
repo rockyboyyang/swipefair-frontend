@@ -1,31 +1,48 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../stylesheets/matches.css";
-import CompanyList from './CompanyList'
+import CompanyList from "./CompanyList";
 
-
-
-const MatchesContainer = () => { 
-  const [matchesState, setMatchesState] = useState([])
-  const jobseekerId = JSON.parse(window.localStorage.jobseeker).id
+export default function MatchesContainer({ setMatchesState, matchesState }) {
+  const jobseekerId = JSON.parse(window.localStorage.jobseeker).id;
   const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
 
-  const fetchMatches = async(jobseekerId)=> {
-      const res = await fetch(jobseekerMatchesUrl); // + '/'
-      return await res.json();
-    };
+  const fetchMatches = async () => {
+    const res = await fetch(jobseekerMatchesUrl); // + '/'
+    const response = await res.json();
+    console.log(response);
+    return response.matches;
+  };
 
-    useEffect(async()=> {
-      setMatchesState(await fetchMatches())
-    }, [])
+  useEffect(() => {
+    (async () => {
+      console.log(setMatchesState);
+      setMatchesState(await fetchMatches());
+    })();
+  }, []);
 
-    return  matchesState.length ? (
-        <div className="left-container">
-          <div>Matched with the Following Companies</div>
-            {matchesState.map((match) => 
-            <CompanyList match={match} />)}
-        </div>) : (<div>No matches yet</div>)
-  
+  const combineCompanies = (arrOfObjs) => {
+    const ans = {};
+    arrOfObjs.forEach((value) => {
+      if (ans[value.company.company_name] === undefined) {
+        ans[value.company.company_name] = {image: value.company.image, openings:[value.openings]};
+      } else {
+        ans[value.company.company_name].openings.push(value.openings);
+      }
+    });
+    return ans;
+  };
 
-};
-
-export default MatchesContainer;
+  if (matchesState.length) {
+    const matches = combineCompanies(matchesState);
+    return (
+      <div className="left-container">
+        <div>Matched with the Following Companies</div>
+        {Object.keys(matches).map((company_name) => (
+          <CompanyList company_name={company_name} image={matches[company_name].image} openings={matches[company_name].openings} />
+        ))}
+      </div>
+    );
+  } else {
+    return <div className="left-container">No matches yet</div>;
+  }
+}

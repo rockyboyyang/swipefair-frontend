@@ -12,6 +12,7 @@ const App = props => {
   const [jobseekerState, setJobseeker] = useState(localStorage.jobseeker);
   const [companyState, setCompany] = useState(localStorage.company);
   const [chatId, setChatId] = useState('')
+  const [matchesState, setMatchesState] = useState([])
 
   
 
@@ -22,8 +23,8 @@ const App = props => {
         <Route path="/login" render={(props)=> <Login {...props} setToken={setToken} setJobseeker={setJobseeker} setCompany={setCompany} companyState={companyState}/>} />
         {/* <Route path="/login" component={Login} setToken={setToken} setJobseeker={setJobseeker} companyState={companyState} /> */}
         <Route path="/signup" component={SignUp} />
-        <Route exact path="/" render={Home} />
-        <Route path="/chats" render={(props) => <ChatsView {...props} companyState={companyState} jobseekerState={jobseekerState} setChatId={setChatId}/>} />
+        <Route exact path="/" render={(props)=> <Home {...props} matchesState={matchesState} setMatchesState={setMatchesState} />} />
+        <Route path="/chats" render={(props) => <ChatsView {...props} companyState={companyState} jobseekerState={jobseekerState}  matchesState={matchesState}  setChatId={setChatId} setMatchesState={setMatchesState}/>} />
         <Route path="/messages/:chatId" render={(props) => <MessagesView {...props} chatId={props.match.params.chatId} companyState={companyState} jobseekerState={jobseekerState}/>} />
         <Route path="/editprofile" component={EditProfile} />
       </Switch>
