@@ -5,11 +5,11 @@ import ChatsContainer from "../ChatsContainer";
 import AboutUsContainer from "../AboutUsContainer";
 
 
-const ChatsView = ({ companyState, jobseekerState, setChatId }) => {
+const ChatsView = ({ companyState, jobseekerState, setChatId, matchesState, setMatchesState }) => {
   return (
     <>
       <Navbar />
-      {/* <MatchesContainer /> */}
+      <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState}/>
       <ChatsContainer companyState={companyState} jobseekerState={jobseekerState} setChatId={setChatId}/>
       <AboutUsContainer />
     </>
