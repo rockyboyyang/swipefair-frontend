@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Navbar from "../Navbar";
 import MatchesContainer from "../MatchesContainer";
 import SwipeContainer from "../SwipeContainer";
@@ -11,13 +11,14 @@ import '../../stylesheets/homeview.css'
 const Home = ({matchesState, setMatchesState, jobseekerState, companyState }) => {
     // const jobseekerId = JSON.parse(localStorage.jobseeker).id
     // useEffect(()=>{},[swipesState])
+    const [openingsState, setOpeningsState] = useState([]);
 
   return (
     <div className='view-grid'>
       <Navbar />
       <div className="body-view">
-        <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState}/>
-        <SwipeContainer setMatchesState={setMatchesState}/>
+        <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState}  openingsState={openingsState} setOpeningsState={setOpeningsState}/>
+        <SwipeContainer setMatchesState={setMatchesState} openingsState={openingsState} setOpeningsState={setOpeningsState}/>
         <AboutUsContainer />
       </div>
     </div>

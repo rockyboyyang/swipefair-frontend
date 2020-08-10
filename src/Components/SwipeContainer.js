@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "../stylesheets/swipecontainer.css";
 import "../stylesheets/tindercard.css";
-const SwipeContainer = ({ setMatchesState }) => {
-  // const backendUrl = "http://localhost:5000/api/openings";
+const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState }) => {
+  // const backendUrl = "https://boiling-sands-04799.herokuapp.com/api/openings";
   // /notswiped/<int:jobseekerId>
   // const herokuUrl = "https://boiling-sands-04799.herokuapp.com/api/openings";
   const jobseekerId = JSON.parse(localStorage.jobseeker).id;
@@ -25,7 +25,6 @@ const SwipeContainer = ({ setMatchesState }) => {
     return await res.json();
   };
 
-  const [openingsState, setOpeningsState] = useState([]);
   // const [openingsIdsState, setOpeningsIdsState] = useState([]);
   useEffect(() => {
     (async () => {
@@ -87,19 +86,38 @@ const SwipeContainer = ({ setMatchesState }) => {
     return swipe;
 
   };
+
   const swiped = async (dir) => {
     const swiped_right = dir === "right" ? true : false;
 
     openingsId = openingsState.pop().id;
-    setOpeningsState(openingsState);
 
     const url = `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
     const body = { swiped_right: swiped_right };
     const posts = await fetchPost(url, body);
-    const matches = await fetchMatches();
-    setMatchesState(matches);
+    // const matches = await fetchMatches();
+    // setMatchesState(matches);
+    if (posts) setOpeningsState(openingsState);
     return posts;
   };
+  // const swiped = (dir) => {
+  //   const swiped_right = dir === "right" ? true : false;
+
+  //   openingsId = openingsState.pop().id;
+
+  //   const url = `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
+  //   const body = { swiped_right: swiped_right };
+  //   const posts = fetchPost(url, body).then(thing => {
+  //     setOpeningsState(openingsState);
+  //     console.log(thing)
+  //     return thing
+
+  //   })
+    // const matches = await fetchMatches();
+    // setMatchesState(matches);
+    // setOpeningsState(openingsState);
+  //   return posts;
+  // };
   // useEffect(() => { set(propName) }, [matchesState]);
   return (
     // <div className="hidden">
