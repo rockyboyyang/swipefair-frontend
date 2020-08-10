@@ -2,8 +2,9 @@
   background-color: lightpink;
   margin: 0 auto;
   /* box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2); */
-  height: 75%;
-  width: 35%;
+  height: 85%;
+  width: 600px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,9 +13,11 @@
 
 
 .message-box {
+    font-family: 'Roboto', sans-serif;
     background-color: rgb(218, 200, 176);
     margin: 10px 10px;
     width: auto;
+    max-height: 25px;
     max-width: 255px;
     height: auto;
     display: flex;
@@ -24,14 +27,17 @@
 }
 
 .messages_display {
-    border-top: 2px solid black;
     border-bottom: 2px solid black;
-    overflow-y: scroll;
+    overflow-y: hidden;
     width: 100%;
     display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     height: 100%;
 }
 
+.messages_display:hover {
+    overflow-y: scroll;
+}
 .center-container > form {
     display: flex;
     flex-direction: row;
@@ -49,12 +55,74 @@
  }
 
 .text-box {
-    height: 50px;
+    border: hidden;
+    height: 40px;
+    width: 80%;
+    margin: 10px;
+    border-radius: 18px;
+    outline: none;
 }
 
+
 .messages-container > form > button {
+    font-family: 'Roboto', sans-serif;
     align-self: center;
-    width: 15%;
-    height: 70%;
-    border: 1px solid black;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    background-image: url("/assets/send.png");
+    background-size: 30px 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(113,212,185);
+    background-color: radial-gradient(circle, rgba(113,212,185,1) 0%, rgba(152,202,207,1) 100%);
+}
+
+.messages-container > form img {
+    width: 50px;
+}
+.messages-container > form > button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.messages-container > nav {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    height: 50px;
+    /* border-bottom: solid white 1px; */
+    box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.20);
+    /* box-shadow: 0px 2px 5px #888888; */
+}
+
+#message_company_name {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    font-size: large;
+    justify-self: center;
+    align-self: center;
+}
+
+#back_button {
+    background: rgb(245,244,184);
+    background: linear-gradient(90deg, rgba(245,244,184,1) 0%, rgba(181,231,228,1) 100%);
+    justify-self: center;
+    align-self: center;
+    font-size: 3em;
+    background-image: url("/assets/back.png");
+    background-size: 30px 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(113,212,185);
+    background-color: radial-gradient(circle, rgba(113,212,185,1) 0%, rgba(152,202,207,1) 100%);
+    height: 100%;
+    width: 100%;
+}
+
+#back_button img {
+    height: 50px;
+    width: 50px;
 }

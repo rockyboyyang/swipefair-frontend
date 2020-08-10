@@ -14,11 +14,13 @@ const Home = ({matchesState, setMatchesState}) => {
     // console.log(`${matchesState} from the Home Component`)
 
   return (
-    <div className='home-view'>
+    <div className='view-grid'>
       <Navbar />
-      <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState}/>
-      <SwipeContainer setMatchesState={setMatchesState}/>
-      <AboutUsContainer />
+      <div className="body-view">
+        <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState}/>
+        <SwipeContainer setMatchesState={setMatchesState}/>
+        <AboutUsContainer />
+      </div>
     </div>
   );
 };
