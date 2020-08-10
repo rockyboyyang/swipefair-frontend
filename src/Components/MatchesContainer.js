@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {Link} 
 import "../stylesheets/matches.css";
 import CompanyList from "./CompanyList";
 import { useHistory, } from "react-router-dom";
@@ -11,16 +10,14 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
   const fetchMatches = async () => {
     const res = await fetch(jobseekerMatchesUrl); // + '/'
     const response = await res.json();
-    console.log(response);
     return response.matches;
   };
 
   useEffect(() => {
     (async () => {
-      console.log(setMatchesState);
       setMatchesState(await fetchMatches());
     })();
-  }, []);
+  }, );
 
   const combineCompanies = (arrOfObjs) => {
     const ans = {};
@@ -42,7 +39,6 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
     const matches = combineCompanies(matchesState);
     console.log(matches)
     return (
-      <Link
       <div className="left-container">
         <div className="match-header">
           <h2>Matched with the Following Companies</h2>
@@ -58,6 +54,5 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
   }
 }
 
-import React, { Component } from 'react'
 
 
