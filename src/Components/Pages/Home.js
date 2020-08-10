@@ -10,7 +10,7 @@ import '../../stylesheets/homeview.css'
 
 const Home = ({matchesState, setMatchesState}) => {
     // const jobseekerId = JSON.parse(localStorage.jobseeker).id
-    useEffect(()=>{},[swipesState])
+    // useEffect(()=>{},[swipesState])
     // console.log(`${matchesState} from the Home Component`)
 
   return (
