@@ -29,7 +29,7 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    console.log(res.ok);
+
     if (res.ok) {
       const { access_token, jobseeker, company } = await res.json();
       setToken({ access_token });
@@ -56,7 +56,6 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
 
   const loginDemoUser = (event) => {
     event.preventDefault();
-    console.log("loging in the demo user");
     onclick(event, true);
   };
 

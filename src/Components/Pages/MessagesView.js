@@ -17,7 +17,6 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
   jobseekerState !== 'undefined' ? role = 'jobseeker' : role = 'company'
   jobseekerState !== 'undefined' ? role_plural = 'jobseekers' : role_plural = 'companies'
 
-  console.log(chatId)
   const herokuUrl = baseUrl + `/${role_plural}/${id}/chats/${chatId}/messages`
 
   const [messageState, setMessageState] = useState([])
@@ -34,7 +33,6 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
     setChattingWithName(name)
     setMessageState(messageArr);
     setChattingWithInfoState(chatWithInfo)
-    console.log(chatWithInfo)
   };
 
   const sendMessage = async (e) => {
@@ -75,7 +73,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
       <div className='view-grid'>
         <Navbar />
         <div className="body-view">
-          <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState}/>
+          <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState}/>
           <MessagesContainer companyState={companyState}
           jobseekerState={jobseekerState} 
           chatId={chatId} 

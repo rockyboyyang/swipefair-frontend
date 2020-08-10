@@ -86,18 +86,13 @@ const SwipeContainer = ({ setMatchesState }) => {
 
     return swipe;
 
-    // console.log("You swiped: " + dir);
   };
   const swiped = async (dir) => {
-    console.log("the states", openingsState);
-    console.log("jobseekerId", jobseekerId);
     const swiped_right = dir === "right" ? true : false;
 
     openingsId = openingsState.pop().id;
     setOpeningsState(openingsState);
-    console.log(openingsState);
-    // openingsId = openingsState[openingsState.length-1].id
-    // setOpeningsIdsState(openingsIdsState.slice(1))
+
     const url = `http://localhost:5000/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
     const body = { swiped_right: swiped_right };
     const posts = await fetchPost(url, body);

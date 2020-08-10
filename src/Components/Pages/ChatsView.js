@@ -12,7 +12,7 @@ const ChatsView = ({ companyState, jobseekerState, setChatId, matchesState, setM
       <div className="view-grid">
         <Navbar />
         <div className="body-view">
-          <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState} />
+          <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState} />
           <ChatsContainer companyState={companyState} jobseekerState={jobseekerState} setChatId={setChatId} />
           <AboutUsContainer />
         </div>

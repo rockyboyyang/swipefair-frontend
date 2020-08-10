@@ -1,12 +1,13 @@
 .navbar-container {
   height: 30px;
   /* position: absolute; */
-  top: 0;
-  left: 0;
+  /* top: 0;
+  left: 0; */
   width: 100%;
   background-color: whitesmoke;
   display: flex;
   font-family: 'Archivo', sans-serif;
+  /* padding: 40px; */
 }
 
 .swipefair-logo img {
@@ -20,9 +21,15 @@
   padding: 0;
 }
 
+.sign-out-link {
+  /* cursor: pointer; */
+}
+
 .sign-out-link h4 {
   position: fixed;
   margin: 6px 10px 0px 0px;
   top: 0;
   right: 0;
+
+  
 }
