@@ -17,9 +17,9 @@ const Home = ({matchesState, setMatchesState, jobseekerState, companyState }) =>
     history.push('/login')
   }
   const [openingsState, setOpeningsState] = useState([]);
-  useEffect(() => {
-    console.log('hey')
-  }, [matchesState, setMatchesState])
+  // useEffect(() => {
+  //   console.log('hey')
+  // }, [matchesState, setMatchesState])
   return (
     <>
       {localStorage.access_token ? (

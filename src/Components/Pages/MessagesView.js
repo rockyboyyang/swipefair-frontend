@@ -7,13 +7,28 @@ import { BrowserRouter, Route, Switch, useHistory, } from "react-router-dom";
 
 
 const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setMatchesState}) => {
-  let baseUrl = "https://boiling-sands-04799.herokuapp.com/api"
+  let baseUrl = "http://localhost:5000/api"
   let role_plural;
   let role;
   let id;
   let history = useHistory();
-  if (companyState !== 'undefined') id = JSON.parse(companyState).id
-  if (jobseekerState !== 'undefined') id = JSON.parse(jobseekerState).id
+
+  if (companyState !== 'undefined') {
+    try {
+      id = companyState.id
+    } catch (e) {
+
+    }
+  }
+
+  if (jobseekerState !== 'undefined') {
+    try {
+      id = jobseekerState.id
+    } catch (e) {
+
+    }
+  }
+
   jobseekerState !== 'undefined' ? role = 'jobseeker' : role = 'company'
   jobseekerState !== 'undefined' ? role_plural = 'jobseekers' : role_plural = 'companies'
 
@@ -55,9 +70,8 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
     // TODO:
     // might want to rerender component but this works for now
     if (res.ok) {
-      (function () {
-        window.location.reload(true);
-      })();
+      setNewMessageState('')
+      data()
     }
   }
 

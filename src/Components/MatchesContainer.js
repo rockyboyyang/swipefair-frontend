@@ -18,18 +18,19 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
 
   if (companyState !== 'undefined') {
     try {
-      id = JSON.parse(companyState).id
+      id = companyState.id
     } catch (e) {
-      // console.log(e)
+
     }
   }
   if (jobseekerState !== 'undefined') {
     try {
-      id = JSON.parse(jobseekerState).id
+      id = jobseekerState.id
     } catch (e) {
-      // console.log(e)
+
     }
   }
+  console.log(id, 'id')
   jobseekerState !== 'undefined' ? role = 'jobseekers' : role = 'companies'
 
   // TODO: change to heroku in the future
@@ -80,7 +81,6 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
   let matches;
   if (matchesState.length) {
     matches = combineCompanies(matchesState);
-    console.log(matches)
     return (
       <div className="left-container">
         <div className="match-header">
