@@ -54,13 +54,13 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
   useEffect(() => {
     let setMatches = async () => {
       const data = await fetchMatches()
-      console.log(data  )
+      // console.log(data  )
       setMatchesState(data);
-      console.log(matchesState)
+      // console.log(matchesState)
     };
-    console.log('triggered')
+    // console.log('triggered')
     setMatches()
-  }, [openingsState]);
+  }, []);
 
   const combineCompanies = (arrOfObjs) => {
     const ans = {};
@@ -77,29 +77,23 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
   const redirectToChats = () => {
     history.push('/chats')
   }
-  if(jobseekerId) {
-    if (matchesState.length) {
-      const matches = combineCompanies(matchesState);
-      // console.log(matches)
-      return (
-        <div className="left-container">
-          <div className="match-header">
-            <h2>Matches</h2>
-            <div onClick={redirectToChats}>CHATS</div>
-          </div>
-          {Object.keys(matches).map((company_name) => (
-            <CompanyList company_name={company_name} image={matches[company_name].image} openings={matches[company_name].openings} />
-          ))}
-        </div>
-      );
-    } else {
-      return <div className="left-container">No matches yet</div>;
-    }
-  } else {
+  let matches;
+  if (matchesState.length) {
+    matches = combineCompanies(matchesState);
+    console.log(matches)
     return (
-      <>
-      </>
-    )
+      <div className="left-container">
+        <div className="match-header">
+          <h2>Matches</h2>
+          <div onClick={redirectToChats}>CHATS</div>
+        </div>
+        {Object.keys(matches).map((company_name) => (
+          <CompanyList company_name={company_name} image={matches[company_name].image} openings={matches[company_name].openings} />
+        ))}
+      </div>
+    );
+  } else {
+    return <div className="left-container">No matches yet</div>;
   }
 }
 

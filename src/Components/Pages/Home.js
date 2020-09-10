@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Navbar from "../Navbar";
 import MatchesContainer from "../MatchesContainer";
 import SwipeContainer from "../SwipeContainer";
@@ -17,7 +17,9 @@ const Home = ({matchesState, setMatchesState, jobseekerState, companyState }) =>
     history.push('/login')
   }
   const [openingsState, setOpeningsState] = useState([]);
-
+  useEffect(() => {
+    console.log('hey')
+  }, [matchesState, setMatchesState])
   return (
     <>
       {localStorage.access_token ? (

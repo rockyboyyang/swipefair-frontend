@@ -88,7 +88,8 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState }) =>
               headers: { "Content-Type": "application/json" },
             }
           );
-          return await res.json();
+          let result = await res.json()
+          return result;
         };
         fetchChat();
       }
@@ -107,8 +108,9 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState }) =>
     const url = `http://localhost:5000/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
     const body = { swiped_right: swiped_right };
     const posts = await fetchPost(url, body);
-    // const matches = await fetchMatches();
-    // setMatchesState(matches);
+    const matches = await fetchMatches();
+    // console.log(matches)
+    setMatchesState(matches.matches);
     if (posts) setOpeningsState(openingsState);
     return posts;
   };
