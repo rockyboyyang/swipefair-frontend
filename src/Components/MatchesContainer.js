@@ -4,19 +4,36 @@ import CompanyList from "./CompanyList";
 import { useHistory, } from "react-router-dom";
 
 export default function MatchesContainer({ setMatchesState, matchesState, jobseekerState, companyState, openingsState  }) {
-  const jobseekerId = JSON.parse(window.localStorage.jobseeker).id;
-  const jobseekerMatchesUrl = `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/matches`;
+  let jobseekerId;
+  try {
+    jobseekerId = JSON.parse(window.localStorage.jobseeker).id;
+  } catch (e) {
+    // console.log(e)
+  }
+  const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
   let history = useHistory();
 
   let role;
   let id;
-  if (companyState !== 'undefined') id = JSON.parse(companyState).id
-  if (jobseekerState !== 'undefined') id = JSON.parse(jobseekerState).id
 
+  if (companyState !== 'undefined') {
+    try {
+      id = JSON.parse(companyState).id
+    } catch (e) {
+      // console.log(e)
+    }
+  }
+  if (jobseekerState !== 'undefined') {
+    try {
+      id = JSON.parse(jobseekerState).id
+    } catch (e) {
+      // console.log(e)
+    }
+  }
   jobseekerState !== 'undefined' ? role = 'jobseekers' : role = 'companies'
 
   // TODO: change to heroku in the future
-  const herokuUrl = `https://boiling-sands-04799.herokuapp.com/api/${role}/${id}/chats`
+  const herokuUrl = `http://localhost:5000/api/${role}/${id}/chats`
   const [chatsState, setChatsState] = useState([])
   const data = async () => {
     const response = await fetch(herokuUrl); // + '/'
@@ -60,23 +77,29 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
   const redirectToChats = () => {
     history.push('/chats')
   }
-
-  if (matchesState.length) {
-    const matches = combineCompanies(matchesState);
-    // console.log(matches)
-    return (
-      <div className="left-container">
-        <div className="match-header">
-          <h2>Matches</h2>
-          <div onClick={redirectToChats}>CHATS</div>
+  if(jobseekerId) {
+    if (matchesState.length) {
+      const matches = combineCompanies(matchesState);
+      // console.log(matches)
+      return (
+        <div className="left-container">
+          <div className="match-header">
+            <h2>Matches</h2>
+            <div onClick={redirectToChats}>CHATS</div>
+          </div>
+          {Object.keys(matches).map((company_name) => (
+            <CompanyList company_name={company_name} image={matches[company_name].image} openings={matches[company_name].openings} />
+          ))}
         </div>
-        {Object.keys(matches).map((company_name) => (
-          <CompanyList company_name={company_name} image={matches[company_name].image} openings={matches[company_name].openings} />
-        ))}
-      </div>
-    );
+      );
+    } else {
+      return <div className="left-container">No matches yet</div>;
+    }
   } else {
-    return <div className="left-container">No matches yet</div>;
+    return (
+      <>
+      </>
+    )
   }
 }
 
