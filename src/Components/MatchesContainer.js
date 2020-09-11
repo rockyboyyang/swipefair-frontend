@@ -76,7 +76,15 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
       </div>
     );
   } else {
-    return <div className="left-container">No matches yet</div>;
+    return (
+      <div className="left-container">
+        <div className="match-header">
+          <h2>Matches</h2>
+          <div onClick={redirectToChats}>CHATS</div>
+        </div>
+        <h2 className="no-matches-header">No matches yet <br /> Swipe to get more matches!</h2>
+      </div>
+    );
   }
 }
 

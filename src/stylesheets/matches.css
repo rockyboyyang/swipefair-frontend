@@ -62,3 +62,11 @@
 .openingTitle {
   color: rgba(0, 0, 0, 0.75);
 }
+
+.no-matches-header {
+  margin: auto;
+  text-align: center;
+  font-family: "Archivo", sans-serif;
+  font-size: 1.2em;
+  color: #bbc9c5;
+}
