@@ -8,13 +8,18 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
   let history = useHistory();
   const [emailState, setEmail] = useState("");
   const [passwordState, setPassword] = useState("");
-  console.log(backendURL)
-  const onclick = async (e, demoUser = false) => {
+
+  const onclick = async (e, demoJobseeker = false, demoCompany = false) => {
     e.preventDefault();
     let body;
-    if (demoUser) {
+    if (demoJobseeker) {
       body = {
-        email: "demo@gmail.com",
+        email: "demoJobseeker@gmail.com",
+        password: "password",
+      };
+    } else if (demoCompany) {
+      body = {
+        email: "demoCompany@gmail.com",
         password: "password",
       };
     } else {
@@ -54,9 +59,14 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
     setPassword(event.target.value);
   };
 
-  const loginDemoUser = (event) => {
+  const loginJobseeker = (event) => {
     event.preventDefault();
-    onclick(event, true);
+    onclick(event, true, false);
+  };
+
+  const loginCompany = (event) => {
+    event.preventDefault();
+    onclick(event, false, true);
   };
 
   // if tokenState history.push('/login')
@@ -96,9 +106,8 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
           <button onClick={signUp}>Sign Up</button>
         </div>
         <div>
-          <button id="session_jobseeker" onClick={loginDemoUser}>
-            Demo
-          </button>
+          <button id="session_jobseeker" onClick={loginJobseeker}>Demo Jobseeker</button>
+          <button id="session_company" onClick={loginCompany}>Demo Company</button>
         </div>
       </div>
     </div>

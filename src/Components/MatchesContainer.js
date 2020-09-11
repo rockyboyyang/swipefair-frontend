@@ -11,40 +11,48 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
   } catch (e) {
     // console.log(e)
   }
-  const jobseekerMatchesUrl = backendURL + `api/jobseekers/${jobseekerId}/matches`;
+  let matchesUrl; 
   let history = useHistory();
 
   let role;
   let id;
 
-  if (companyState !== 'undefined') {
+  if (companyState !== undefined) {
     try {
       id = companyState.id
+      matchesUrl = backendURL + `api/companies/${id}/matches`;
     } catch (e) {
 
     }
   }
-  if (jobseekerState !== 'undefined') {
+  if (jobseekerState !== undefined) {
     try {
       id = jobseekerState.id
+      matchesUrl = backendURL + `api/jobseekers/${id}/matches`;
     } catch (e) {
 
     }
   }
   console.log(id, 'id')
-  jobseekerState !== 'undefined' ? role = 'jobseekers' : role = 'companies'
-
+  jobseekerState !== undefined ? role = 'jobseekers' : role = 'companies'
+  console.log(role)
   // TODO: change to heroku in the future
   const herokuUrl = backendURL + `api/${role}/${id}/chats`
   const [chatsState, setChatsState] = useState([])
   const data = async () => {
+    console.log(herokuUrl, id)
     const response = await fetch(herokuUrl); // + '/'
     const { chats } = await response.json();
     setChatsState(chats);
   };
 
   const fetchMatches = async () => {
-    const res = await fetch(jobseekerMatchesUrl); // + '/'
+    let res;
+    try {
+      res = await fetch(matchesUrl); // + '/'
+    } catch (e) {
+
+    }
     const response = await res.json();
     return response.matches;
   };
@@ -58,7 +66,7 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
       const data = await fetchMatches()
       // console.log(data  )
       setMatchesState(data);
-      // console.log(matchesState)
+      console.log(matchesState)
     };
     // console.log('triggered')
     setMatches()
