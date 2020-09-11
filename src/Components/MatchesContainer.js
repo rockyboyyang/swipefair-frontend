@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../stylesheets/matches.css";
 import CompanyList from "./CompanyList";
 import { useHistory, } from "react-router-dom";
+import backendURL from '../backendURL'
 
 export default function MatchesContainer({ setMatchesState, matchesState, jobseekerState, companyState, openingsState  }) {
   let jobseekerId;
@@ -10,7 +11,7 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
   } catch (e) {
     // console.log(e)
   }
-  const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
+  const jobseekerMatchesUrl = backendURL + `api/jobseekers/${jobseekerId}/matches`;
   let history = useHistory();
 
   let role;
@@ -34,7 +35,7 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
   jobseekerState !== 'undefined' ? role = 'jobseekers' : role = 'companies'
 
   // TODO: change to heroku in the future
-  const herokuUrl = `http://localhost:5000/api/${role}/${id}/chats`
+  const herokuUrl = backendURL + `api/${role}/${id}/chats`
   const [chatsState, setChatsState] = useState([])
   const data = async () => {
     const response = await fetch(herokuUrl); // + '/'

@@ -4,10 +4,10 @@ import MatchesContainer from "../MatchesContainer";
 import MessagesContainer from "../MessagesContainer";
 import Details from "../Details";
 import { BrowserRouter, Route, Switch, useHistory, } from "react-router-dom";
+import backendURL from '../../backendURL'
 
 
 const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setMatchesState}) => {
-  let baseUrl = "http://localhost:5000/api"
   let role_plural;
   let role;
   let id;
@@ -36,7 +36,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
     history.push('/login')
   }
 
-  const herokuUrl = baseUrl + `/${role_plural}/${id}/chats/${chatId}/messages`
+  const fullBackendUrl = backendURL + `api/${role_plural}/${id}/chats/${chatId}/messages`
 
   const [messageState, setMessageState] = useState([])
   const [newMessageState, setNewMessageState] = useState('')
@@ -44,7 +44,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
   const [chattingWithInfoState, setChattingWithInfoState] = useState([])
 
   const data = async () => {
-    const response = await fetch(herokuUrl); // + '/'
+    const response = await fetch(fullBackendUrl); // + '/'
     // const lol = await response.json();
     const { messages, name, chatWithInfo } = await response.json();
     let messageArr = []
@@ -57,7 +57,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
   const sendMessage = async (e) => {
     e.preventDefault()
     if (!newMessageState) return;
-    let postMessageUrl = baseUrl + `/${role_plural}/${id}/chats/${chatId}/messages`
+    let postMessageUrl = backendURL + `api/${role_plural}/${id}/chats/${chatId}/messages`
     const body = {
       body: newMessageState,
     }

@@ -1,15 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import "../../stylesheets/login.css";
-// import backendUrl from "../../utils";
-// yeha modules are wack
-// const backendUrl = "https://boiling-sands-04799.herokuapp.com/api";
-const backendUrl = "http://localhost:5000/api";
+import backendURL from '../../backendURL'
+
+
 const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
   let history = useHistory();
   const [emailState, setEmail] = useState("");
   const [passwordState, setPassword] = useState("");
-
+  console.log(backendURL)
   const onclick = async (e, demoUser = false) => {
     e.preventDefault();
     let body;
@@ -25,7 +24,7 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
       };
     }
 
-    const res = await fetch(backendUrl + "/" + e.target.id + "/", {
+    const res = await fetch(backendURL + "/api/" + e.target.id + "/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
