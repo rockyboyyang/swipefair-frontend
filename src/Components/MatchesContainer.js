@@ -7,6 +7,14 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
   const jobseekerId = JSON.parse(window.localStorage.jobseeker).id;
   const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
   let history = useHistory();
+
+  // const [matchesState, setMatchesState] = useState([])
+
+  // const changeMatchState = (newState) => {
+  //   return setMatchesState(newState);
+  // }
+
+  
   const fetchMatches = async () => {
     const res = await fetch(jobseekerMatchesUrl); // + '/'
     const response = await res.json();
@@ -17,7 +25,7 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
     let setMatches = async () => {
       setMatchesState(await fetchMatches());
     };
-    setMatches()
+    setMatches()  
   }, []);
 
   const combineCompanies = (arrOfObjs) => {
