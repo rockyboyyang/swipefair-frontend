@@ -12,12 +12,30 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
   let role;
   let id;
   let history = useHistory();
-  if (companyState !== 'undefined') id = JSON.parse(companyState).id
-  if (jobseekerState !== 'undefined') id = JSON.parse(jobseekerState).id
+
+  if (companyState !== 'undefined') {
+    try {
+      id = companyState.id
+    } catch (e) {
+
+    }
+  }
+
+  if (jobseekerState !== 'undefined') {
+    try {
+      id = jobseekerState.id
+    } catch (e) {
+
+    }
+  }
+
   jobseekerState !== 'undefined' ? role = 'jobseeker' : role = 'company'
   jobseekerState !== 'undefined' ? role_plural = 'jobseekers' : role_plural = 'companies'
 
-  console.log(chatId)
+  if (!localStorage.access_token) {
+    history.push('/login')
+  }
+
   const herokuUrl = baseUrl + `/${role_plural}/${id}/chats/${chatId}/messages`
 
   const [messageState, setMessageState] = useState([])
@@ -34,7 +52,6 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
     setChattingWithName(name)
     setMessageState(messageArr);
     setChattingWithInfoState(chatWithInfo)
-    console.log(chatWithInfo)
   };
 
   const sendMessage = async (e) => {
@@ -53,9 +70,8 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
     // TODO:
     // might want to rerender component but this works for now
     if (res.ok) {
-      (function () {
-        window.location.reload(true);
-      })();
+      setNewMessageState('')
+      data()
     }
   }
 
@@ -75,14 +91,14 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
       <div className='view-grid'>
         <Navbar />
         <div className="body-view">
-          <MatchesContainer matchesState={matchesState} setMatchesState={setMatchesState}/>
+          <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState}/>
           <MessagesContainer companyState={companyState}
-          jobseekerState={jobseekerState} 
-          chatId={chatId} 
-          chattingWithName={chattingWithName} 
-          messageState={messageState} 
-          sendMessage={sendMessage} 
-          goBack={goBack} 
+          jobseekerState={jobseekerState}
+          chatId={chatId}
+          chattingWithName={chattingWithName}
+          messageState={messageState}
+          sendMessage={sendMessage}
+          goBack={goBack}
           newMessageState={newMessageState}
           setNewMessageState={setNewMessageState}
           handleNewMessageState={handleNewMessageState}

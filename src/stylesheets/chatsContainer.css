@@ -1,5 +1,5 @@
 .center-container {
-  background-color: darkslategray;
+  background-color: white;
   margin: 0 auto;
   /* box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2); */
   height: 85%;
@@ -12,19 +12,27 @@
 }
 
 .chats-container {
-  background-color: darkslategray;
+  background-color: white;
+  overflow-y: scroll;
 }
 
 .chatBox {
-    background-color: rgb(254, 251, 247);
+    background-color: white;
     margin: 10px 10px;
     height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: "Archivo", sans-serif;
-    font-size: larger;
+    font-size: 1.5em;
     box-shadow: 5px 2px 5px #888888;
+}
+
+.chatBox:hover {
+  cursor: pointer;
+  /* transform: scale(1.05); */
+  transition: 0.3s;
+  background-color: rgb(164, 252, 202);
 }
 
 .company_info {
@@ -43,7 +51,7 @@
 }
 
 #chat_company {
-  
+
 }
 
 #chat_location {

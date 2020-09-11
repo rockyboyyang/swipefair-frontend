@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SingleChatBox from './SingleChatBox'
 import "../stylesheets/chatsContainer.css";
 
@@ -8,8 +7,21 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
     // make one for jobseeker and company
     let role;
     let id;
-    if (companyState !== 'undefined') id = JSON.parse(companyState).id
-    if (jobseekerState !== 'undefined') id = JSON.parse(jobseekerState).id
+    if (companyState !== 'undefined') {
+        try {
+            id = companyState.id
+        } catch (e) {
+
+        }
+    }
+
+    if (jobseekerState !== 'undefined') {
+        try {
+            id = jobseekerState.id
+        } catch (e) {
+
+        }
+    }
 
     jobseekerState !== 'undefined' ? role = 'jobseekers' : role = 'companies'
 
@@ -23,14 +35,25 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
     };
 
     useEffect(() => {
-        data();
+        try {
+            data();
+        } catch (e) {
+
+        }
     }, [])
 
     return (
-        <div className="center-container chats-container">
-            {chatsState.map((chat) => 
-            <SingleChatBox chat={chat} role={role} setChatId={setChatId} />)}
-        </div>
+        <>
+            {chatsState ? (
+                <div className="center-container chats-container">
+                    {chatsState.map((chat) =>
+                    <SingleChatBox chat={chat} role={role} setChatId={setChatId} />)}
+                </div>
+            ) : (
+                <>
+                </>
+            )}
+        </>
     )
 };
 

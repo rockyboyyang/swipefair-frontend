@@ -27,7 +27,7 @@
 }
 
 .messages_display {
-    border-bottom: 2px solid black;
+    /* border-bottom: 2px solid black; */
     overflow-y: hidden;
     width: 100%;
     display: grid;
@@ -48,19 +48,23 @@
 }
 
 .company {
-    background-color: aqua;
+    background-color: white;
 }
  .user {
     justify-self: flex-end;
  }
 
 .text-box {
-    border: hidden;
+    border: 1px solid rgb(228, 228, 228);
     height: 40px;
     width: 80%;
     margin: 10px;
     border-radius: 18px;
     outline: none;
+    /* background-color: #F7F7F7; */
+    /* background-color: rgb(234, 234, 234); */
+    box-shadow: 0 0 3px 0.5px rgba(0, 0, 0, 0.20)
+
 }
 
 
@@ -78,6 +82,10 @@
     background-repeat: no-repeat;
     background-color: rgb(113,212,185);
     background-color: radial-gradient(circle, rgba(113,212,185,1) 0%, rgba(152,202,207,1) 100%);
+}
+
+.messages-container > form  {
+    box-shadow: 0 -4px 5px -2px rgba(0, 0, 0, 0.20)
 }
 
 .messages-container > form img {
@@ -121,6 +129,13 @@
     height: 100%;
     width: 100%;
 }
+
+#back_button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
 
 #back_button img {
     height: 50px;

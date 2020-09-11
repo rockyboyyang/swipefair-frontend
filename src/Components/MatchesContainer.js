@@ -1,20 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../stylesheets/matches.css";
 import CompanyList from "./CompanyList";
 import { useHistory, } from "react-router-dom";
 
-export default function MatchesContainer({ setMatchesState, matchesState }) {
-  const jobseekerId = JSON.parse(window.localStorage.jobseeker).id;
+export default function MatchesContainer({ setMatchesState, matchesState, jobseekerState, companyState, openingsState  }) {
+  let jobseekerId;
+  try {
+    jobseekerId = JSON.parse(window.localStorage.jobseeker).id;
+  } catch (e) {
+    // console.log(e)
+  }
   const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
   let history = useHistory();
 
-  // const [matchesState, setMatchesState] = useState([])
+  let role;
+  let id;
 
-  // const changeMatchState = (newState) => {
-  //   return setMatchesState(newState);
-  // }
+  if (companyState !== 'undefined') {
+    try {
+      id = companyState.id
+    } catch (e) {
 
-  
+    }
+  }
+  if (jobseekerState !== 'undefined') {
+    try {
+      id = jobseekerState.id
+    } catch (e) {
+
+    }
+  }
+  console.log(id, 'id')
+  jobseekerState !== 'undefined' ? role = 'jobseekers' : role = 'companies'
+
+  // TODO: change to heroku in the future
+  const herokuUrl = `http://localhost:5000/api/${role}/${id}/chats`
+  const [chatsState, setChatsState] = useState([])
+  const data = async () => {
+    const response = await fetch(herokuUrl); // + '/'
+    const { chats } = await response.json();
+    setChatsState(chats);
+  };
+
   const fetchMatches = async () => {
     const res = await fetch(jobseekerMatchesUrl); // + '/'
     const response = await res.json();
@@ -22,10 +49,18 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
   };
 
   useEffect(() => {
+    data();
+  }, [])
+
+  useEffect(() => {
     let setMatches = async () => {
-      setMatchesState(await fetchMatches());
+      const data = await fetchMatches()
+      // console.log(data  )
+      setMatchesState(data);
+      // console.log(matchesState)
     };
-    setMatches()  
+    // console.log('triggered')
+    setMatches()
   }, []);
 
   const combineCompanies = (arrOfObjs) => {
@@ -43,14 +78,13 @@ export default function MatchesContainer({ setMatchesState, matchesState }) {
   const redirectToChats = () => {
     history.push('/chats')
   }
-  console.log(matchesState)
+  let matches;
   if (matchesState.length) {
-    const matches = combineCompanies(matchesState);
-    console.log(matches)
+    matches = combineCompanies(matchesState);
     return (
       <div className="left-container">
         <div className="match-header">
-          <h2>Matched with the Following Companies</h2>
+          <h2>Matches</h2>
           <div onClick={redirectToChats}>CHATS</div>
         </div>
         {Object.keys(matches).map((company_name) => (

@@ -1,6 +1,6 @@
 .view-grid {
   display:grid;
-  grid-template-rows: 30px 1fr;
+  grid-template-rows: 40px 1fr;
   height: 100%;
   width: 100%;
 }
@@ -8,9 +8,12 @@
 .body-view {
     display: grid;
     grid-template-columns: 2fr 3fr 2fr;
+    /* background-color: #F4F4F4; */
+    background: rgb(243,253,255);
+    background: linear-gradient(180deg, rgba(227,228,240,1) 0%,  rgba(243,253,255,1)100%);
 }
 /* #root {
     display: grid;
     /* grid-template-rows: 30px 1fr; */
     /* align-items: unset;
-} */ 
+} */
