@@ -4,19 +4,37 @@ import CompanyList from "./CompanyList";
 import { useHistory, } from "react-router-dom";
 
 export default function MatchesContainer({ setMatchesState, matchesState, jobseekerState, companyState, openingsState  }) {
-  const jobseekerId = JSON.parse(window.localStorage.jobseeker).id;
-  const jobseekerMatchesUrl = `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/matches`;
+  let jobseekerId;
+  try {
+    jobseekerId = JSON.parse(window.localStorage.jobseeker).id;
+  } catch (e) {
+    // console.log(e)
+  }
+  const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
   let history = useHistory();
 
   let role;
   let id;
-  if (companyState !== 'undefined') id = JSON.parse(companyState).id
-  if (jobseekerState !== 'undefined') id = JSON.parse(jobseekerState).id
 
+  if (companyState !== 'undefined') {
+    try {
+      id = companyState.id
+    } catch (e) {
+
+    }
+  }
+  if (jobseekerState !== 'undefined') {
+    try {
+      id = jobseekerState.id
+    } catch (e) {
+
+    }
+  }
+  console.log(id, 'id')
   jobseekerState !== 'undefined' ? role = 'jobseekers' : role = 'companies'
 
   // TODO: change to heroku in the future
-  const herokuUrl = `https://boiling-sands-04799.herokuapp.com/api/${role}/${id}/chats`
+  const herokuUrl = `http://localhost:5000/api/${role}/${id}/chats`
   const [chatsState, setChatsState] = useState([])
   const data = async () => {
     const response = await fetch(herokuUrl); // + '/'
@@ -37,13 +55,13 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
   useEffect(() => {
     let setMatches = async () => {
       const data = await fetchMatches()
-      console.log(data  )
+      // console.log(data  )
       setMatchesState(data);
-      console.log(matchesState)
+      // console.log(matchesState)
     };
-    console.log('triggered')
+    // console.log('triggered')
     setMatches()
-  }, [openingsState]);
+  }, []);
 
   const combineCompanies = (arrOfObjs) => {
     const ans = {};
@@ -60,10 +78,9 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
   const redirectToChats = () => {
     history.push('/chats')
   }
-
+  let matches;
   if (matchesState.length) {
-    const matches = combineCompanies(matchesState);
-    // console.log(matches)
+    matches = combineCompanies(matchesState);
     return (
       <div className="left-container">
         <div className="match-header">

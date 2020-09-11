@@ -9,8 +9,16 @@ import EditProfile from "./Components/Pages/EditProfile";
 
 const App = props => {
   const [tokenState, setToken] = useState(localStorage.access_token);
-  const [jobseekerState, setJobseeker] = useState(localStorage.jobseeker);
-  const [companyState, setCompany] = useState(localStorage.company);
+  let jobseeker;
+  let company;
+  try { 
+    jobseeker = JSON.parse(localStorage.jobseeker)
+    company = JSON.parse(localStorage.company)
+  } catch {
+
+  }
+  const [jobseekerState, setJobseeker] = useState(jobseeker);
+  const [companyState, setCompany] = useState(company);
   const [chatId, setChatId] = useState('')
   const [matchesState, setMatchesState] = useState([])
 

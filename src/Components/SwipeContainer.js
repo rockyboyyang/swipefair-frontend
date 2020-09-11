@@ -6,10 +6,17 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState }) =>
   // const backendUrl = "https://boiling-sands-04799.herokuapp.com/api/openings";
   // /notswiped/<int:jobseekerId>
   // const herokuUrl = "https://boiling-sands-04799.herokuapp.com/api/openings";
-  const jobseekerId = JSON.parse(localStorage.jobseeker).id;
-  const jobseekerMatchesUrl = `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/matches`;
+  let jobseekerId;
+  try {
+    jobseekerId = JSON.parse(localStorage.jobseeker).id;
+  } catch (e) {
+    console.log(e)
+  }
+  // const jobseekerMatchesUrl = `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/matches`;
+  const jobseekerMatchesUrl = `http://localhost:5000/api/jobseekers/${jobseekerId}/matches`;
 
-  const backendUrl = `https://boiling-sands-04799.herokuapp.com/api/openings/notswiped/jobseeker/${jobseekerId}`;
+  // const backendUrl = `https://boiling-sands-04799.herokuapp.com/api/openings/notswiped/jobseeker/${jobseekerId}`;
+  const backendUrl = `http://localhost:5000/api/openings/notswiped/jobseeker/${jobseekerId}`;
   let openingsId;
   const data = async () => {
     const response = await fetch(backendUrl); // + '/'
@@ -48,8 +55,13 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState }) =>
     const swipe = await swiped(dir);
     const data = async () => {
       const response = await fetch(
-        `https://boiling-sands-04799.herokuapp.com/api/swipes/jobseekers/${jobseekerId}`
-      ); // + '/'
+        `http://localhost:5000/api/swipes/jobseekers/${jobseekerId}`
+      );
+
+      // const response = await fetch(
+      //   `https://boiling-sands-04799.herokuapp.com/api/swipes/jobseekers/${jobseekerId}`
+      // );
+
       const { swipes } = await response.json();
       let filteredSwipes = swipes.filter(
         (swipe) => swipe.openings_id === openingsId
@@ -61,7 +73,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState }) =>
       if (count === 2) {
         const fetchChat = async () => {
           const getRes = await fetch(
-            `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/${openingsId}/chats`,
+            `http://localhost:5000/api/jobseekers/${jobseekerId}/${openingsId}/chats`,
             {
               method: "GET",
               headers: { "Content-Type": "application/json" },
@@ -70,13 +82,14 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState }) =>
           let getResponse = await getRes.json();
           if (getResponse.boolean === true) return;
           const res = await fetch(
-            `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/${openingsId}/chats`,
+            `http://localhost:5000/api/jobseekers/${jobseekerId}/${openingsId}/chats`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
             }
           );
-          return await res.json();
+          let result = await res.json()
+          return result;
         };
         fetchChat();
       }
@@ -92,11 +105,12 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState }) =>
 
     openingsId = openingsState.pop().id;
 
-    const url = `https://boiling-sands-04799.herokuapp.com/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
+    const url = `http://localhost:5000/api/jobseekers/${jobseekerId}/openings/${openingsId}`;
     const body = { swiped_right: swiped_right };
     const posts = await fetchPost(url, body);
-    // const matches = await fetchMatches();
-    // setMatchesState(matches);
+    const matches = await fetchMatches();
+    // console.log(matches)
+    setMatchesState(matches.matches);
     if (posts) setOpeningsState(openingsState);
     return posts;
   };
@@ -119,55 +133,61 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState }) =>
   //   return posts;
   // };
   // useEffect(() => { set(propName) }, [matchesState]);
-  return (
-    // <div className="hidden">
-      <div className="swipe-container">
-        <div>
-          <img src="https://advocatesrc.org/wp-content/uploads/2020/03/unnamed.png" alt="sorry"></img>
+  if(jobseekerId) {
+    console.log(jobseekerId)
+    return (
+        <div className="swipe-container">
+          <div>
+            <img src="https://advocatesrc.org/wp-content/uploads/2020/03/unnamed.png" alt="sorry"></img>
+          </div>
+          {openingsState.map((op) => (
+            <TinderCard
+              className="card"
+              key={op.id}
+              // onCardLeftScreen={() => {
+              //   onCardisSwiped("foobar");
+              // }}
+              // onCardLeftScreen={() => onCardLeftScreen("fooBar")}
+              onSwipe={onSwipe}
+              preventSwipe={["up", "down"]}
+            >
+              <div className="swipe">
+                <div className="company-info">
+                  <div className="company-image">
+                    <img src={op.image} alt="company" />
+                  </div>
+                  <div className="company-name">
+                    <h1>{op.company_name}</h1>
+                    <p>{op.location}</p>
+                  </div>
+                </div>
+                <div className="title">
+                  <h2>{op.title}</h2>
+                </div>
+                <div className="description">
+                  <h4>Job description </h4>
+                  <p>{op.description}</p>
+                </div>
+                <div className="contact-info">
+                  <h4>Contact info:</h4>
+                  <p>{op.email}</p>
+                </div>
+                <div>{op.size}</div>
+                <div>{op.location}</div>
+                <div className="about-company">
+                  <h4>About company:</h4>
+                  <p>{op.bio}</p>
+                </div>
+              </div>
+            </TinderCard>
+          ))}
         </div>
-        {openingsState.map((op) => (
-          <TinderCard
-            className="card"
-            key={op.id}
-            // onCardLeftScreen={() => {
-            //   onCardisSwiped("foobar");
-            // }}
-            // onCardLeftScreen={() => onCardLeftScreen("fooBar")}
-            onSwipe={onSwipe}
-            preventSwipe={["up", "down"]}
-          >
-            <div className="swipe">
-              <div className="company-info">
-                <div className="company-image">
-                  <img src={op.image} alt="company" />
-                </div>
-                <div className="company-name">
-                  <h1>{op.company_name}</h1>
-                  <p>{op.location}</p>
-                </div>
-              </div>
-              <div className="title">
-                <h2>{op.title}</h2>
-              </div>
-              <div className="description">
-                <h4>Job description </h4>
-                <p>{op.description}</p>
-              </div>
-              <div className="contact-info">
-                <h4>Contact info:</h4>
-                <p>{op.email}</p>
-              </div>
-              <div>{op.size}</div>
-              <div>{op.location}</div>
-              <div className="about-company">
-                <h4>About company:</h4>
-                <p>{op.bio}</p>
-              </div>
-            </div>
-          </TinderCard>
-        ))}
-      </div>
-    // </div>
-  );
+    );
+  } else {
+    return (
+      <>
+      </>
+    )
+  }
 };
 export default SwipeContainer;

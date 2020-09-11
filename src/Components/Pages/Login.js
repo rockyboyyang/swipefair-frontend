@@ -3,7 +3,8 @@ import { Redirect, useHistory } from "react-router-dom";
 import "../../stylesheets/login.css";
 // import backendUrl from "../../utils";
 // yeha modules are wack
-const backendUrl = "https://boiling-sands-04799.herokuapp.com/api";
+// const backendUrl = "https://boiling-sands-04799.herokuapp.com/api";
+const backendUrl = "http://localhost:5000/api";
 const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
   let history = useHistory();
   const [emailState, setEmail] = useState("");
@@ -36,7 +37,7 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
       window.localStorage.access_token = access_token; //i swear i wrote this
       window.localStorage.jobseeker = JSON.stringify(jobseeker); //i swear i wrote this
       window.localStorage.company = JSON.stringify(company); //i swear i wrote this
-      jobseeker ? setJobseeker({ jobseeker }) : setCompany({ company }); //check
+      jobseeker ? setJobseeker( jobseeker ) : setCompany( company ); //check
       history.push("/");
     }
   };
