@@ -33,14 +33,11 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
 
     }
   }
-  console.log(id, 'id')
   jobseekerState !== undefined ? role = 'jobseekers' : role = 'companies'
-  console.log(role)
   // TODO: change to heroku in the future
   const herokuUrl = backendURL + `api/${role}/${id}/chats`
   const [chatsState, setChatsState] = useState([])
   const data = async () => {
-    console.log(herokuUrl, id)
     const response = await fetch(herokuUrl); // + '/'
     const { chats } = await response.json();
     setChatsState(chats);

@@ -23,7 +23,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
     try {
       id = JSON.parse(localStorage.company).id;
       matchesUrl = backendURL + `api/companies/${id}/matches`
-      fullBackendUrl = backendURL + `/api/openings/notswiped/companies/${id}`;
+      fullBackendUrl = backendURL + `api/openings/notswiped/company/${id}`;
       roleBaseUrl = backendURL + 'api/companies/'
     } catch (e) {
       console.log(e)
@@ -36,12 +36,15 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
   let openingsId;
   const data = async () => {
     const response = await fetch(fullBackendUrl); // + '/'
-    const { opening } = await response.json();
-    setOpeningsState(opening);
-    // debugger
-    // openingsId = opening.map(o => o.id)
-    // setOpeningsIdsState(opening.map(o => o.id));
-    return opening;
+    const { opening, jobseekers } = await response.json();
+    if(jobseekerState) {
+      setOpeningsState(opening);
+      return opening;
+    } else if (companyState) {
+      setOpeningsState(jobseekers)
+      return jobseekers
+    }
+    
   };
   const fetchMatches = async () => {
     const res = await fetch(matchesUrl); // + '/'
@@ -119,9 +122,11 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
     const swiped_right = dir === "right" ? true : false;
 
     openingsId = openingsState.pop().id;
+    let jobseekerEmail = openingsState.pop().email
 
-    const url = roleBaseUrl + `/${id}/openings/${openingsId}`;
-    const body = { swiped_right: swiped_right };
+    const url = roleBaseUrl + `${id}/openings/${openingsId}`;
+    console.log(url)
+    const body = { swiped_right: swiped_right, jobseekerEmail: jobseekerEmail};
     const posts = await fetchPost(url, body);
     const matches = await fetchMatches();
     // console.log(matches)
@@ -171,7 +176,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
                     <img src={op.image} alt="company" />
                   </div>
                   <div className="company-name">
-                    <h1>{op.company_name}</h1>
+                    {/* <h1>{op.company_name}</h1> */}
                     <p>{op.location}</p>
                   </div>
                 </div>
@@ -189,8 +194,13 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
                 <div>{op.size}</div>
                 <div>{op.location}</div>
                 <div className="about-company">
-                  <h4>About company:</h4>
+                  {jobseekerState ? (
+                    <h4>About company:</h4>
+                  ) : (
+                    <h4>About jobseeker:</h4>
+                  )}
                   <p>{op.bio}</p>
+                  <p>{op.name}</p>
                 </div>
               </div>
             </TinderCard>
