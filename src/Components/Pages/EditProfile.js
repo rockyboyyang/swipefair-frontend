@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../Navbar";
 import "../../stylesheets/edit-profile.css";
-import { uploadImage } from "../../uploadImage";
+// import { uploadImage } from "../../uploadImage";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 const EditProfile = (props) => {
@@ -32,11 +32,10 @@ const EditProfile = (props) => {
   const onclick = (e) => {
     e.preventDefault();
     debugger
-    uploadImage(profileImage)
-
-
+    // uploadImage(profileImage)
 
   }
+
   return (
     <div className='view-grid'>
       <Navbar />

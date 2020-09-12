@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import "../../stylesheets/login.css";
+import Footer from "../Footer";
 // import backendUrl from "../../utils";
 // yeha modules are wack
 // const backendUrl = "https://boiling-sands-04799.herokuapp.com/api";
@@ -37,7 +38,7 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
       window.localStorage.access_token = access_token; //i swear i wrote this
       window.localStorage.jobseeker = JSON.stringify(jobseeker); //i swear i wrote this
       window.localStorage.company = JSON.stringify(company); //i swear i wrote this
-      jobseeker ? setJobseeker( jobseeker ) : setCompany( company ); //check
+      jobseeker ? setJobseeker(jobseeker) : setCompany(company); //check
       history.push("/");
     }
   };
@@ -62,46 +63,49 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
 
   // if tokenState history.push('/login')
   return (
-    <div className="login">
-      <div className="welcome-text">
-        <img id="logo" src="/assets/swipefair-logo-white.png" />
-        <h1>Where connections are made</h1>
-      </div>
-      <div className="login-form-container">
-        <form>
-          <div>
-            <input
-              type="text"
-              placeholder="Enter Email"
-              value={emailState}
-              onChange={handleEmailChange}
-            />
+    <div className='splash'>
+      <div className="login">
+        <div className="welcome-text">
+          <img id="logo" src="/assets/swipefair-logo-white.png" />
+          <h1>Where connections are made</h1>
+        </div>
+        <div className="login-form-container">
+          <form>
+            <div>
+              <input
+                type="text"
+                placeholder="Enter Email"
+                value={emailState}
+                onChange={handleEmailChange}
+              />
+            </div>
+            <div>
+              <input
+                type="password"
+                placeholder="Enter Password"
+                value={passwordState}
+                onChange={handlePasswordChange}
+              />
+            </div>
+            <button id="session_jobseeker" onClick={onclick}>
+              Log In as Jobseeker
+            </button>
+            <button id="session_company" onClick={onclick}>
+              Log In as Company
+            </button>
+          </form>
+          <div className="sign-up-ref">
+            <p>Don't have an account? </p>
+            <button onClick={signUp}>Sign Up</button>
           </div>
           <div>
-            <input
-              type="password"
-              placeholder="Enter Password"
-              value={passwordState}
-              onChange={handlePasswordChange}
-            />
+            <button id="session_jobseeker" onClick={loginDemoUser}>
+              Demo
+            </button>
           </div>
-          <button id="session_jobseeker" onClick={onclick}>
-            Log In as Jobseeker
-          </button>
-          <button id="session_company" onClick={onclick}>
-            Log In as Company
-          </button>
-        </form>
-        <div className="sign-up-ref">
-          <p>Don't have an account? </p>
-          <button onClick={signUp}>Sign Up</button>
-        </div>
-        <div>
-          <button id="session_jobseeker" onClick={loginDemoUser}>
-            Demo
-          </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
