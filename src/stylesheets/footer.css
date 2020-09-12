@@ -1,14 +1,11 @@
 .footer-container {
-    /* margin-top: auto;  */
     padding: 15px; 
     text-align: center;
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
     color: darkslategray;
-    border-top: 1px solid white; 
-    margin-left: 100px; 
-    margin-right: 100px; 
-    /* position: relative; */
+    background-color: white;
+    box-shadow: 0px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .links-container {
@@ -20,6 +17,7 @@
 .teammember {
     padding: 7px; 
     display: flex; 
+    align-content: center;
 
 }
 

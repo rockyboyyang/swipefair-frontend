@@ -5,7 +5,7 @@ import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="footer-container">
+    <footer className="footer-container">
       <div>
         <p>Created by:</p>
         <div className='links-container'>
@@ -50,7 +50,7 @@ const Footer = () => {
           {"Swipefair © "} {new Date().getFullYear()}
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

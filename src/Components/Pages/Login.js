@@ -63,8 +63,8 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
 
   // if tokenState history.push('/login')
   return (
-    <div className='splash'>
-      <div className="login">
+    <div className="splash">
+      {/* <div className="login"> */}
         <div className="welcome-text">
           <img id="logo" src="/assets/swipefair-logo-white.png" />
           <h1>Where connections are made</h1>
@@ -104,8 +104,8 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
             </button>
           </div>
         </div>
-      </div>
-      <Footer />
+        <Footer />
+      {/* </div> */}
     </div>
   );
 };
