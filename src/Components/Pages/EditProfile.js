@@ -5,24 +5,40 @@ import "../../stylesheets/edit-profile.css";
 
 const EditProfile = (props) => {
   const { handleSubmit } = useForm();
-  const [image, setImage] = useState()
+  // const [image, setImage] = useState()
 
-  
+  const currentImage = JSON.parse(localStorage.getItem('jobseeker')).image; 
+  const currentEmail = JSON.parse(localStorage.getItem('jobseeker')).email; 
+  // setImage(currentImage)
 
   const onSubmit = () => {
     const formData = new FormData();
     const imageField = document.querySelector('input[name="image"]')
-    const nameField = document.querySelector('input[name="image"]')
-    const bioField = document.querySelector('input[name="image"]')
-    const titleField = document.querySelector('input[name="image"]')
-    const locationField = document.querySelector('input[name="image"]')
-    const educationTitleField = document.querySelector('input[name="image"]')
-    const educationStartDate = document.querySelector('input[name="image"]')
-    const educationEndDate = document.querySelector('input[name="image"]')
-    const jobTitleField = document.querySelector('input[name="image"]')
-    const startDateJobField = document.querySelector('input[name="image"]')
-    const endDateJobField = document.querySelector('input[name="image"]')
-    const descriptionField = document.querySelector('input[name="image"]')
+    const nameField = document.querySelector('input[name="jobseekerName"]')
+    const bioField = document.querySelector('textarea[name="jobseekerBio"]')
+    const titleField = document.querySelector('input[name="jobseekerTitle"]')
+    const locationField = document.querySelector('input[name="jobseekerLocation"]')
+    const educationTitleField = document.querySelector('input[name="education"]')
+    const educationStartDate = document.querySelector('input[name="startDate"]')
+    const educationEndDate = document.querySelector('input[name="endDate"]')
+    const jobTitleField = document.querySelector('input[name="jobTitle"]')
+    const startDateJobField = document.querySelector('input[name="startDateJob"]')
+    const endDateJobField = document.querySelector('input[name="endDateJob"]')
+    const descriptionField = document.querySelector('textarea[name="jobDescription"]')
+    const emailField = document.querySelector('input[name="email"]')
+    formData.append('image', imageField.files[0])
+    formData.append('email', emailField.value)
+    formData.append('name', nameField.value)
+    formData.append('bio', bioField.value)
+    formData.append('title', titleField.value)
+    formData.append('location', locationField.value)
+    formData.append('education_title', educationTitleField.value)
+    formData.append('education_date_start', educationStartDate.value)
+    formData.append('education_date_end', educationEndDate.value)
+    formData.append('exp_title', jobTitleField.value)
+    formData.append('date_start', startDateJobField.value)
+    formData.append('date_end', endDateJobField.value)
+    formData.append('description', descriptionField.value)
   };
 
   return (
@@ -31,7 +47,7 @@ const EditProfile = (props) => {
       <div className="edit-profile-container">
         <h2>Edit Profile</h2>
         <div>
-          <img src={image} style={{"height": 200}} alt="pic" />  
+          <img src={currentImage} style={{"height": 200}} alt="pic" />  
         </div>
         <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -84,6 +100,7 @@ const EditProfile = (props) => {
             <label htmlFor="description">Description: </label>
             <textarea rows="4" cols="50" name="jobDescription"></textarea>
           </div>
+          <input name="email" value={currentEmail} type="hidden"></input>
           <button>Submit</button>
         </form>
       </div>
