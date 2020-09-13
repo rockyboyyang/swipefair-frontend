@@ -10,37 +10,37 @@ const Footer = () => {
         <p>Created by:</p>
         <div className='links-container'>
             <div className='teammember'>
-            <a href="https://www.linkedin.com/in/lorarusinouskaya/" target="_blank">
+            <a href="https://www.linkedin.com/in/lorarusinouskaya/" rel="noopener noreferrer" >
                 <FaLinkedinIn />
             </a>
-            <a href="https://github.com/Arol15" target="_blank">
+            <a href="https://github.com/Arol15" rel="noopener noreferrer">
                 <FaGithub />
             </a>
             <span>Lora</span>
             </div>
             <div className='teammember'>
-            <a href="https://www.linkedin.com/in/lukenicholsontx/" target="_blank">
+            <a href="https://www.linkedin.com/in/lukenicholsontx/" rel="noopener noreferrer">
                 <FaLinkedinIn />
             </a>
-            <a href="https://github.com/lukenicholson" target="_blank">
+            <a href="https://github.com/lukenicholson" rel="noopener noreferrer">
                 <FaGithub />
             </a>
             <span>Luke</span>
             </div>
             <div className='teammember'>
-            <a href="https://www.linkedin.com/in/rocky-yang-8a6669b8/" target="_blank">
+            <a href="https://www.linkedin.com/in/rocky-yang-8a6669b8/" rel="noopener noreferrer">
                 <FaLinkedinIn />
             </a>
-            <a href="https://github.com/rockyboyyang" target="_blank">
+            <a href="https://github.com/rockyboyyang" rel="noopener noreferrer">
                 <FaGithub />
             </a>
             <span>Rocky</span>
             </div>
             <div className='teammember'>
-            <a href="https://www.linkedin.com/in/senyoagawu/" target="_blank">
+            <a href="https://www.linkedin.com/in/senyoagawu/" rel="noopener noreferrer">
                 <FaLinkedinIn />
             </a>
-            <a href="https://github.com/sdkag" target="_blank">
+            <a href="https://github.com/sdkag" rel="noopener noreferrer">
                 <FaGithub />
             </a>
             <span>Senyo</span>
