@@ -122,14 +122,14 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
     const swiped_right = dir === "right" ? true : false;
 
     openingsId = openingsState.pop().id;
-    let jobseekerEmail = openingsState.pop().email
+    let jobseekerEmail = null;
+    if(companyState) jobseekerEmail = openingsState.pop().email
 
     const url = roleBaseUrl + `${id}/openings/${openingsId}`;
-    console.log(url)
     const body = { swiped_right: swiped_right, jobseekerEmail: jobseekerEmail};
     const posts = await fetchPost(url, body);
     const matches = await fetchMatches();
-    // console.log(matches)
+    console.log(url)
     setMatchesState(matches.matches);
     if (posts) setOpeningsState(openingsState);
     return posts;

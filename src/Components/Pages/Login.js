@@ -101,15 +101,15 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
             <button id="session_company" onClick={onclick}>
               Log In as Company
             </button>
+            <div className="sign-up-ref">
+              <p>Don't have an account? </p>
+              <button onClick={signUp}>Sign Up</button>
+            </div>
+            <div>
+              <button id="session_jobseeker" onClick={loginJobseeker}>Demo Jobseeker</button>
+              <button id="session_company" onClick={loginCompany}>Demo Company</button>
+            </div>
           </form>
-        </div>
-        <div className="sign-up-ref">
-          <p>Don't have an account? </p>
-          <button onClick={signUp}>Sign Up</button>
-        </div>
-        <div>
-          <button id="session_jobseeker" onClick={loginJobseeker}>Demo Jobseeker</button>
-          <button id="session_company" onClick={loginCompany}>Demo Company</button>
         </div>
         <Footer />
       {/* </div> */}
