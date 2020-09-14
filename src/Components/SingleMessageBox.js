@@ -5,14 +5,18 @@ const SingleMessageBox = ({ message, role, companyState, jobseekerState }) => {
 
     if (message.role === role) {
         return (
-            <div className={`${message['role']} message-box user`}>
-                <p>{message['message']}</p>
+            <div className="block-user">
+                <div className={`${message['role']} message-box user`}>
+                    <p>{message['message']}</p>
+                </div>
             </div>
         )
     } else {
         return (
-            <div className={`${message['role']} message-box chattingWith`}>
-                <p>{message['message']}</p>
+            <div className="block-chattingWith">
+                <div className={`${message['role']} message-box chattingWith`}>
+                    <p>{message['message']}</p>
+                </div>
             </div>
         )
     }

@@ -83,6 +83,23 @@
   color: black;
   padding-left: 10px;
 }
+
+.profile-card {
+  display: grid;
+  grid-template-rows: 30px 30px;
+}
+
+.links {
+  padding-left: 10px;
+
+}
+
+.links img{
+  height: 20px;
+  width: 20px;
+  padding-right: 5px;
+}
+
 .about-us-container p {
   font-family: "Roboto", sans-serif;
   /* margin: auto; */

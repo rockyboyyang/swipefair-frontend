@@ -25,7 +25,7 @@ const Navbar = (props) => {
             <h4 onClick={editProfile}>My Profile</h4>
           </div>
           <div className="swipefair-logo">
-            <img onClick={returnHome} src="assets/swipefair-logo.png" alt="logo" />
+            <img onClick={returnHome} src="/assets/swipefair-logo.png" alt="logo" />
           </div>
           <div className="sign-out-link">
             <h4 onClick={signOut}>Sign Out</h4>
