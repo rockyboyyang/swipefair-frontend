@@ -24,25 +24,49 @@ const AboutUsContainer = (props) => {
           <div className="about-profile-pic" >
             <img src="/assets/lora.jpg" />
           </div>
-          <h3>Lora Rusinouskaya</h3>
+          <div className="profile-card">
+            <h3>Lora Rusinouskaya</h3>
+            <div className="links">
+              <img src="/assets/github.png" />
+              <img src="/assets/linkedin.png" />
+            </div>
+          </div>
         </a>
         <a className="about-profile" href="https://github.com/lukenicholson" target='_blank'>
           <div className="about-profile-pic" >
             <img src="/assets/luke.png" />
           </div>
-          <h3>Luke Nicholson</h3>
+          <div className="profile-card">
+            <h3>Luke Nicholson</h3>
+            <div className="links">
+              <img src="/assets/github.png" />
+              <img src="/assets/linkedin.png" />
+            </div>
+          </div>
         </a>
         <a className="about-profile" href="https://github.com/rockyboyyang" target='_blank'>
           <div className="about-profile-pic">
             <img src="/assets/rocky.jpg" />
           </div>
-          <h3>Rocky Yang</h3>
+          <div className="profile-card">
+            <h3>Rocky Yang</h3>
+            <div className="links">
+              <img src="/assets/github.png" />
+              <img src="/assets/linkedin.png" />
+            </div>
+          </div>
         </a>
         <a className="about-profile" href="https://github.com/sdkag" target='_blank'>
           <div className="about-profile-pic" >
             <img src="/assets/senyo.jpg" />
           </div>
-          <h3>Senyo Agawu</h3>
+          <div className="profile-card">
+            <h3>Senyo Agawu</h3>
+            <div className="links">
+              <img src="/assets/github.png" />
+              <img src="/assets/linkedin.png" />
+            </div>
+          </div>
         </a>
       </div>
   )
