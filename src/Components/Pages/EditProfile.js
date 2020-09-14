@@ -155,7 +155,7 @@ const EditProfile = () => {
           <div>
             <label htmlFor="startDate">Start Date</label>
             <input
-              type="date"
+              type="month"
               name="startDate"
               defaultValue={user.education_date_start}
             />
@@ -163,7 +163,7 @@ const EditProfile = () => {
           <div>
             <label htmlFor="endDate">End Date: </label>
             <input
-              type="date"
+              type="month"
               name="endDate"
               defaultValue={new Date(user.education_date_end).toLocaleDateString()}
               // {new Date(point.start_date_visited).toLocaleDateString()}
