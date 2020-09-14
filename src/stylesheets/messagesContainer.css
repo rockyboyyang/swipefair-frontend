@@ -11,15 +11,23 @@
   margin-top: 5vh;
 }
 
+.block-user {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.block-chattingWith {
+    display: flex;
+    justify-content: flex-start;
+}
 
 .message-box {
     font-family: 'Roboto', sans-serif;
     background-color: rgb(218, 200, 176);
-    margin: 10px 10px;
-    width: auto;
-    max-height: 25px;
+    margin: 5px 10px 0px 10px;
+    width: fit-content;
     max-width: 255px;
-    height: auto;
+    height: fit-content;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -30,8 +38,10 @@
     /* border-bottom: 2px solid black; */
     overflow-y: hidden;
     width: 100%;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    /* display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
+    display: flex;
+    flex-direction: column;
     height: 100%;
 }
 
@@ -51,13 +61,14 @@
     background-color: white;
 }
  .user {
-    justify-self: flex-end;
+    justify-content: flex-end;
+    align-self: flex-end;
  }
 
 .text-box {
     border: 1px solid rgb(228, 228, 228);
     height: 40px;
-    width: 80%;
+    width: 85%;
     margin: 10px;
     border-radius: 18px;
     outline: none;
