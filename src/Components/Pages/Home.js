@@ -27,7 +27,7 @@ const Home = ({matchesState, setMatchesState, jobseekerState, companyState, user
           <Navbar />
           <div className="body-view">
             <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} userCompanyOpenings={userCompanyOpenings} matchesState={matchesState} setMatchesState={setMatchesState}  openingsState={openingsState} setOpeningsState={setOpeningsState}/>
-            <SwipeContainer setMatchesState={setMatchesState} openingsState={openingsState} setOpeningsState={setOpeningsState} jobseekerState={jobseekerState} companyState={companyState}/>
+            <SwipeContainer setMatchesState={setMatchesState} openingsState={openingsState} setOpeningsState={setOpeningsState} jobseekerState={jobseekerState} companyState={companyState} userCompanyOpenings={userCompanyOpenings}/>
             <AboutUsContainer />
           </div>
         </div>

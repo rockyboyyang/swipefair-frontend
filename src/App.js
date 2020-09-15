@@ -12,9 +12,14 @@ const App = props => {
   const [tokenState, setToken] = useState(localStorage.access_token);
   let jobseeker;
   let company;
+  let openings;
+
   try { 
     if (window.localStorage.jobseeker !== 'undefined') jobseeker = JSON.parse(localStorage.jobseeker)
-    if (window.localStorage.company !== 'undefined') company = JSON.parse(localStorage.company)
+    if (window.localStorage.company !== 'undefined') {
+      openings = JSON.parse(localStorage.userCompanyOpenings)
+      company = JSON.parse(localStorage.company)
+    }
   } catch (e) {
     console.log(e)
   }
@@ -22,7 +27,7 @@ const App = props => {
   const [companyState, setCompany] = useState(company);
   const [chatId, setChatId] = useState('')
   const [matchesState, setMatchesState] = useState([])
-  const [userCompanyOpenings, setUserCompanyOpenings] = useState({})
+  const [userCompanyOpenings, setUserCompanyOpenings] = useState(openings)
   // console.log(JSON.parse(localStorage.company))
   const changeMatchState = (newState) => {
     return setMatchesState(newState);
@@ -34,7 +39,8 @@ const App = props => {
     let userOpenings = opening.filter((element) => {
       return element.company_name === companyState.company_name
     })
-    // console.log(opening)
+    window.localStorage.userCompanyOpenings = JSON.stringify(userOpenings)
+    console.log(userOpenings)
     setUserCompanyOpenings(userOpenings)
   }
 
@@ -42,7 +48,7 @@ const App = props => {
     if(companyState) {
       getUserCompanyOpenings()
     }
-  }, [])
+  }, [companyState])
 
   return (
     <BrowserRouter>

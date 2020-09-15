@@ -4,7 +4,7 @@ import "../stylesheets/swipecontainer.css";
 import "../stylesheets/tindercard.css";
 import backendURL from '../backendURL'
 
-const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobseekerState, companyState }) => {
+const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobseekerState, companyState, userCompanyOpenings }) => {
 
   let id;
   let matchesUrl;
@@ -29,11 +29,11 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
       console.log(e)
     }
   }
-
   // const jobseekerMatchesUrl = backendURL + `api/jobseekers/${jobseekerId}/matches`;
 
   // const fullBackendUrl = backendURL + `/api/openings/notswiped/jobseeker/${jobseekerId}`;
   let openingsId;
+  let jobseekerId;
   const data = async () => {
     const response = await fetch(fullBackendUrl); // + '/'
     const { opening, jobseekers } = await response.json();
@@ -72,47 +72,72 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
     // send a fetch request to the swipes table by filtering out the jobseekerId and grabbing every swipes that involves jobseekerId
     // compare and filter out swipes.companies_id === companyId
     const swipe = await swiped(dir);
-    const data = async () => {
+    const data = async (swipe) => {
       let response;
       if(jobseekerState) response = await fetch(backendURL + `api/swipes/jobseekers/${id}`);
       else if (companyState) response = await fetch(backendURL + `api/swipes/companies/${id}`);
       // const response = await fetch(
       //   `https://boiling-sands-04799.herokuapp.com/api/swipes/jobseekers/${jobseekerId}`
       // );
-
       const { swipes } = await response.json();
-      let filteredSwipes = swipes.filter(
-        (swipe) => swipe.openings_id === openingsId
-      );
-      let count = 0;
-      for (let i = 0; i < filteredSwipes.length; i++) {
-        if (filteredSwipes[i].swiped_right === true) count += 1;
+      const checkForMatches = (openingsId) => {
+        let filteredSwipes = []
+        let count = 0;
+        if (jobseekerState) {
+          filteredSwipes = swipes.filter((swipeElement) => {
+            return swipeElement.openings_id === openingsId
+          })
+        } else if (companyState) {
+          filteredSwipes = swipes.filter((swipeElement) => {
+            return swipeElement.jobseekers_id === swipe.jobseekers_id
+          })
+        }
+        console.log(swipes)
+        console.log(swipe)
+        console.log(filteredSwipes)
+        for (let i = 0; i < filteredSwipes.length; i++) {
+          if (filteredSwipes[i].swiped_right === true) count = count + 1;
+        }
+        if (count === 2) {
+          const fetchChat = async () => {
+            let getRes = await fetch(
+              roleBaseUrl + `${id}/${openingsId}/chats`,
+              {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+              }
+            );
+            let getResponse = await getRes.json();
+  
+            if (getResponse.boolean === true) return;
+            const res = await fetch(
+              roleBaseUrl + `${id}/${openingsId}/chats`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+              }
+            );
+            let result = await res.json()
+            return result;
+          };
+          fetchChat();
+        }
       }
-      if (count === 2) {
-        const fetchChat = async () => {
-          let getRes = await fetch(
-            roleBaseUrl + `${id}/${openingsId}/chats`,
-            {
-              method: "GET",
-              headers: { "Content-Type": "application/json" },
-            }
-          );
-          let getResponse = await getRes.json();
-          if (getResponse.boolean === true) return;
-          const res = await fetch(
-            roleBaseUrl + `${id}/${openingsId}/chats`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-            }
-          );
-          let result = await res.json()
-          return result;
-        };
-        fetchChat();
+
+      if(jobseekerState) {
+          console.log('jobseeker')
+          checkForMatches(openingsId)
+      } else if (companyState) {
+          console.log('before loop company')
+          console.log(userCompanyOpenings)
+          for(let i = 0; i < userCompanyOpenings.length; i++) {
+            console.log('company')
+            checkForMatches(userCompanyOpenings[i].id)
+        }
       }
+
     };
-    data();
+    data(swipe);
 
     return swipe;
 
@@ -122,6 +147,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
     const swiped_right = dir === "right" ? true : false;
 
     openingsId = openingsState.pop().id;
+
     let jobseekerEmail = null;
     if(companyState) jobseekerEmail = openingsState.pop().email
 
@@ -129,7 +155,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
     const body = { swiped_right: swiped_right, jobseekerEmail: jobseekerEmail};
     const posts = await fetchPost(url, body);
     const matches = await fetchMatches();
-    console.log(url)
+
     setMatchesState(matches.matches);
     if (posts) setOpeningsState(openingsState);
     return posts;

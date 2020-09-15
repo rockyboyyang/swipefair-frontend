@@ -19,7 +19,7 @@ const ChatsView = ({ companyState, jobseekerState, setChatId, matchesState, setM
           <Navbar />
           <div className="body-view">
             <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState} userCompanyOpenings={userCompanyOpenings}/>
-            <ChatsContainer companyState={companyState} jobseekerState={jobseekerState} setChatId={setChatId} />
+            <ChatsContainer companyState={companyState} jobseekerState={jobseekerState} setChatId={setChatId} userCompanyOpenings={userCompanyOpenings}/>
             <AboutUsContainer />
           </div>
         </div>

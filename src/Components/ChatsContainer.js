@@ -8,7 +8,7 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
     // make one for jobseeker and company
     let role;
     let id;
-    if (companyState !== 'undefined') {
+    if (companyState !== undefined) {
         try {
             id = companyState.id
         } catch (e) {
@@ -16,7 +16,7 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
         }
     }
 
-    if (jobseekerState !== 'undefined') {
+    if (jobseekerState !== undefined) {
         try {
             id = jobseekerState.id
         } catch (e) {
@@ -24,11 +24,12 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
         }
     }
 
-    jobseekerState !== 'undefined' ? role = 'jobseekers' : role = 'companies'
+    jobseekerState !== undefined ? role = 'jobseekers' : role = 'companies'
 
     // TODO: change to heroku in the future
-    const herokuUrl = backendURL + `/api/${role}/${id}/chats`
+    const herokuUrl = backendURL + `api/${role}/${id}/chats`
     const[chatsState, setChatsState] = useState([])
+    console.log(herokuUrl)
     const data = async () => {
         const response = await fetch(herokuUrl); // + '/'
         const { chats } = await response.json();
@@ -36,6 +37,7 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
     };
 
     useEffect(() => {
+        console.log(chatsState)
         try {
             data();
         } catch (e) {
