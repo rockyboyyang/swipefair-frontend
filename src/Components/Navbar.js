@@ -9,8 +9,12 @@ const Navbar = (props) => {
     history.push('/')
   }
 
-  const editProfile = () => {
-    history.push('/editprofile')
+  // const editProfile = () => {
+  //   history.push('/editprofile')
+  // }
+
+  const myProfile = () => {
+    history.push('/myProfile')
   }
 
   const signOut = () => {
@@ -22,7 +26,8 @@ const Navbar = (props) => {
   return (
       <div className="navbar-container">
           <div className="my-profile-link">
-            <h4 onClick={editProfile}>My Profile</h4>
+            <h4 onClick={myProfile}>My Profile</h4>
+            {/* <h4 onClick={editProfile}>My Profile</h4> */}
           </div>
           <div className="swipefair-logo">
             <img onClick={returnHome} src="/assets/swipefair-logo.png" alt="logo" />

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import {Link} from 'react-router-dom'
+import {useHistory} from "react-router-dom"
 import { useForm } from "react-hook-form";
 import config from "../../config";
 import Navbar from "../Navbar";
 import "../../stylesheets/edit-profile.css";
 
 const EditProfile = () => {
+  let history = useHistory()
   const { handleSubmit } = useForm();
   const storedUser = JSON.parse(localStorage.getItem("jobseeker"));
 
@@ -84,6 +87,7 @@ const EditProfile = () => {
       const newData = {...JSON.parse(localStorage.getItem('jobseeker')), ...res}
       console.log(newData)
       localStorage.setItem('jobseeker', JSON.stringify(newData))
+      history.push('/myprofile')
     })
   };
 
@@ -155,7 +159,7 @@ const EditProfile = () => {
           <div>
             <label htmlFor="startDate">Start Date</label>
             <input
-              type="month"
+              type="date"
               name="startDate"
               defaultValue={user.education_date_start}
             />
@@ -163,18 +167,18 @@ const EditProfile = () => {
           <div>
             <label htmlFor="endDate">End Date: </label>
             <input
-              type="month"
+              type="date"
               name="endDate"
               defaultValue={new Date(user.education_date_end).toLocaleDateString()}
               // {new Date(point.start_date_visited).toLocaleDateString()}
             />
           </div>
           {/* <div>
-            <h3>Experience</h3>
+            <h3>Experiences</h3>
             <label htmlFor="job-experience">Title: </label>
             <input type="text" name="jobTitle"></input>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <label htmlFor="startDateJob">Start Date: </label>
             <input type="date" name="startDateJob"></input>
           </div>
@@ -187,7 +191,10 @@ const EditProfile = () => {
             <textarea rows="4" cols="50" name="jobDescription"></textarea>
           </div> */}
           {/* <input name="email" value={user.email} type="hidden"></input> */}
-          <button>Submit</button>
+          <button>Save Changes</button>
+          <button className="btn btn-link">
+                <Link to="/myprofile">Cancel</Link>
+          </button>
         </form>
       </div>
     </div>
