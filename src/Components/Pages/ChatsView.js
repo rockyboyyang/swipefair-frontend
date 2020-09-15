@@ -7,7 +7,7 @@ import "../../stylesheets/views.css";
 import { useHistory, } from "react-router-dom";
 
 
-const ChatsView = ({ companyState, jobseekerState, setChatId, matchesState, setMatchesState }) => {
+const ChatsView = ({ companyState, jobseekerState, setChatId, matchesState, setMatchesState, userCompanyOpenings }) => {
   let history = useHistory()
   if (!localStorage.access_token) {
     history.push('/login')
@@ -18,7 +18,7 @@ const ChatsView = ({ companyState, jobseekerState, setChatId, matchesState, setM
         <div className="view-grid">
           <Navbar />
           <div className="body-view">
-            <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState} />
+            <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState} userCompanyOpenings={userCompanyOpenings}/>
             <ChatsContainer companyState={companyState} jobseekerState={jobseekerState} setChatId={setChatId} />
             <AboutUsContainer />
           </div>
