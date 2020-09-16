@@ -4,7 +4,7 @@ import "../stylesheets/myprofile.css";
 import config from '../config'
 
 const Modal = (props) => {
-  const { show, closeModal } = props;
+  const { show, closeModal, setAllexperiences, allexperiences } = props;
   const {register, reset, handleSubmit} = useForm()
   const id = JSON.parse(localStorage.getItem("jobseeker")).id;
 
@@ -17,8 +17,13 @@ const Modal = (props) => {
         },
         body: JSON.stringify(data)
     })
-        // .then((res) => res.json())
-        // .then
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data.experiences)
+          console.log(allexperiences)
+          const updatedexperiences = [...allexperiences, ...data.experiences]
+          setAllexperiences(updatedexperiences)
+        })
     
     closeModal()
   }

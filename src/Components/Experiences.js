@@ -38,8 +38,8 @@ const Experiences = ({allexperiences}) => {
                 <>
                     <div>
                         <p>{exp.title}</p>
-                        <p>{exp.date_start}</p>
-                        <p>{exp.date_end}</p>
+                        <p>{new Date(exp.date_start).toLocaleDateString()}</p>
+                        <p>{new Date(exp.date_end).toLocaleDateString()}</p>
                         <p>{exp.description}</p>
                     </div>
                 </>

@@ -54,7 +54,7 @@ const MyProfile = ({ jobseekerState }) => {
     <div className="view-grid experience">
       <Navbar />
       <div className='edit-profile-container'>
-        <Modal show={show} closeModal={closeModal}/>
+        <Modal show={show} closeModal={closeModal} setAllexperiences={setAllexperiences} allexperiences={allexperiences}/>
         <div>
           <h3>Profile</h3>
         </div>

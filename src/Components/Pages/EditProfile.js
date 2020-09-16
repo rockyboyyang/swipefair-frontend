@@ -137,7 +137,7 @@ const EditProfile = () => {
             <input
               type="date"
               name="startDate"
-              defaultValue={user.education_date_start}
+              defaultValue={new Date(user.education_date_start).toLocaleDateString()}
             />
           </div>
           <div>
