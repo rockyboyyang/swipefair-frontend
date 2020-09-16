@@ -12,19 +12,8 @@ const EditProfile = () => {
   const storedUser = JSON.parse(localStorage.getItem("jobseeker"));
 
   const [inputValue, setInputValue] = useState("");
-  const [user, setUser] = useState({
-    // name: storedUser.name,
-    // image: storedUser.image,
-    // bio: storedUser.bio,
-    // email: storedUser.email,
-    // title: storedUser.title,
-    // location: storedUser.location,
-    // education_title: storedUser.education_title,
-    // education_date_start: storedUser.education_date_start,
-    // education_date_end: storedUser.education_date_end,
-  });
+  const [user, setUser] = useState({});
 
-  // const currentImage = JSON.parse(localStorage.getItem('jobseeker')).image;
   const id = JSON.parse(localStorage.getItem("jobseeker")).id;
 
   useEffect(() => {
@@ -56,13 +45,7 @@ const EditProfile = () => {
       'input[name="startDate"]'
     );
     const educationEndDate = document.querySelector('input[name="endDate"]');
-    // const jobTitleField = document.querySelector('input[name="jobTitle"]')
-    // const startDateJobField = document.querySelector('input[name="startDateJob"]')
-    // const endDateJobField = document.querySelector('input[name="endDateJob"]')
-    // const descriptionField = document.querySelector('textarea[name="jobDescription"]')
-    // const emailField = document.querySelector('input[name="email"]')
     formData.append("image", imageField.files[0]);
-    // formData.append("email", emailField.value);
     formData.append("name", nameField.value);
     formData.append("bio", bioField.value);
     formData.append("title", titleField.value);
@@ -70,10 +53,6 @@ const EditProfile = () => {
     formData.append("education_title", educationTitleField.value);
     formData.append("education_date_start", educationStartDate.value);
     formData.append("education_date_end", educationEndDate.value);
-    // formData.append('exp_title', jobTitleField.value)
-    // formData.append('date_start', startDateJobField.value)
-    // formData.append('date_end', endDateJobField.value)
-    // formData.append('description', descriptionField.value)
 
     fetch(`${config.baseUrl}/jobseekers/${id}`, {
       method: "PUT",
@@ -131,7 +110,6 @@ const EditProfile = () => {
               name="jobseekerTitle"
               defaultValue={user.title}
               onChange={(e) => setInputValue(e.target.value)}
-              // value={inputValue}
             />
           </div>
           <div>
@@ -142,7 +120,6 @@ const EditProfile = () => {
               name="jobseekerBio"
               defaultValue={user.bio}
               onChange={(e) => setInputValue(e.target.value)}
-              // value={inputValue}
             />
           </div>
           <div>
@@ -153,7 +130,6 @@ const EditProfile = () => {
               name="education"
               defaultValue={user.education_title}
               onChange={(e) => setInputValue(e.target.value)}
-              // value={inputValue}
             />
           </div>
           <div>
@@ -170,27 +146,8 @@ const EditProfile = () => {
               type="date"
               name="endDate"
               defaultValue={new Date(user.education_date_end).toLocaleDateString()}
-              // {new Date(point.start_date_visited).toLocaleDateString()}
             />
           </div>
-          {/* <div>
-            <h3>Experiences</h3>
-            <label htmlFor="job-experience">Title: </label>
-            <input type="text" name="jobTitle"></input>
-          </div> */}
-          {/* <div>
-            <label htmlFor="startDateJob">Start Date: </label>
-            <input type="date" name="startDateJob"></input>
-          </div>
-          <div>
-            <label htmlFor="endDateJob">End Date: </label>
-            <input type="date" name="endDateJob"></input>
-          </div>
-          <div>
-            <label htmlFor="description">Description: </label>
-            <textarea rows="4" cols="50" name="jobDescription"></textarea>
-          </div> */}
-          {/* <input name="email" value={user.email} type="hidden"></input> */}
           <button>Save Changes</button>
           <button className="btn btn-link">
                 <Link to="/myprofile">Cancel</Link>

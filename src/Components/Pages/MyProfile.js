@@ -7,11 +7,20 @@ import "../../stylesheets/myprofile.css";
 import { FaEdit } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import Experiences from '../Experiences'
+import Modal from '../Modal'
+import '../../stylesheets/myprofile.css'
 
 const MyProfile = ({ jobseekerState }) => {
     let history = useHistory()
     const { register, handleSubmit } = useForm();
     const [user, setUser] = useState({})
+    const [show, setShow] = useState(false)
+    const [allexperiences, setAllexperiences] = useState([])
+
+
+    const openModal = () => setShow(true)
+    const closeModal = () => setShow(false)
+
     const id = jobseekerState.id
 
     useEffect(() => {
@@ -27,11 +36,25 @@ const MyProfile = ({ jobseekerState }) => {
           });
       }, []);
 
+      useEffect(() => {
+        fetch(`${config.baseUrl}/jobseekers/${id}/experiences`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then(({ experiences }) => {
+            setAllexperiences(experiences);
+          });
+      }, []);
+
 
   return (
-    <div className="view-grid">
+    <div className="view-grid experience">
       <Navbar />
       <div className='edit-profile-container'>
+        <Modal show={show} closeModal={closeModal}/>
         <div>
           <h3>Profile</h3>
         </div>
@@ -66,12 +89,15 @@ const MyProfile = ({ jobseekerState }) => {
         <div>
             Experiences:
             <div>
-                <FaPlus onClick={() => console.log("hi")}/>
+                {/* !show is added in front of button element so that button only renders 
+                when a modal is not open  */}
+                {!show && <FaPlus onClick={openModal}></FaPlus>}
                 <p>Add Experience</p>
+                {/* <Modal show={show} closeModal={closeModal}/> */}
             </div>
         </div>
         <div>
-            <Experiences />
+            <Experiences allexperiences={allexperiences}/>
         </div>
       </div>
     </div>
