@@ -13,7 +13,7 @@ const Details = ({
   let image;
   let openings;
 
-  if (jobseekerState !== "undefined") {
+  if (jobseekerState !== undefined) {
     if (chattingWithInfo !== undefined) {
       bio = chattingWithInfo.bio;
       email = chattingWithInfo.email;
@@ -48,7 +48,7 @@ const Details = ({
 
   }
 
-  if (companyState !== "undefined") {
+  if (companyState !== undefined) {
     if (chattingWithInfo !== undefined) {
       bio = chattingWithInfo.bio;
       email = chattingWithInfo.email;

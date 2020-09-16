@@ -34,6 +34,7 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
         const response = await fetch(herokuUrl); // + '/'
         const { chats } = await response.json();
         setChatsState(chats);
+        console.log(chats)
     };
 
     useEffect(() => {

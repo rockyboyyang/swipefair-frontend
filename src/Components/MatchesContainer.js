@@ -79,14 +79,14 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
           ans[value.company.company_name].openings.push(value.opening);
         }
       } else if (companyState) {
-        if (ans[value.jobseeker.name] === undefined) {
-          for(let i = 0; i <tempUserCompanyOpenings.length; i ++) {
+        if (ans[value.jobseeker.name] === undefined && tempUserCompanyOpenings !== undefined) {
+          for(let i = 0; i < tempUserCompanyOpenings.length; i ++) {
             if(value.swipe.openings_id === userCompanyOpenings[i].id) {
               ans[value.jobseeker.name] = { image: value.jobseeker.image, openings: [userCompanyOpenings[i]] };
             }
           }
         } else {
-          ans[value.jobseeker.name].openings.push(value.opening);
+          if(tempUserCompanyOpenings !== undefined) ans[value.jobseeker.name].openings.push(value.opening);
         }
       }
     });

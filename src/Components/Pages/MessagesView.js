@@ -13,7 +13,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
   let id;
   let history = useHistory();
 
-  if (companyState !== 'undefined') {
+  if (companyState !== undefined) {
     try {
       id = companyState.id
     } catch (e) {
@@ -21,7 +21,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
     }
   }
 
-  if (jobseekerState !== 'undefined') {
+  if (jobseekerState !== undefined) {
     try {
       id = jobseekerState.id
     } catch (e) {
@@ -29,9 +29,10 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
     }
   }
 
-  jobseekerState !== 'undefined' ? role = 'jobseeker' : role = 'company'
-  jobseekerState !== 'undefined' ? role_plural = 'jobseekers' : role_plural = 'companies'
 
+  jobseekerState !== undefined ? role = 'jobseeker' : role = 'company'
+  jobseekerState !== undefined ? role_plural = 'jobseekers' : role_plural = 'companies'
+  console.log(role, role_plural)
   if (!localStorage.access_token) {
     history.push('/login')
   }
@@ -46,6 +47,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
   const data = async () => {
     const response = await fetch(fullBackendUrl); // + '/'
     // const lol = await response.json();
+    console.log(response)
     const { messages, name, chatWithInfo } = await response.json();
     let messageArr = []
     for (let i = 0; i < messages.length; i++) messageArr.push(messages[i])

@@ -29,7 +29,6 @@ const SingleChatBox = ({chat, role, setChatId }) => {
                     <p id="chat_name">{chat.name}</p>
                     <p id="chat_location">{chat.location}</p>
                 </div>
-                {chat.name}
             </div>
         )
     }

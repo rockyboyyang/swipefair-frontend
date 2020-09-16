@@ -15,6 +15,8 @@ const Navbar = (props) => {
 
   const signOut = () => {
     localStorage.clear()
+    let location = window.location
+    location.reload();
     history.push('/login')
   }
 
