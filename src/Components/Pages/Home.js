@@ -9,7 +9,7 @@ import { useHistory, } from "react-router-dom";
 
 
 
-const Home = ({matchesState, setMatchesState, jobseekerState, companyState }) => {
+const Home = ({matchesState, setMatchesState, jobseekerState, companyState, userCompanyOpenings }) => {
     // const jobseekerId = JSON.parse(localStorage.jobseeker).id
     // useEffect(()=>{},[swipesState])
   let history = useHistory()
@@ -26,8 +26,8 @@ const Home = ({matchesState, setMatchesState, jobseekerState, companyState }) =>
         <div className='view-grid'>
           <Navbar />
           <div className="body-view">
-            <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState}  openingsState={openingsState} setOpeningsState={setOpeningsState}/>
-            <SwipeContainer setMatchesState={setMatchesState} openingsState={openingsState} setOpeningsState={setOpeningsState}/>
+            <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} userCompanyOpenings={userCompanyOpenings} matchesState={matchesState} setMatchesState={setMatchesState}  openingsState={openingsState} setOpeningsState={setOpeningsState}/>
+            <SwipeContainer setMatchesState={setMatchesState} openingsState={openingsState} setOpeningsState={setOpeningsState} jobseekerState={jobseekerState} companyState={companyState} userCompanyOpenings={userCompanyOpenings}/>
             <AboutUsContainer />
           </div>
         </div>

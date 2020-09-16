@@ -54,15 +54,19 @@
 }
 
 .jobseeker {
-    background-color: rgb(204, 239, 204);
 }
 
 .company {
     background-color: white;
 }
  .user {
+    background-color: rgb(204, 239, 204);
     justify-content: flex-end;
     align-self: flex-end;
+ }
+
+ .chattingWith {
+    background-color: rgb(255, 187, 187);
  }
 
 .text-box {

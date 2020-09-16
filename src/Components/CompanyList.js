@@ -1,7 +1,7 @@
 import React, {setState} from 'react'
 import OpeningDetail from './OpeningDetail.js'
 
-export default function CompanyList({company_name, openings, image}) {
+export default function CompanyList({company_name, openings, image, jobseeker_name}) {
   
 // return <>
 //       <div>{company_name}</div>

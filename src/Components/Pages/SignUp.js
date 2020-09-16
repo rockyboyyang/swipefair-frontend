@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import "../../stylesheets/sign-up.css"
+import backendURL from '../../backendURL'
 
 const SignUp = (props) => {
   const [nameState, setName] = useState(undefined);
@@ -12,8 +13,6 @@ const SignUp = (props) => {
   const [companyPasswordState, setCompanyPassword] = useState(undefined);
   const [companyConfirmPasswordState, setCompanyConfirmPassword] = useState(undefined);
 
-  const backendUrl = "https://boiling-sands-04799.herokuapp.com/api";
-
   const jobseekerOnclick = async (e) => {
     e.preventDefault(); //??? i think we said it would make no difference
     if (passwordState !== confirmPasswordState) return;
@@ -24,7 +23,7 @@ const SignUp = (props) => {
       password: passwordState,
     };
 
-    const res = await fetch(backendUrl + "/session_jobseeker/signup", {
+    const res = await fetch(backendURL + "api/session_jobseeker/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -47,7 +46,7 @@ const SignUp = (props) => {
       password: companyPasswordState,
     };
 
-    const res = await fetch(backendUrl + "/session_company/signup", {
+    const res = await fetch(backendURL + "api/session_company/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
