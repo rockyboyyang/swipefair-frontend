@@ -106,7 +106,7 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
           <div onClick={redirectToChats}>CHATS</div>
         </div>
         {Object.keys(matches).map((company_name) => (
-          <CompanyList company_name={company_name} image={matches[company_name].image} openings={matches[company_name].openings} />
+          <CompanyList company_name={company_name} key={matches[company_name].id} image={matches[company_name].image} openings={matches[company_name].openings} />
         ))}
       </div>
     );

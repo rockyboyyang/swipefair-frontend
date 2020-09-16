@@ -57,6 +57,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
       const payload = await data();
     })();
     // setOpeningsState(payload);
+    
   }, []);
   const fetchPost = async (url, body) => {
     const res = await fetch(url, {
@@ -91,47 +92,70 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
           filteredSwipes = swipes.filter((swipeElement) => {
             return swipeElement.jobseekers_id === swipe.jobseekers_id
           })
+
+          filteredSwipes = filteredSwipes.filter((swipeElement) => {
+            return swipeElement.openings_id === openingsId
+          })
         }
-        console.log(swipes)
         console.log(swipe)
+        console.log(id)
+        console.log(roleBaseUrl)
         console.log(filteredSwipes)
         for (let i = 0; i < filteredSwipes.length; i++) {
           if (filteredSwipes[i].swiped_right === true) count = count + 1;
         }
         if (count === 2) {
           const fetchChat = async () => {
-            let getRes = await fetch(
-              roleBaseUrl + `${id}/${openingsId}/chats`,
-              {
-                method: "GET",
-                headers: { "Content-Type": "application/json" },
-              }
-            );
+            let getRes;
+            if(jobseekerState) {
+              getRes = await fetch(
+                roleBaseUrl + `${id}/${openingsId}/chats`,
+                {
+                  method: "GET",
+                  headers: { "Content-Type": "application/json" },
+                }
+              );
+            } else if (companyState) {
+              getRes = await fetch(
+                roleBaseUrl + `${id}/${openingsId}/${swipe.jobseekers_id}/chats`,
+                {
+                  method: "GET",
+                  headers: { "Content-Type": "application/json" },
+                }
+              );
+            }
             let getResponse = await getRes.json();
-  
+
             if (getResponse.boolean === true) return;
-            const res = await fetch(
-              roleBaseUrl + `${id}/${openingsId}/chats`,
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-              }
-            );
+            let res;
+            if(jobseekerState) {
+              res = await fetch(
+                roleBaseUrl + `${id}/${openingsId}/chats`,
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                }
+              );
+            } else if (companyState) {
+              res = await fetch(
+                roleBaseUrl + `${id}/${openingsId}/${swipe.jobseekers_id}/chats`,
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                }
+              );
+            }
             let result = await res.json()
             return result;
           };
           fetchChat();
         }
       }
-
+      
       if(jobseekerState) {
-          console.log('jobseeker')
           checkForMatches(openingsId)
       } else if (companyState) {
-          console.log('before loop company')
-          console.log(userCompanyOpenings)
           for(let i = 0; i < userCompanyOpenings.length; i++) {
-            console.log('company')
             checkForMatches(userCompanyOpenings[i].id)
         }
       }
@@ -179,7 +203,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
   //   return posts;
   // };
   // useEffect(() => { set(propName) }, [matchesState]);
-  if(id) {
+  if((id && userCompanyOpenings && companyState) || (id && jobseekerState)) {
     return (
         <div className="swipe-container">
           <div>
