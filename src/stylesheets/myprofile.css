@@ -1,4 +1,13 @@
-
+.myprofile-container {
+  max-width: 600px;
+  min-width: 30%;
+  width: fit-content;
+  border: solid tomato 1px;
+  margin: auto;
+  padding: 0 1em 1em 1em;
+  margin-top: 5%;
+  font-family: 'Lato', sans-serif;
+}
 
 .show {
     display: block; 

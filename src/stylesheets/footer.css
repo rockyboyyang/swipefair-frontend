@@ -28,6 +28,8 @@
 
 .teammember > a:hover {
     transform: scale(1.5); 
+    padding-left: 10px; 
+    padding-right: 10px; 
 }
 
 .teammember > span {

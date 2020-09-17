@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
-import {useHistory} from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import config from "../../config";
 import Navbar from "../Navbar";
 import "../../stylesheets/edit-profile.css";
 
 const EditProfile = () => {
-  let history = useHistory()
-  const { handleSubmit } = useForm();
-  const storedUser = JSON.parse(localStorage.getItem("jobseeker"));
-
+  let history = useHistory();
   const [inputValue, setInputValue] = useState("");
   const [user, setUser] = useState({});
+  const { handleSubmit, errors, register } = useForm();
+  const [submitting, setSubmitting] = useState(false);
 
   const id = JSON.parse(localStorage.getItem("jobseeker")).id;
 
@@ -30,6 +29,7 @@ const EditProfile = () => {
   }, []);
 
   const onSubmit = () => {
+    setSubmitting(true);
     const formData = new FormData();
     const imageField = document.querySelector('input[name="image"]');
     const nameField = document.querySelector('input[name="jobseekerName"]');
@@ -58,16 +58,21 @@ const EditProfile = () => {
       method: "PUT",
       body: formData,
     })
-    .then((res) => res.json())
-    .then(({jobseeker}) => {
-      setUser(jobseeker);
-      const res = jobseeker
-      console.log(res)
-      const newData = {...JSON.parse(localStorage.getItem('jobseeker')), ...res}
-      console.log(newData)
-      localStorage.setItem('jobseeker', JSON.stringify(newData))
-      history.push('/myprofile')
-    })
+      .then((res) => res.json())
+      .then(({ jobseeker }) => {
+        setUser(jobseeker);
+        const res = jobseeker;
+        // console.log(res)
+        const newData = {
+          ...JSON.parse(localStorage.getItem("jobseeker")),
+          ...res,
+        };
+        localStorage.setItem("jobseeker", JSON.stringify(newData));
+        setTimeout(() => {
+          setSubmitting(false);
+          history.push("/myprofile");
+        }, 2000)
+      });
   };
 
   return (
@@ -80,77 +85,156 @@ const EditProfile = () => {
         </div>
         <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <label htmlFor="image">Image: </label>
-            <input type="file" name="image" accept="image/jpeg" />
+            <label htmlFor="image"><span>*</span>Image: </label>
+            <input
+              type="file"
+              name="image"
+              accept="image/jpeg"
+              ref={register({
+                required: {
+                  value: true,
+                  message: "Please upload your picture",
+                },
+              })}
+            />
+            {errors.image ? (
+              <div>{errors.image.message}</div>
+            ) : null}
           </div>
           <div>
-            <label htmlFor="name">Name: </label>
+            <label htmlFor="name"><span>*</span>Name: </label>
             <input
               type="text"
               name="jobseekerName"
               defaultValue={user.name}
               onChange={(e) => setInputValue(e.target.value)}
-              // value={inputValue}
+              ref={register({
+                required: {
+                  value: true, 
+                  message: "Please enter your name"
+                } 
+              })}
             />
+            {errors.jobseekerName ? (
+              <div>{errors.jobseekerName.message}</div>
+            ) : null}
           </div>
           <div>
-            <label htmlFor="location">Location: </label>
+            <label htmlFor="location">
+              <span>*</span>Location:{" "}
+            </label>
             <input
               type="text"
               name="jobseekerLocation"
               defaultValue={user.location}
               onChange={(e) => setInputValue(e.target.value)}
-              // value={inputValue}
+              ref={register({
+                required: {
+                  value: true,
+                  message: "Please enter your location",
+                },
+              })}
             />
+            {errors.jobseekerLocation ? (
+              <div>{errors.jobseekerLocation.message}</div>
+            ) : null}
           </div>
           <div>
-            <label htmlFor="title">Title: </label>
+            <label htmlFor="title"><span>*</span>Title: </label>
             <input
               type="text"
               name="jobseekerTitle"
               defaultValue={user.title}
               onChange={(e) => setInputValue(e.target.value)}
+              ref={register({
+                required: {
+                  value: true, 
+                  message: "Please provide your title"
+                } 
+              })}
             />
+            {errors.jobseekerTitle ? (
+              <div>{errors.jobseekerTitle.message}</div>
+            ) : null}
           </div>
           <div>
-            <label htmlFor="bio">Bio: </label>
+            <label htmlFor="bio"><span>*</span>Bio: </label>
             <textarea
               rows="4"
               cols="50"
               name="jobseekerBio"
               defaultValue={user.bio}
               onChange={(e) => setInputValue(e.target.value)}
+              ref={register({
+                required: {
+                  value: true, 
+                  message: "Please tell us about yourself"
+                } 
+              })}
             />
+            {errors.jobseekerBio ? (
+              <div>{errors.jobseekerBio.message}</div>
+            ) : null}
           </div>
           <div>
-            <h3>Education</h3>
-            <label htmlFor="education">School: </label>
+            <label htmlFor="education"><span>*</span>Education: </label>
             <input
               type="text"
               name="education"
               defaultValue={user.education_title}
               onChange={(e) => setInputValue(e.target.value)}
+              ref={register({
+                required: {
+                  value: true, 
+                  message: "Please enter your education"
+                } 
+              })}
             />
+            {errors.education ? (
+              <div>{errors.education.message}</div>
+            ) : null}
           </div>
           <div>
-            <label htmlFor="startDate">Start Date</label>
+            <label htmlFor="startDate"><span>*</span>Start Date (if specific date unknown, please select the first of the month): </label>
             <input
               type="date"
               name="startDate"
-              defaultValue={new Date(user.education_date_start).toLocaleDateString()}
+              defaultValue={new Date(
+                user.education_date_start
+              ).toLocaleDateString()}
+              ref={register({
+                required: {
+                  value: true, 
+                  message: "Please enter start date"
+                } 
+              })}
             />
+            {errors.startDate ? (
+              <div>{errors.startDate.message}</div>
+            ) : null}
           </div>
           <div>
-            <label htmlFor="endDate">End Date: </label>
+            <label htmlFor="endDate"><span>*</span>End Date (if specific date unknown, please select the first of the month): </label>
             <input
               type="date"
               name="endDate"
-              defaultValue={new Date(user.education_date_end).toLocaleDateString()}
+              defaultValue={new Date(
+                user.education_date_end
+              ).toLocaleDateString()}
+              ref={register({
+                required: {
+                  value: true, 
+                  message: "Please enter end date"
+                } 
+              })}
             />
+            {errors.endDate ? (
+              <div>{errors.endDate.message}</div>
+            ) : null}
           </div>
-          <button>Save Changes</button>
-          <button className="btn btn-link">
-                <Link to="/myprofile">Cancel</Link>
+          {submitting ? <button>Saving your changes...</button> : <button>Save Changes</button>}
+          <button disabled ={submitting} className="btn btn-link">
+            <Link to="/myprofile">Cancel</Link>
           </button>
         </form>
       </div>
@@ -160,4 +244,3 @@ const EditProfile = () => {
 
 export default EditProfile;
 
-// TODO: add default values based on current user, add upload support with AWS

@@ -53,7 +53,8 @@ const MyProfile = ({ jobseekerState }) => {
   return (
     <div className="view-grid experience">
       <Navbar />
-      <div className='edit-profile-container'>
+      {/* {user.title === undefined && history.push('/editprofile')} */}
+      <div className='myprofile-container'>
         <Modal show={show} closeModal={closeModal} setAllexperiences={setAllexperiences} allexperiences={allexperiences}/>
         <div>
           <h3>Profile</h3>
@@ -69,7 +70,7 @@ const MyProfile = ({ jobseekerState }) => {
             <p>Edit Profile</p>
         </div>
         <div>
-            Title: {user.title}
+            Title: {user.title === null ? history.push('/editprofile') : user.title}
         </div>
         <div>
             Location: {user.location}
