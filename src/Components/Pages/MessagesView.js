@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Switch, useHistory, } from "react-router-dom";
 import backendURL from '../../backendURL'
 
 
-const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setMatchesState}) => {
+const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setMatchesState, userCompanyOpenings}) => {
   let role_plural;
   let role;
   let id;
@@ -47,7 +47,6 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
   const data = async () => {
     const response = await fetch(fullBackendUrl); // + '/'
     // const lol = await response.json();
-    console.log(response)
     const { messages, name, chatWithInfo } = await response.json();
     let messageArr = []
     for (let i = 0; i < messages.length; i++) messageArr.push(messages[i])
@@ -63,6 +62,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
     const body = {
       body: newMessageState,
     }
+    console.log(body)
     const res = await fetch(postMessageUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -72,6 +72,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
     // TODO:
     // might want to rerender component but this works for now
     if (res.ok) {
+      console.log('ok')
       setNewMessageState('')
       data()
     }
@@ -93,7 +94,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
       <div className='view-grid'>
         <Navbar />
         <div className="body-view">
-          <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} matchesState={matchesState} setMatchesState={setMatchesState}/>
+          <MatchesContainer jobseekerState={jobseekerState} companyState={companyState} userCompanyOpenings={userCompanyOpenings} matchesState={matchesState} setMatchesState={setMatchesState} />
           <MessagesContainer companyState={companyState}
           jobseekerState={jobseekerState}
           chatId={chatId}

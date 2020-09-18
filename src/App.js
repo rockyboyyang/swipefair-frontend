@@ -58,7 +58,7 @@ const App = props => {
         <Route path="/signup" component={SignUp} />
         <Route exact path="/" render={(props) => <Home {...props} matchesState={matchesState} setMatchesState={changeMatchState} jobseekerState={jobseekerState} companyState={companyState} userCompanyOpenings={userCompanyOpenings}/>} />
         <Route path="/chats" render={(props) => <ChatsView {...props} companyState={companyState} jobseekerState={jobseekerState} matchesState={matchesState} setChatId={setChatId} setMatchesState={changeMatchState} userCompanyOpenings={userCompanyOpenings}/>} />
-        <Route path="/messages/:chatId" render={(props) => <MessagesView {...props} chatId={props.match.params.chatId} companyState={companyState} jobseekerState={jobseekerState} matchesState={matchesState} setMatchesState={changeMatchState} />} />
+        <Route path="/messages/:chatId" render={(props) => <MessagesView {...props} chatId={props.match.params.chatId} companyState={companyState} jobseekerState={jobseekerState} matchesState={matchesState} setMatchesState={changeMatchState} userCompanyOpenings={userCompanyOpenings}/>} />
         <Route path="/editprofile" component={EditProfile} />
       </Switch>
     </BrowserRouter>

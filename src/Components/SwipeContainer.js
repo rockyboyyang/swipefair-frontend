@@ -30,13 +30,14 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
     }
   }
   // const jobseekerMatchesUrl = backendURL + `api/jobseekers/${jobseekerId}/matches`;
-
+  console.log(id)
   // const fullBackendUrl = backendURL + `/api/openings/notswiped/jobseeker/${jobseekerId}`;
   let openingsId;
   let jobseekerId;
   const data = async () => {
     const response = await fetch(fullBackendUrl); // + '/'
     const { opening, jobseekers } = await response.json();
+    console.log(opening, jobseekers)
     if(jobseekerState) {
       setOpeningsState(opening);
       return opening;
@@ -245,12 +246,18 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
                 <div>{op.location}</div>
                 <div className="about-company">
                   {jobseekerState ? (
-                    <h4>About company:</h4>
+                    <>
+                      <h4>About jobseeker:</h4>
+                      <p>Bio: {op.bio}</p>
+                      <p>Company Name: {op.name}</p>
+                    </>
                   ) : (
-                    <h4>About jobseeker:</h4>
+                    <>
+                      <h4>About jobseeker:</h4>
+                      <p>Bio: {op.bio}</p>
+                      <p>Name: {op.name}</p>
+                    </>
                   )}
-                  <p>{op.bio}</p>
-                  <p>{op.name}</p>
                 </div>
               </div>
             </TinderCard>
