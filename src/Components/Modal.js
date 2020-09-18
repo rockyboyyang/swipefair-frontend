@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "../stylesheets/myprofile.css";
 import config from "../config";
+import { FaWindowClose } from "react-icons/fa";
+
 
 const Modal = (props) => {
   const { show, closeModal, setAllexperiences, allexperiences } = props;
@@ -28,21 +30,31 @@ const Modal = (props) => {
       e.target.reset();
       setSubmitting(false);
       closeModal();
-    }, 2000)
+    }, 2000);
   };
 
   return (
     <>
       <div className={show ? "modal" : "hide"}>
         <div>
-          <button className="button-modal" onClick={closeModal}>
-            X
-          </button>
-          <h1>Add your experience</h1>
+          {/* <button className="button-modal" onClick={closeModal}>
+            <FaWindowClose />
+          </button> */}
+          <FaWindowClose className="button-modal" onClick={closeModal}>
+          </FaWindowClose>
+          <h2>Add your experience</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <label htmlFor="job-experience">
-                <span>*</span>Title:
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px",
+                marginTop: "10px",
+                borderTop: "1px solid lightseagreen",
+              }}
+            >
+              <label style={{ paddingBottom: "5px" }} htmlFor="job-experience">
+                <span style={{ color: "lightseagreen" }}>*</span>Title:
               </label>
               <input
                 type="text"
@@ -54,13 +66,24 @@ const Modal = (props) => {
                     message: "Please provide your job title",
                   },
                 })}
+                style={{ padding: "6px" }}
               ></input>
-              {errors.title ? <div>{errors.title.message}</div> : null}
+              {errors.title ? (
+                <div style={{ color: "lightseagreen" }}>
+                  {errors.title.message}
+                </div>
+              ) : null}
             </div>
-            <div>
-              <label htmlFor="startDateJob">
-                <span>*</span>Start Date (if specific date unknown, please
-                select the first of the month):{" "}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px",
+              }}
+            >
+              <label style={{ paddingBottom: "5px" }} htmlFor="startDateJob">
+                <span style={{ color: "lightseagreen" }}>*</span>Start Date (if
+                specific date unknown, please select the first of the month):{" "}
               </label>
               <input
                 type="date"
@@ -69,18 +92,27 @@ const Modal = (props) => {
                 ref={register({
                   required: {
                     value: true,
-                    message: "Please provide start date",
+                    message: "Please select start date",
                   },
                 })}
+                style={{ padding: "4px", width: "fit-content" }}
               ></input>
               {errors.date_start ? (
-                <div>{errors.date_start.message}</div>
+                <div style={{ color: "lightseagreen" }}>
+                  {errors.date_start.message}
+                </div>
               ) : null}
             </div>
-            <div>
-              <label htmlFor="endDateJob">
-                <span>*</span>End Date (if specific date unknown, please select
-                the first of the month):{" "}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px",
+              }}
+            >
+              <label style={{ paddingBottom: "5px" }} htmlFor="endDateJob">
+                <span style={{ color: "lightseagreen" }}>*</span>End Date (if
+                specific date unknown, please select the first of the month):{" "}
               </label>
               <input
                 type="date"
@@ -89,15 +121,26 @@ const Modal = (props) => {
                 ref={register({
                   required: {
                     value: true,
-                    message: "Please provide end date",
+                    message: "Please select end date",
                   },
                 })}
+                style={{ padding: "4px", width: "fit-content" }}
               ></input>
-              {errors.date_end ? <div>{errors.date_end.message}</div> : null}
+              {errors.date_end ? (
+                <div style={{ color: "lightseagreen" }}>
+                  {errors.date_end.message}
+                </div>
+              ) : null}
             </div>
-            <div>
-              <label htmlFor="description">
-                <span>*</span>Description:
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px",
+              }}
+            >
+              <label style={{ paddingBottom: "5px" }} htmlFor="description">
+                <span style={{ color: "lightseagreen" }}>*</span>Description:
               </label>
               <textarea
                 rows="4"
@@ -112,10 +155,22 @@ const Modal = (props) => {
                 })}
               ></textarea>
               {errors.description ? (
-                <div>{errors.description.message}</div>
+                <div style={{ color: "lightseagreen" }}>
+                  {errors.description.message}
+                </div>
               ) : null}
             </div>
-              {submitting ? <button>Submitting</button> : <button>Submit</button> }
+            <div style={{display: 'flex', justifyContent: "flex-start", padding: "10px"}}>
+            {submitting ? (
+              <button className="submit-button">
+                Submitting
+              </button>
+            ) : (
+              <button className="submit-button">
+                Submit
+              </button>
+            )}
+            </div>
           </form>
         </div>
       </div>

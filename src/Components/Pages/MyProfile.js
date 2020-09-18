@@ -56,11 +56,11 @@ const MyProfile = ({ jobseekerState }) => {
       {/* {user.title === undefined && history.push('/editprofile')} */}
       <div className='myprofile-container'>
         <Modal show={show} closeModal={closeModal} setAllexperiences={setAllexperiences} allexperiences={allexperiences}/>
-        <div>
-          <h3>Profile</h3>
+        <div style={{padding: "15px"}}>
+          <h3>Your Profile</h3>
         </div>
         <div>
-          <img src={user.image} style={{ height: 200 }} alt="pic" />
+          <img src={user.image} style={{ height: 200, width: 200, borderRadius: "20px", padding: "15px" }} alt="pic" />
         </div>
         <div>
             {user.name}
