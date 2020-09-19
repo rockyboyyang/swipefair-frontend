@@ -95,14 +95,14 @@ const EditProfile = () => {
                   type="file"
                   name="image"
                   accept="image/jpeg"
-                  nChange={(e) => setInputValue(e.target.value)}
+                  onChange={(e) => setInputValue(e.target.value)}
                   ref={register({
                     required: {
                       value: true,
                       message: "Please upload your picture",
                     },
                   })}
-                  style={{paddingTop: '10px'}}
+                  style={{marginTop: '10px', width: 200}}
                 />
                 {errors.image ? <div className='errors'>{errors.image.message}</div> : null}
               </div>

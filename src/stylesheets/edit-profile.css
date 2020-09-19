@@ -67,7 +67,6 @@
 }
 
 .submit-edit-button:hover {
-  /* background-color: lightseagreen; */
   background-color: lightseagreen;
   color: white; 
 }
@@ -83,9 +82,14 @@
 
 .form-input label {
   padding-bottom: 5px; 
-  /* padding-top: 5px;  */
   font-weight: bold; 
   font-size: 15px;
+}
+
+.form-input textarea {
+  padding: 6px; 
+  font-size: 15px;
+  font-family: 'Archivo', sans-serif;
 }
 
 .errors {
