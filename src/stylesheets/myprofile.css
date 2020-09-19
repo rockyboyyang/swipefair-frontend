@@ -60,6 +60,7 @@
   }
 
   .submit-button:hover {
+    /* background-color: lightseagreen; */
     background-color: lightseagreen;
     color: white; 
   }

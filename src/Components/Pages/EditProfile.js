@@ -71,7 +71,7 @@ const EditProfile = () => {
         setTimeout(() => {
           setSubmitting(false);
           history.push("/myprofile");
-        }, 2000)
+        }, 2000);
       });
   };
 
@@ -79,163 +79,188 @@ const EditProfile = () => {
     <div className="view-grid">
       <Navbar />
       <div className="edit-profile-container">
-        <h2>Edit Profile</h2>
-        <div>
-          <img src={user.image} style={{ height: 200 }} alt="pic" />
-        </div>
+        <h2>Edit Your Profile</h2>
         <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label htmlFor="image"><span>*</span>Image: </label>
-            <input
-              type="file"
-              name="image"
-              accept="image/jpeg"
-              ref={register({
-                required: {
-                  value: true,
-                  message: "Please upload your picture",
-                },
-              })}
-            />
-            {errors.image ? (
-              <div>{errors.image.message}</div>
-            ) : null}
+          <div className='form-container'>
+            <div className="image-container">
+              {/* <div> */}
+                <label style={{ paddingBottom: "5px", paddingTop: '5px', fontWeight: 'bold' }} htmlFor="image">
+                  <span style={{color: 'lightseagreen'}}>*</span>Profile Photo{" "}
+                  </label>
+                  <img src={user.image} style={{ width: 200 }} alt="pic" />
+              {/* </div> */}
+              <div>
+                
+                <input
+                  type="file"
+                  name="image"
+                  accept="image/jpeg"
+                  nChange={(e) => setInputValue(e.target.value)}
+                  ref={register({
+                    required: {
+                      value: true,
+                      message: "Please upload your picture",
+                    },
+                  })}
+                  style={{paddingTop: '10px'}}
+                />
+                {errors.image ? <div className='errors'>{errors.image.message}</div> : null}
+              </div>
+            </div>
+            <div className="inputs-container">
+              <div className="form-input">
+                <label htmlFor="name">
+                  <span>*</span>Name{" "}
+                </label>
+                <input
+                  type="text"
+                  name="jobseekerName"
+                  defaultValue={user.name}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  ref={register({
+                    required: {
+                      value: true,
+                      message: "Please enter your name",
+                    },
+                  })}
+                />
+                {errors.jobseekerName ? (
+                  <div className='errors'>{errors.jobseekerName.message}</div>
+                ) : null}
+                </div>
+                <div className="form-input">
+                <label htmlFor="location">
+                  <span>*</span>Location{" "}
+                </label>
+                <input
+                  type="text"
+                  name="jobseekerLocation"
+                  defaultValue={user.location}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  ref={register({
+                    required: {
+                      value: true,
+                      message: "Please enter your location",
+                    },
+                  })}
+                />
+                {errors.jobseekerLocation ? (
+                  <div className='errors'>{errors.jobseekerLocation.message}</div>
+                ) : null}
+              </div>
+              <div className="form-input">
+                <label htmlFor="title">
+                  <span>*</span>Title{" "}
+                </label>
+                <input
+                  type="text"
+                  name="jobseekerTitle"
+                  defaultValue={user.title}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  ref={register({
+                    required: {
+                      value: true,
+                      message: "Please provide your title",
+                    },
+                  })}
+                />
+                {errors.jobseekerTitle ? (
+                  <div className='errors'>{errors.jobseekerTitle.message}</div>
+                ) : null}
+              </div>
+              <div className="form-input">
+                <label htmlFor="bio">
+                  <span>*</span>Bio{" "}
+                </label>
+                <textarea
+                  rows="4"
+                  cols="50"
+                  name="jobseekerBio"
+                  defaultValue={user.bio}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  ref={register({
+                    required: {
+                      value: true,
+                      message: "Please tell us about yourself",
+                    },
+                  })}
+                />
+                {errors.jobseekerBio ? (
+                  <div className='errors'>{errors.jobseekerBio.message}</div>
+                ) : null}
+              </div>
+              <div className="form-input">
+                <label htmlFor="education">
+                  <span>*</span>Education{" "}
+                </label>
+                <input
+                  type="text"
+                  name="education"
+                  defaultValue={user.education_title}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  ref={register({
+                    required: {
+                      value: true,
+                      message: "Please enter your education",
+                    },
+                  })}
+                />
+                {errors.education ? <div>{errors.education.message}</div> : null}
+              </div>
+              <div className="form-input">
+                <label htmlFor="startDate">
+                  <span>*</span>Start Date (if specific date unknown, please select
+                  the first of the month){" "}
+                </label>
+                <input
+                  type="date"
+                  name="startDate"
+                  defaultValue={new Date(
+                    user.education_date_start
+                  ).toLocaleDateString()}
+                  ref={register({
+                    required: {
+                      value: true,
+                      message: "Please enter start date",
+                    },
+                  })}
+                  style={{ padding: "4px", width: "fit-content" }}
+                />
+                {errors.startDate ? <div className='errors'>{errors.startDate.message}</div> : null}
+              </div>
+              <div className="form-input">
+                <label htmlFor="endDate">
+                  <span>*</span>End Date (if specific date unknown, please select
+                  the first of the month){" "}
+                </label>
+                <input
+                  type="date"
+                  name="endDate"
+                  defaultValue={new Date(
+                    user.education_date_end
+                  ).toLocaleDateString()}
+                  ref={register({
+                    required: {
+                      value: true,
+                      message: "Please enter end date",
+                    },
+                  })}
+                  style={{ padding: "4px", width: "fit-content" }}
+                />
+                {errors.endDate ? <div className='errors'>{errors.endDate.message}</div> : null}
+              </div>
+              <div className="buttons-container">
+                {submitting ? (
+                  <button className="submit-edit-button">Saving your changes...</button>
+                ) : (
+                  <button className="submit-edit-button">Save Changes</button>
+                )}
+                <button disabled={submitting} className="submit-edit-button">
+                  <Link to="/myprofile">Cancel</Link>
+                </button>
+              </div>
+            </div>
           </div>
-          <div>
-            <label htmlFor="name"><span>*</span>Name: </label>
-            <input
-              type="text"
-              name="jobseekerName"
-              defaultValue={user.name}
-              onChange={(e) => setInputValue(e.target.value)}
-              ref={register({
-                required: {
-                  value: true, 
-                  message: "Please enter your name"
-                } 
-              })}
-            />
-            {errors.jobseekerName ? (
-              <div>{errors.jobseekerName.message}</div>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="location">
-              <span>*</span>Location:{" "}
-            </label>
-            <input
-              type="text"
-              name="jobseekerLocation"
-              defaultValue={user.location}
-              onChange={(e) => setInputValue(e.target.value)}
-              ref={register({
-                required: {
-                  value: true,
-                  message: "Please enter your location",
-                },
-              })}
-            />
-            {errors.jobseekerLocation ? (
-              <div>{errors.jobseekerLocation.message}</div>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="title"><span>*</span>Title: </label>
-            <input
-              type="text"
-              name="jobseekerTitle"
-              defaultValue={user.title}
-              onChange={(e) => setInputValue(e.target.value)}
-              ref={register({
-                required: {
-                  value: true, 
-                  message: "Please provide your title"
-                } 
-              })}
-            />
-            {errors.jobseekerTitle ? (
-              <div>{errors.jobseekerTitle.message}</div>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="bio"><span>*</span>Bio: </label>
-            <textarea
-              rows="4"
-              cols="50"
-              name="jobseekerBio"
-              defaultValue={user.bio}
-              onChange={(e) => setInputValue(e.target.value)}
-              ref={register({
-                required: {
-                  value: true, 
-                  message: "Please tell us about yourself"
-                } 
-              })}
-            />
-            {errors.jobseekerBio ? (
-              <div>{errors.jobseekerBio.message}</div>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="education"><span>*</span>Education: </label>
-            <input
-              type="text"
-              name="education"
-              defaultValue={user.education_title}
-              onChange={(e) => setInputValue(e.target.value)}
-              ref={register({
-                required: {
-                  value: true, 
-                  message: "Please enter your education"
-                } 
-              })}
-            />
-            {errors.education ? (
-              <div>{errors.education.message}</div>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="startDate"><span>*</span>Start Date (if specific date unknown, please select the first of the month): </label>
-            <input
-              type="date"
-              name="startDate"
-              defaultValue={new Date(
-                user.education_date_start
-              ).toLocaleDateString()}
-              ref={register({
-                required: {
-                  value: true, 
-                  message: "Please enter start date"
-                } 
-              })}
-            />
-            {errors.startDate ? (
-              <div>{errors.startDate.message}</div>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="endDate"><span>*</span>End Date (if specific date unknown, please select the first of the month): </label>
-            <input
-              type="date"
-              name="endDate"
-              defaultValue={new Date(
-                user.education_date_end
-              ).toLocaleDateString()}
-              ref={register({
-                required: {
-                  value: true, 
-                  message: "Please enter end date"
-                } 
-              })}
-            />
-            {errors.endDate ? (
-              <div>{errors.endDate.message}</div>
-            ) : null}
-          </div>
-          {submitting ? <button>Saving your changes...</button> : <button>Save Changes</button>}
-          <button disabled ={submitting} className="btn btn-link">
-            <Link to="/myprofile">Cancel</Link>
-          </button>
         </form>
       </div>
     </div>
@@ -243,4 +268,3 @@ const EditProfile = () => {
 };
 
 export default EditProfile;
-

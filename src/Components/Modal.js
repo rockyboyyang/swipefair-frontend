@@ -37,9 +37,6 @@ const Modal = (props) => {
     <>
       <div className={show ? "modal" : "hide"}>
         <div>
-          {/* <button className="button-modal" onClick={closeModal}>
-            <FaWindowClose />
-          </button> */}
           <FaWindowClose className="button-modal" onClick={closeModal}>
           </FaWindowClose>
           <h2>Add your experience</h2>
@@ -50,7 +47,7 @@ const Modal = (props) => {
                 flexDirection: "column",
                 padding: "10px",
                 marginTop: "10px",
-                borderTop: "1px solid lightseagreen",
+                borderTop: "0.5px solid lightseagreen",
               }}
             >
               <label style={{ paddingBottom: "5px" }} htmlFor="job-experience">
@@ -153,6 +150,7 @@ const Modal = (props) => {
                     message: "Please provide a brief description of your job",
                   },
                 })}
+                style={{ padding: "6px" }}
               ></textarea>
               {errors.description ? (
                 <div style={{ color: "lightseagreen" }}>
