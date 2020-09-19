@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import SingleChatBox from './SingleChatBox'
 import "../stylesheets/chatsContainer.css";
+import backendURL from '../backendURL'
 
 const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
     // TODO:  make url dynamic
     // make one for jobseeker and company
     let role;
     let id;
-    if (companyState !== 'undefined') {
+    if (companyState !== undefined) {
         try {
             id = companyState.id
         } catch (e) {
@@ -15,7 +16,7 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
         }
     }
 
-    if (jobseekerState !== 'undefined') {
+    if (jobseekerState !== undefined) {
         try {
             id = jobseekerState.id
         } catch (e) {
@@ -23,18 +24,21 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
         }
     }
 
-    jobseekerState !== 'undefined' ? role = 'jobseekers' : role = 'companies'
+    jobseekerState !== undefined ? role = 'jobseekers' : role = 'companies'
 
     // TODO: change to heroku in the future
-    const herokuUrl = `http://localhost:5000/api/${role}/${id}/chats`
+    const herokuUrl = backendURL + `api/${role}/${id}/chats`
     const[chatsState, setChatsState] = useState([])
+    console.log(herokuUrl)
     const data = async () => {
         const response = await fetch(herokuUrl); // + '/'
         const { chats } = await response.json();
         setChatsState(chats);
+        console.log(chats)
     };
 
     useEffect(() => {
+        console.log(chatsState)
         try {
             data();
         } catch (e) {

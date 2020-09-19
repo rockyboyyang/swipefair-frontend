@@ -1,22 +1,25 @@
 import React, { useState, useContext } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import "../../stylesheets/login.css";
+import backendURL from '../../backendURL'
 import Footer from "../Footer";
-// import backendUrl from "../../utils";
-// yeha modules are wack
-// const backendUrl = "https://boiling-sands-04799.herokuapp.com/api";
-const backendUrl = "http://localhost:5000/api";
+
 const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
   let history = useHistory();
   const [emailState, setEmail] = useState("");
   const [passwordState, setPassword] = useState("");
 
-  const onclick = async (e, demoUser = false) => {
+  const onclick = async (e, demoJobseeker = false, demoCompany = false) => {
     e.preventDefault();
     let body;
-    if (demoUser) {
+    if (demoJobseeker) {
       body = {
-        email: "demo@gmail.com",
+        email: "demoJobseeker@gmail.com",
+        password: "password",
+      };
+    } else if (demoCompany) {
+      body = {
+        email: "demoCompany@gmail.com",
         password: "password",
       };
     } else {
@@ -26,7 +29,7 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
       };
     }
 
-    const res = await fetch(backendUrl + "/" + e.target.id + "/", {
+    const res = await fetch(backendURL + "/api/" + e.target.id + "/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -56,9 +59,14 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
     setPassword(event.target.value);
   };
 
-  const loginDemoUser = (event) => {
+  const loginJobseeker = (event) => {
     event.preventDefault();
-    onclick(event, true);
+    onclick(event, true, false);
+  };
+
+  const loginCompany = (event) => {
+    event.preventDefault();
+    onclick(event, false, true);
   };
 
   // if tokenState history.push('/login')
@@ -93,16 +101,15 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
             <button id="session_company" onClick={onclick}>
               Log In as Company
             </button>
+            <div className="sign-up-ref">
+              <p>Don't have an account? </p>
+              <button onClick={signUp}>Sign Up</button>
+            </div>
+            <div>
+              <button id="session_jobseeker" onClick={loginJobseeker}>Demo Jobseeker</button>
+              <button id="session_company" onClick={loginCompany}>Demo Company</button>
+            </div>
           </form>
-          <div className="sign-up-ref">
-            <p>Don't have an account? </p>
-            <button onClick={signUp}>Sign Up</button>
-          </div>
-          <div>
-            <button id="session_jobseeker" onClick={loginDemoUser}>
-              Demo
-            </button>
-          </div>
         </div>
         <Footer />
       {/* </div> */}
