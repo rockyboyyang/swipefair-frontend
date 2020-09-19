@@ -35,7 +35,7 @@ const Modal = (props) => {
 
   return (
     <>
-      <div className={show ? "modal" : "hide"}>
+      <div id={show ? "modal" : "hide"}>
         <div>
           <FaWindowClose className="button-modal" onClick={closeModal}>
           </FaWindowClose>
