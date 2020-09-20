@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import config from "../../config";
 import Navbar from "../Navbar";
 import "../../stylesheets/edit-profile.css";
+import '../../backendURL'
+import backendURL from "../../backendURL";
 
 const EditProfile = () => {
   let history = useHistory();
@@ -16,7 +18,7 @@ const EditProfile = () => {
   const id = JSON.parse(localStorage.getItem("jobseeker")).id;
 
   useEffect(() => {
-    fetch(`${config.baseUrl}/jobseekers/${id}`, {
+    fetch(`${backendURL}/api/jobseekers/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

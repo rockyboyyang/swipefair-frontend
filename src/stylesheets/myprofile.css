@@ -101,6 +101,7 @@
 .title-user-info-fields {
   font-weight: bold; 
   width: 30%; 
+  min-width: 30%;
 }
 
 .experiences-add-container {
@@ -136,6 +137,7 @@
   display: flex; 
   flex-wrap: wrap;
   width: 70%;
+  min-width: 300px;
 }
 
 
