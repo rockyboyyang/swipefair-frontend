@@ -37,12 +37,12 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
   const data = async () => {
     const response = await fetch(fullBackendUrl); // + '/'
     const { opening, jobseekers } = await response.json();
-    console.log(opening, jobseekers)
     if(jobseekerState) {
       setOpeningsState(opening);
       return opening;
     } else if (companyState) {
       setOpeningsState(jobseekers)
+      console.log(jobseekers)
       return jobseekers
     }
     
@@ -98,10 +98,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
             return swipeElement.openings_id === openingsId
           })
         }
-        console.log(swipe)
-        console.log(id)
-        console.log(roleBaseUrl)
-        console.log(filteredSwipes)
+      
         for (let i = 0; i < filteredSwipes.length; i++) {
           if (filteredSwipes[i].swiped_right === true) count = count + 1;
         }

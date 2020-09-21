@@ -29,7 +29,7 @@ const Login = ({ setToken, setJobseeker, setCompany, tokenState }) => {
       };
     }
 
-    const res = await fetch(backendURL + "/api/" + e.target.id + "/", {
+    const res = await fetch(backendURL + "api/" + e.target.id + "/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
