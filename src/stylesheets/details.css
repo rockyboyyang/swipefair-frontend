@@ -28,25 +28,16 @@
   padding-top: 10px;
 }
 
-.details-bio {
-  font-family: "Roboto", sans-serif;
-  padding: 10px;
-}
-
-.details-contact {
-  font-family: "Roboto", sans-serif;
-  padding: 10px;
-}
-
-.details-opening {
-  font-family: "Roboto", sans-serif;
-  padding: 10px;
-}
-
+.details-opening,
+.details-contact,
+.details-bio,
+.details-title,
+.details-location,
 .op-details-header {
   font-family: "Roboto", sans-serif;
   padding: 10px;
 }
+
 
 .op-details-container {
   overflow-y: scroll;

@@ -30,7 +30,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
     }
   }
   // const jobseekerMatchesUrl = backendURL + `api/jobseekers/${jobseekerId}/matches`;
-
+  console.log(id)
   // const fullBackendUrl = backendURL + `/api/openings/notswiped/jobseeker/${jobseekerId}`;
   let openingsId;
   let jobseekerId;
@@ -42,6 +42,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
       return opening;
     } else if (companyState) {
       setOpeningsState(jobseekers)
+      console.log(jobseekers)
       return jobseekers
     }
     
@@ -97,10 +98,14 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
             return swipeElement.openings_id === openingsId
           })
         }
+<<<<<<< HEAD
+      
+=======
         // console.log(swipe)
         // console.log(id)
         // console.log(roleBaseUrl)
         // console.log(filteredSwipes)
+>>>>>>> master
         for (let i = 0; i < filteredSwipes.length; i++) {
           if (filteredSwipes[i].swiped_right === true) count = count + 1;
         }
@@ -245,12 +250,18 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
                 <div>{op.location}</div>
                 <div className="about-company">
                   {jobseekerState ? (
-                    <h4>About company:</h4>
+                    <>
+                      <h4>About jobseeker:</h4>
+                      <p>Bio: {op.bio}</p>
+                      <p>Company Name: {op.name}</p>
+                    </>
                   ) : (
-                    <h4>About jobseeker:</h4>
+                    <>
+                      <h4>About jobseeker:</h4>
+                      <p>Bio: {op.bio}</p>
+                      <p>Name: {op.name}</p>
+                    </>
                   )}
-                  <p>{op.bio}</p>
-                  <p>{op.name}</p>
                 </div>
               </div>
             </TinderCard>

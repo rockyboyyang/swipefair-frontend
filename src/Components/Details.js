@@ -13,40 +13,77 @@ const Details = ({
   let image;
   let openings;
 
-  if (jobseekerState !== undefined) {
-    if (chattingWithInfo !== undefined) {
-      bio = chattingWithInfo.bio;
-      email = chattingWithInfo.email;
-      image = chattingWithInfo.image;
-      openings = chattingWithInfo.openings;
-      return (
-        <div className="right-container">
-          <img className="details-image" src={image}/>
-          <div className="details-header">
-            <h2>{chattingWithName}</h2>
+  if (chattingWithInfo !== undefined) {
+    console.log(chattingWithInfo)
+    bio = chattingWithInfo.bio;
+    email = chattingWithInfo.email;
+    image = chattingWithInfo.image;
+    openings = chattingWithInfo.openings;
+    return (
+      <>
+        {jobseekerState ? (
+          <div className="right-container">
+            <img className="details-image" src={image}/>
+            <div className="details-header">
+              <h2>{chattingWithName}</h2>
+            </div>
+            <div className="details-bio">
+              <h4>About</h4>
+              <p>{bio}</p>
+            </div>
+            <div className="details-contact">
+              <h4>Contact</h4>
+              <p>{email}</p>
+            </div>
+            <h3 className="op-details-header">Openings</h3>
+            <div className="op-details-container">
+              {openings.map((op) =>
+                <div className="details-opening">
+                  <h4>{op.title}</h4>
+                  <p>{op.description}</p>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="details-bio">
-            <h4>About</h4>
-            <p>{bio}</p>
+        ) : (
+          <div className="right-container">
+            <img className="details-image" src={image} />
+            <div className="details-header">
+              <h2>{chattingWithName}</h2>
+            </div>
+            <div className="details-bio">
+              <h4>About</h4>
+              <p>{bio}</p>
+            </div>
+            <div className="details-contact">
+              <h4>Contact</h4>
+              <p>{email}</p>
+            </div>
+            <div className="details-title">
+              <h4>Title</h4>
+              <p>{chattingWithInfo.title}</p>
+            </div>
+            <div className="details-location">
+              <h4>Location</h4>
+              <p>{chattingWithInfo.location}</p>
+            </div>
+            {/* <h3 className="op-details-header">Openings</h3> */}
+            {/* <div className="op-details-container">
+              {openings.map((op) =>
+                <div className="details-opening">
+                  <h4>{op.title}</h4>
+                  <p>{op.description}</p>
+                </div>
+              )}
+            </div> */}
           </div>
-          <div className="details-contact">
-            <h4>Contact</h4>
-            <p>{email}</p>
-          </div>
-          <h3 className="op-details-header">Openings</h3>
-          <div className="op-details-container">
-            {openings.map((op) =>
-              <div className="details-opening">
-                <h4>{op.title}</h4>
-                <p>{op.description}</p>
-              </div>
-            )}
-          </div>
-        </div>
-      );
-    }
-
+        )}
+      </>
+    );
   }
+  // if (jobseekerState !== undefined) {
+
+  // }
 
   if (companyState !== undefined) {
     if (chattingWithInfo !== undefined) {
