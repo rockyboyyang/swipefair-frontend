@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import {useHistory} from 'react-router-dom'
 import "../../stylesheets/sign-up.css"
 import backendURL from '../../backendURL'
 
@@ -12,8 +12,11 @@ const SignUp = (props) => {
   const [companyEmailState, setCompanyEmail] = useState(undefined);
   const [companyPasswordState, setCompanyPassword] = useState(undefined);
   const [companyConfirmPasswordState, setCompanyConfirmPassword] = useState(undefined);
+  const [submitting, setSubmitting] = useState(false);
 
+  let history = useHistory();
   const jobseekerOnclick = async (e) => {
+    setSubmitting(true)
     e.preventDefault(); //??? i think we said it would make no difference
     if (passwordState !== confirmPasswordState) return;
 
@@ -34,9 +37,14 @@ const SignUp = (props) => {
       // window.localStorage.access_token = access_token; //i swear i wrote this
     //   jobseeker ? setJobseeker({ jobseeker }) : setCompany({ company }); //check
     // }
+    setTimeout(() => {
+      setSubmitting(false);
+      history.push("/login")
+    })
   };
 
   const companyOnclick = async (e) => {
+    setSubmitting(true)
     e.preventDefault(); //??? i think we said it would make no difference
     if (companyPasswordState !== companyConfirmPasswordState) return;
 
@@ -57,6 +65,10 @@ const SignUp = (props) => {
     //   window.localStorage.access_token = access_token; //i swear i wrote this
     //   jobseeker ? setJobseeker({ jobseeker }) : setCompany({ company }); //check
     // }
+    setTimeout(() => {
+      setSubmitting(false);
+      history.push("/login")
+    })
   };
 
   const handleNameChange = (event) => {
@@ -101,7 +113,7 @@ const SignUp = (props) => {
             <input type="email" placeholder="Enter Email" value={emailState} onChange={handleEmailChange}></input>
             <input type="password" placeholder="Enter Password" value={passwordState} onChange={handlePasswordChange}></input>
             <input type="password" placeholder="Confirm Password" value={confirmPasswordState} onChange={handleConfirmPasswordChange}></input>
-            <button onClick={jobseekerOnclick}>Sign Up</button>
+            {submitting ? <button>Submitting...</button> : <button onClick={jobseekerOnclick}>Sign Up</button>}
           </form>
         </div>
         <div className="form-container company-form">
@@ -111,7 +123,7 @@ const SignUp = (props) => {
             <input type="email" placeholder="Enter Company Email" value={companyEmailState} onChange={handleCompanyEmailChange}></input>
             <input type="password" placeholder="Enter Password" value={companyPasswordState} onChange={handleCompanyPasswordChange}></input>
             <input type="password" placeholder="Confirm Password" value={companyConfirmPasswordState} onChange={handleCompanyConfirmPasswordChange}></input>
-            <button onClick={companyOnclick}>Sign Up</button>
+            {submitting ? <button>Submitting...</button> : <button onClick={companyOnclick}>Sign Up</button>}
           </form>
         </div>
       </div>

@@ -1,0 +1,22 @@
+.experience-card {
+    border-bottom: 0.5px solid lightgray;
+    margin-left: 50px; 
+    margin-right: 50px; 
+}
+
+.experience-card-title-dates {
+    display: flex;
+    font-size: 18px;
+    padding: 10px; 
+}
+
+.experience-card-title {
+    font-weight: bold; 
+    width: 30%; 
+}
+
+.experience-card-description {
+    padding: 10px; 
+    display: flex; 
+    flex-wrap: wrap; 
+}
