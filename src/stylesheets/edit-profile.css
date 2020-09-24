@@ -1,12 +1,15 @@
 .edit-profile-container {
-  /* max-width: 600px;
-  min-width: 30%; */
-  width: fit-content;
-  border: solid tomato 1px;
+  /* max-width: 600px; */
+  min-width: 30%;
+  /* width: fit-content; */
+  height: auto;
   margin: auto;
-  padding: 0 1em 1em 1em;
-  margin-top: 10%;
+  padding: 30px;
+  margin-top: 5%;
   font-family: 'Lato', sans-serif;
+  box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.30);
+  border-radius: 10px; 
+  /* display: flex;  */
 }
 
 .edit-profile-container h2 {
@@ -28,3 +31,80 @@
   border: solid tomato 1px;
 }
 
+.form-container {
+  width: 100%; 
+  height: 100%; 
+  display: flex; 
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  margin-top: 20px; 
+  /* justify-content: space-between; */
+}
+
+.inputs-container {
+  border-top: 1px solid lightseagreen;
+}
+
+.form-input {
+  display: flex; 
+  flex-direction: column;
+  padding: 5px;
+}
+
+.submit-edit-button {
+  cursor: pointer; 
+  background-color: white; 
+  color: lightseagreen; 
+  padding: 10px; 
+  border: 1px solid lightseagreen; 
+  border-radius: 5px; 
+  width: 200px; 
+  font-size: 16px; 
+  margin-right: 20px; 
+  margin-top: 20px; 
+  width: fit-content;
+  outline: none; 
+}
+
+.submit-edit-button:hover {
+  background-color: lightseagreen;
+  color: white; 
+}
+
+.form-input span {
+  color: lightseagreen;
+}
+
+.form-input input {
+  padding: 6px;
+  font-size: 16px; 
+}
+
+.form-input label {
+  padding-bottom: 5px; 
+  font-weight: bold; 
+  font-size: 15px;
+}
+
+.form-input textarea {
+  padding: 6px; 
+  font-size: 15px;
+  font-family: 'Archivo', sans-serif;
+}
+
+.errors {
+  color: lightseagreen; 
+  font-size: 14px; 
+}
+
+.image-container {
+  display: flex; 
+  flex-direction: column;
+  padding-left: 25px;
+  width: 200px; 
+}
+
+.buttons-container {
+  display: flex; 
+
+}

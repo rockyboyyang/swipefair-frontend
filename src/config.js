@@ -1,3 +1,7 @@
-export const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : '/api';
-export const awsAccessKeyID = process.env.AWS_ACCESS_KEY_ID
-export const awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
+// export const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : '/api';
+
+const config = {
+    baseUrl: "http://localhost:5000/api", //no trialing slash here
+  };
+  export default config;
+

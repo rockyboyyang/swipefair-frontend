@@ -97,10 +97,10 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
             return swipeElement.openings_id === openingsId
           })
         }
-        console.log(swipe)
-        console.log(id)
-        console.log(roleBaseUrl)
-        console.log(filteredSwipes)
+        // console.log(swipe)
+        // console.log(id)
+        // console.log(roleBaseUrl)
+        // console.log(filteredSwipes)
         for (let i = 0; i < filteredSwipes.length; i++) {
           if (filteredSwipes[i].swiped_right === true) count = count + 1;
         }
