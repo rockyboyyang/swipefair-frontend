@@ -22,7 +22,7 @@ const App = props => {
       company = JSON.parse(localStorage.company)
     }
   } catch (e) {
-    console.log(e)
+    // console.log(e)
   }
   const [jobseekerState, setJobseeker] = useState(jobseeker);
   const [companyState, setCompany] = useState(company);
@@ -41,7 +41,7 @@ const App = props => {
       return element.company_name === companyState.company_name
     })
     window.localStorage.userCompanyOpenings = JSON.stringify(userOpenings)
-    console.log(userOpenings)
+
     setUserCompanyOpenings(userOpenings)
   }
 

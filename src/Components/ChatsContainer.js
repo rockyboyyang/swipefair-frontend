@@ -29,16 +29,14 @@ const ChatsContainer = ({ companyState, jobseekerState, setChatId }) => {
     // TODO: change to heroku in the future
     const herokuUrl = backendURL + `api/${role}/${id}/chats`
     const[chatsState, setChatsState] = useState([])
-    console.log(herokuUrl)
+
     const data = async () => {
         const response = await fetch(herokuUrl); // + '/'
         const { chats } = await response.json();
         setChatsState(chats);
-        console.log(chats)
     };
 
     useEffect(() => {
-        console.log(chatsState)
         try {
             data();
         } catch (e) {

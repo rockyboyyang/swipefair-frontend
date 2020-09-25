@@ -14,7 +14,6 @@ const Details = ({
   let openings;
 
   if (chattingWithInfo !== undefined) {
-    console.log(chattingWithInfo)
     bio = chattingWithInfo.bio;
     email = chattingWithInfo.email;
     image = chattingWithInfo.image;

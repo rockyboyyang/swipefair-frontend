@@ -35,17 +35,17 @@ const MyProfile = ({ jobseekerState, companyState }) => {
       fullBackendUrl = backendURL + `api/jobseekers/${id}`;
       // roleBaseUrl = backendURL + 'api/jobseekers/'
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   } else if (companyState) {
     try {
       id = JSON.parse(localStorage.getItem("company")).id;
-      console.log(id);
+      // console.log(id);
       // matchesUrl = backendURL + `api/companies/${id}/matches`
       fullBackendUrl = backendURL + `api/companies/${id}`;
       // roleBaseUrl = backendURL + 'api/companies/'
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 
