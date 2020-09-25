@@ -32,7 +32,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
 
   jobseekerState !== undefined ? role = 'jobseeker' : role = 'company'
   jobseekerState !== undefined ? role_plural = 'jobseekers' : role_plural = 'companies'
-  console.log(role, role_plural)
+
   if (!localStorage.access_token) {
     history.push('/login')
   }
@@ -62,7 +62,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
     const body = {
       body: newMessageState,
     }
-    console.log(body)
+
     const res = await fetch(postMessageUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -72,7 +72,7 @@ const MessagesView = ({ companyState, jobseekerState, chatId, matchesState, setM
     // TODO:
     // might want to rerender component but this works for now
     if (res.ok) {
-      console.log('ok')
+
       setNewMessageState('')
       data()
     }

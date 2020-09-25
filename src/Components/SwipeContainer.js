@@ -17,7 +17,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
       fullBackendUrl = backendURL + `/api/openings/notswiped/jobseeker/${id}`;
       roleBaseUrl = backendURL + 'api/jobseekers/'
     } catch (e) {
-      console.log(e)
+
     }
   } else if (companyState) {
     try {
@@ -26,11 +26,11 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
       fullBackendUrl = backendURL + `api/openings/notswiped/company/${id}`;
       roleBaseUrl = backendURL + 'api/companies/'
     } catch (e) {
-      console.log(e)
+
     }
   }
   // const jobseekerMatchesUrl = backendURL + `api/jobseekers/${jobseekerId}/matches`;
-  console.log(id)
+
   // const fullBackendUrl = backendURL + `/api/openings/notswiped/jobseeker/${jobseekerId}`;
   let openingsId;
   let jobseekerId;
@@ -42,7 +42,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
       return opening;
     } else if (companyState) {
       setOpeningsState(jobseekers)
-      console.log(jobseekers)
+
       return jobseekers
     }
     
@@ -98,14 +98,7 @@ const SwipeContainer = ({ setMatchesState, openingsState, setOpeningsState, jobs
             return swipeElement.openings_id === openingsId
           })
         }
-<<<<<<< HEAD
       
-=======
-        // console.log(swipe)
-        // console.log(id)
-        // console.log(roleBaseUrl)
-        // console.log(filteredSwipes)
->>>>>>> master
         for (let i = 0; i < filteredSwipes.length; i++) {
           if (filteredSwipes[i].swiped_right === true) count = count + 1;
         }
