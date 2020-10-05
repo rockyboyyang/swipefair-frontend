@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import "../stylesheets/myprofile.css";
 import config from "../config";
 import { FaWindowClose } from "react-icons/fa";
+import backendURL from '../backendURL'
 
 
 const Modal = (props) => {
@@ -14,7 +15,7 @@ const Modal = (props) => {
 
   const onSubmit = (data, e) => {
     setSubmitting(true);
-    fetch(`${config.baseUrl}/jobseekers/${id}/experiences`, {
+    fetch(`${backendURL}api/jobseekers/${id}/experiences`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

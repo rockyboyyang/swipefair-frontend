@@ -18,7 +18,7 @@ const EditProfile = () => {
   const id = JSON.parse(localStorage.getItem("jobseeker")).id;
 
   useEffect(() => {
-    fetch(`${backendURL}/api/jobseekers/${id}`, {
+    fetch(`${backendURL}api/jobseekers/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const EditProfile = () => {
     formData.append("education_date_start", educationStartDate.value);
     formData.append("education_date_end", educationEndDate.value);
 
-    fetch(`${config.baseUrl}/jobseekers/${id}`, {
+    fetch(`${backendURL}api/jobseekers/${id}`, {
       method: "PUT",
       body: formData,
     })

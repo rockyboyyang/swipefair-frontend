@@ -13,7 +13,6 @@ export default function CompanyList({name, openings, image, matchesState, jobsee
   let id;
   if (companyState !== undefined) {
     try {
-      console.log(true)
       id = companyState.id
     } catch (e) {
 
