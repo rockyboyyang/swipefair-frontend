@@ -53,7 +53,7 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
     const response = await res.json();
     return response.matches;
   };
-
+  
   useEffect(() => {
     data();
   }, [])
@@ -105,8 +105,8 @@ export default function MatchesContainer({ setMatchesState, matchesState, jobsee
           <h2>Matches</h2>
           <div onClick={redirectToChats}>CHATS</div>
         </div>
-        {Object.keys(matches).map((company_name) => (
-          <CompanyList company_name={company_name} key={matches[company_name].id} image={matches[company_name].image} openings={matches[company_name].openings} />
+        {Object.keys(matches).map((name) => (
+          <CompanyList name={name} key={matches[name].id} image={matches[name].image} openings={matches[name].openings} matchesState={matchesState} jobseekerState={jobseekerState} companyState={companyState}/>
         ))}
       </div>
     );
