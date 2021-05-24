@@ -28,7 +28,15 @@ An application that combines the uses of Tinder and LinkedIn.  By being able to 
  - Splash page/Login/Sign-Up
  - Jobseeker account creation
  - Employer account creation
+![home-page](public/assets/swipefair_home.png)
+
  - Ability to swipe job openings
+![home-page-after-login](public/assets/swipefair_user.png)
+
+- Sending messages
+![message_box](public/assets/message.png)
+
+
 
 # Technical Challenges
 - Getting the backend and frontend to connect
