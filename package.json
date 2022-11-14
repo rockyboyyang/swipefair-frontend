@@ -14,7 +14,7 @@
     "react-hook-form": "^6.8.1",
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "react-tinder-card": "^1.2.0"
   },
   "scripts": {
